@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BioGen Industries – Careers</title>
+<link rel="icon" href="favi1.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+a { text-decoration: none; color: #312783; }
+a:hover { color: #1e1654; }
+
+/* NAVBAR (same as other pages) */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0px);
+    transition: background 0.4s ease, backdrop-filter 0.4s ease,
+                padding 0.4s ease, box-shadow 0.4s ease;
+    z-index: 999;
+}
+.navbar.scrolled {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    padding: 10px 6%;
+}
+.navbar img {
+    height: 55px;
+    transition: height 0.4s ease;
+}
+.navbar.scrolled img { height: 45px; }
+
+.nav-links a {
+    margin-left: 26px;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+.navbar.scrolled .nav-links a { color: #414445; }
+.nav-links a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    background-color: #312783;
+    transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* HEADER */
+.page-header {
+    margin-top: 150px;
+    text-align: center;
+    padding: 0 10%;
+}
+.page-header h1 {
+    font-size: 34px;
+    color: #312783;
+}
+.page-header p {
+    max-width: 700px;
+    margin: 10px auto 0 auto;
+    color: #444;
+    font-size: 16px;
+}
+
+/* JOB LISTINGS */
+.jobs-section {
+    padding: 60px 10%;
+}
+
+.job-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    margin: 25px auto;
+    max-width: 900px;
+}
+
+.job-card h2 {
+    margin: 0 0 6px 0;
+    color: #312783;
+}
+.job-card h3 {
+    margin: 0 0 14px 0;
+    color: #666;
+    font-size: 16px;
+    font-weight: normal;
+}
+.job-card p {
+    margin-bottom: 14px;
+}
+.job-card .apply {
+    display: inline-block;
+    background-color: #312783;
+    padding: 10px 16px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+.job-card .apply:hover {
+    background-color: #1e1654;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 80px;
+    background-color: #404040;
+    color: white;
+    padding: 40px 10%;
+    text-align: center;
+}
+.footer a { color: #bbb; }
+.footer a:hover { color: white; }
+</style>
+
+<script>
+window.addEventListener("scroll", function() {
+    const nav = document.querySelector(".navbar");
+    if (window.scrollY > 50) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+});
+</script>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <img src="BiogenLogo.png" alt="Biogen Industries Logo">
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="bgres.html">Research</a>
+        <a href="bgman.html">Leadership</a>
+        <a href="careers.html">Careers</a>
+        <a href="#contact">Contact</a>
+    </div>
+</header>
+
+<!-- HEADER -->
+<div class="page-header">
+    <h1>Careers at BioGen Industries</h1>
+    <p>
+        We work at the forefront of haemological research, developing new insights 
+        and supporting advancements in medical science. Our teams collaborate with 
+        clinicians, universities, and international partners to improve the future of blood health.
+        If you’re passionate about research, innovation, and making a genuine impact, we'd love to hear from you.
+    </p>
+</div>
+
+<!-- JOBS -->
+<div class="jobs-section">
+
+    <div class="job-card">
+        <h2>Research Assistant – Haemology</h2>
+        <h3>Full-time · London, UK</h3>
+        <p>
+            Supporting laboratory projects involving bloodborne condition analysis, sample preparation, 
+            and data management. Ideal for early-career researchers seeking experience in clinical research environments.
+        </p>
+        <p><b>Requirements:</b> BSc in Biomedical Science or related field.</p>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Research%20Assistant">Apply by Email</a>
+    </div>
+
+    <div class="job-card">
+        <h2>Clinical Trials Coordinator</h2>
+        <h3>Full-time · London, UK</h3>
+        <p>
+            Coordinating participant recruitment, trial scheduling, and compliance documentation across multiple 
+            ongoing studies. This role involves regular communication with clinical partners and internal researchers.
+        </p>
+        <p><b>Requirements:</b> Experience in clinical trial administration or NHS research settings preferred.</p>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Clinical%20Trials%20Coordinator">Apply by Email</a>
+    </div>
+
+    <div class="job-card">
+        <h2>Laboratory Technician – Sample Processing</h2>
+        <h3>Part-time · London, UK</h3>
+        <p>
+            Responsible for handling incoming biological samples, maintaining equipment, following safety standards,
+            and ensuring accurate recording of all laboratory activity.
+        </p>
+        <p><b>Requirements:</b> Prior lab experience beneficial but not essential; full training provided.</p>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Lab%20Technician">Apply by Email</a>
+    </div>
+
+    <div class="job-card">
+        <h2>Data Analyst – Research Insights</h2>
+        <h3>Full-time · Hybrid</h3>
+        <p>
+            Analysing experimental data sets, contributing to internal reporting, and supporting decision-making 
+            across research teams. Experience with R, SPSS, or Python for scientific analysis preferred.
+        </p>
+        <p><b>Requirements:</b> Strong background in statistics or computational biology.</p>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Data%20Analyst">Apply by Email</a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <p><strong>Contact Us</strong></p>
+    <p>
+        Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
+        16 The Edge Business Centre<br>
+        Dollis Hill, London, NW2 6<br>
+        United Kingdom
+    </p>
+
+    <p style="margin-top: 30px;">
+        <img src="AMRC1.png" height="70">
+        <img src="AMRC2.png" height="70">
+    </p>
+
+    <p style="margin-top: 20px; font-size:14px;">© 2025 BioGen Industries. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

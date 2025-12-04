@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BioGen Research Portal – RVK-17</title>
+<link rel="icon" href="favi1.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* FROSTED NAVBAR (matches site) */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0px);
+    transition: background 0.4s ease, backdrop-filter 0.4s ease,
+                padding 0.4s ease, box-shadow 0.4s ease;
+    z-index: 999;
+}
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    padding: 10px 6%;
+}
+.navbar img {
+    height: 55px;
+    transition: height 0.4s ease;
+}
+.navbar.scrolled img { height: 45px; }
+.nav-links a {
+    margin-left: 26px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    position: relative;
+}
+.navbar.scrolled .nav-links a { color: #414445; }
+.nav-links a::after {
+    content: "";
+    width: 0%; height: 2px;
+    background-color: #312783;
+    position: absolute; left: 0; bottom: -3px;
+    transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* PAGE HEADER */
+.container {
+    margin-top: 150px;
+    padding: 0 8%;
+}
+h1 {
+    text-align: center;
+    color: #312783;
+}
+.confidential {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+}
+td {
+    padding: 12px 10px;
+    vertical-align: top;
+}
+tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+.code {
+    width: 22%;
+    font-weight: bold;
+    color: #312783;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 80px;
+    background-color: #404040;
+    color: white;
+    padding: 40px 10%;
+    text-align: center;
+}
+.footer a { color: #bbb; }
+.footer a:hover { color: white; }
+</style>
+
+<script>
+window.addEventListener("scroll", function() {
+    const nav = document.querySelector(".navbar");
+    if (window.scrollY > 50) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+});
+</script>
+</head>
+
+<body>
+
+<header class="navbar">
+    <img src="BiogenLogo.png" alt="Biogen Industries Logo">
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="bgres.html">Research</a>
+        <a href="bgman.html">Leadership</a>
+        <a href="#">Careers</a>
+        <a href="#contact">Contact</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="confidential">— EXTREMELY CONFIDENTIAL —</div>
+
+    <h1>RESEARCH PRODUCT: RVK-17</h1>
+
+    <table>
+        <tr>
+            <td class="code">Research Question:</td>
+            <td>To determine whether the behavioural and emotional outcomes of a blood-bond analogue can be chemically induced in subjects, and to identify a practical delivery mechanism suitable for covert population-level exposure.</td>
+        </tr>
+        <tr>
+            <td class="code">Lead Researcher:</td>
+            <td>Dr Katerina Marin</td>
+        </tr>
+        <tr>
+            <td class="code">Background:</td>
+            <td>
+                RVK-17 explores the development of a controllable, time-limited attachment analogue capable of producing heightened compliance, emotional alignment, and subject orientation toward a designated target individual or group.
+
+                Two research strands were required:<br><br>
+                <b>A)</b> Development of a biochemical agent capable of replicating the behavioural outcomes associated with long-term bonded conditioning.<br>
+                <b>B)</b> Identification of a distribution mechanism enabling sustained, repeat dosing among both human subjects and unidentified carriers, without detection or requirement for direct administration.
+            </td>
+        </tr>
+    </table>
+
+    <h2 style="margin-top: 60px; text-align:center; color:#312783;">Activity Log</h2>
+
+    <table>
+
+        <tr>
+            <td class="code">RVK-17-001 — 19/02</td>
+            <td>
+                Initial analogue trials. Fifty exposures administered sequentially.<br>
+                Outcome: Insufficient effect. No measurable attachment behaviour.  
+                Subject concluded.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-002 — 04/03</td>
+            <td>
+                Reformulation produced extreme overstimulation after four exposures.  
+                Rapid onset distress followed by violent self-harm response.  
+                Subject terminated.  
+                Notable: Reported “sweet” taste prior to behavioural collapse.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-003 — 17/03</td>
+            <td>
+                Intermediate success: observable orientation and early bonding markers.  
+                After nineteen exposures, subject experienced abrupt emotional destabilisation, absconded, and self-terminated before recovery possible.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-004 — 11/04</td>
+            <td>
+                Stable analogue achieved. Forty-three exposures produced reliable attachment lasting approximately 30 days.  
+                Notably: decay curve is gradual and less conspicuous than anticipated.  
+                No attempt will be made to increase duration; current profile preferable for covert application.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-005 — 29/04</td>
+            <td>
+                Supplementary trial to determine whether exposed operatives show vulnerability to feedback effects.  
+                Lisinopril (5mg) co-administration prevented all measurable influence.  
+                Conclusion: Identified individuals within supervising structures can be effectively immunised.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-006 — 02/07</td>
+            <td>
+                Distribution Test 1: Urban vermin carriers.<br>
+                Result: Exposure density insufficient for meaningful population effect. Model abandoned.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-007 — 15/08</td>
+            <td>
+                Distribution Test 2: Aerosol dispersal.<br>
+                Result: Unsafe volatility. Significantly hazardous to operator.  
+                Discrete deployment impossible.  
+                Lab technician replacement required (contact Rehema).
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-008 — 20/09</td>
+            <td>
+                Distribution Test 3: Human carriers.<br>
+                Result: Low exposure density; insufficient repeated ingestion among target population.  
+                However, RVK-17 detected in bloodstream demonstrated unexpectedly high palatability to higher-order consumers.  
+                Further investigation recommended.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-009 — 06/10</td>
+            <td>
+                Breakthrough.  
+                Compound successfully bonded to a hybrid narcotic formulation (nicotine, benzoylmethylecgonine, metamfetamine).  
+                Result: Human subjects exhibit rapid and intense dependency, enabling self-directed repeated dosing.  
+                Once exposed, blood retains RVK-17 behavioural properties for 48–72 hours.  
+                Withdrawal aversion ensures continued reinforcement without external intervention.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-010 — 19/10</td>
+            <td>
+                Live environment pilot (n = 35).  
+                Full behavioural acquisition achieved with minimal losses.  
+                All subjects concluded post-trial.  
+                Recommendation: scale up.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="code">RVK-17-011 — 20/11</td>
+            <td>
+                Large-scale test (n = 220).  
+                Acquisition: 214 subjects (97.3%).  
+                Stability curve consistent with projected model.  
+                Full report available: <a href="report.pdf">download here</a>.
+            </td>
+        </tr>
+    </table>
+
+    <div class="confidential">— EXTREMELY CONFIDENTIAL —</div>
+
+    <!-- Encoded Tremere-flavoured hint, still plausibly meaningless to mortals -->
+    <div style="text-align:center; color:#312783; font-size:13px; margin-bottom:50px;">
+        aW52b2x1bnRhcnkgc3lzdGVtcyByZXF1aXJlIGNhcmVmdWwgbWFuYWdlbWVudC4gCnByZWNpc2lvbiBoYXMgYSBjb3N0
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <p><strong>Contact Us</strong></p>
+    <p>
+        Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
+        16 The Edge Business Centre<br>
+        Dollis Hill, London, NW2 6<br>
+        United Kingdom
+    </p>
+
+    <p style="margin-top: 30px;">
+        <img src="AMRC1.png" height="70">
+        <img src="AMRC2.png" height="70">
+    </p>
+
+    <p style="margin-top: 20px; font-size:14px;">© 2025 BioGen Industries. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
