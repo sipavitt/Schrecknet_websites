@@ -504,3 +504,11 @@ a { text-decoration: none; }
     }
 }
 
+/* Ensure navbar logo is same size on all pages */
+#navbarLogo,
+.nav-logo {
+    width: 130px;
+    height: auto;
+    object-fit: contain;
+}
+
