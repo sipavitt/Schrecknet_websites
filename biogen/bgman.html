@@ -13,41 +13,44 @@
 </head>
 
 <body class="static-nav-page">
-<!-- ----------------------------- -->
-<!--         NAVIGATION BAR        -->
-<!-- ----------------------------- -->
+
+<!-- =========================================================
+     NAVBAR — STATIC WHITE VERSION
+========================================================= -->
 <header class="navbar navbar-static">
     <div class="nav-left">
         <img src="biogen_logo_nav_black.webp" class="nav-logo" alt="BioGen Industries">
     </div>
 
-    <nav class="nav-links">
+    <div class="nav-right">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="bgres.html">Research</a>
+            <a href="bgman.html" class="active">Leadership</a>
+            <a href="careers.html">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- HAMBURGER MENU -->
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
         <a href="index.html">Home</a>
         <a href="bgres.html">Research</a>
-        <a href="bgman.html" class="active">Leadership</a>
+        <a href="bgman.html">Leadership</a>
         <a href="careers.html">Careers</a>
         <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- HAMBURGER FOR MOBILE -->
-    <div class="hamburger">
-        <span></span><span></span><span></span>
     </div>
 </header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="bgres.html">Research</a>
-    <a href="bgman.html">Leadership</a>
-    <a href="careers.html">Careers</a>
-    <a href="#contact">Contact</a>
-</div>
 
-
-<!-- ----------------------------- -->
-<!--        PAGE INTRO HEADER      -->
-<!-- ----------------------------- -->
+<!-- =========================================================
+     PAGE HEADER
+========================================================= -->
 <section class="page-header fade-in-up">
     <h1>Meet Our Leadership Team</h1>
     <p>
@@ -58,15 +61,14 @@
 </section>
 
 
-<!-- ----------------------------- -->
-<!--     LEADERSHIP PROFILES       -->
-<!-- ----------------------------- -->
+<!-- =========================================================
+     LEADERSHIP PROFILES
+========================================================= -->
 <section class="team-section">
 
     <!-- OCTAVIAN -->
     <article class="profile fade-in-up">
         <img src="tavi.jpg" alt="Dr Octavian Juul">
-
         <div>
             <h2>Dr Octavian Juul</h2>
             <h3>Managing Director</h3>
@@ -74,7 +76,7 @@
             <p>
                 Dr Juul began his scientific career in the early 1970s, completing a doctorate in neurochemistry 
                 at the Université Descartes in Paris. His early research focused on metabolic deficiencies and 
-                enzyme-linked blood disorders, helping lay groundwork for several modern therapeutic approaches.
+                enzyme–linked blood disorders, helping lay groundwork for several modern therapeutic approaches.
             </p>
 
             <p>
@@ -93,14 +95,13 @@
     <!-- KATERINA -->
     <article class="profile fade-in-up">
         <img src="Kat.jpg" alt="Dr Katerina Marin">
-
         <div>
             <h2>Dr Katerina Marin</h2>
             <h3>Director of Research</h3>
 
             <p>
-                Dr Marin began her medical career as an endocrinologist before completing her doctorate focusing on 
-                clotting disorders, particularly Plasminogen Activator Inhibitor Type 1 deficiency. Her research 
+                Dr Marin began her medical career as an endocrinologist before completing her doctorate focusing 
+                on clotting disorders, particularly Plasminogen Activator Inhibitor Type 1 deficiency. Her research 
                 experience spans institutions across Europe and the United States.
             </p>
 
@@ -120,7 +121,6 @@
     <!-- JOHANNES -->
     <article class="profile fade-in-up">
         <img src="Johan.jpg" alt="Johannes Rehema">
-
         <div>
             <h2>Johannes Rehema</h2>
             <h3>Head of People</h3>
@@ -145,9 +145,9 @@
 </section>
 
 
-<!-- ----------------------------- -->
-<!--            FOOTER             -->
-<!-- ----------------------------- -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 <footer class="footer" id="contact">
     <p><strong>Contact Us</strong></p>
 
@@ -160,15 +160,15 @@
     </p>
 
     <div class="footer-logos">
-        <img src="AMRC1.png" alt="AMRC Membership" height="70">
-        <img src="AMRC2.png" alt="AMRC Accredited" height="70">
+        <img src="AMRC1.png" height="70" alt="AMRC Member">
+        <img src="AMRC2.png" height="70" alt="AMRC Accredited">
     </div>
 
     <p class="footer-copy">© 2025 BioGen Industries. All rights reserved.</p>
 </footer>
 
 
-<!-- GLOBAL SCRIPTS -->
+<!-- GLOBAL NAV / MENU SCRIPT -->
 <script src="scripts.js"></script>
 
 </body>
