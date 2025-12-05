@@ -1,0 +1,159 @@
+/* GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: #0b0b0b;
+    color: #e6e1d5;
+    line-height: 1.6;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 80vh;
+    background: url('assets/img/hero-lobby.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.hero-logo {
+    width: 150px;
+    margin-bottom: 20px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    letter-spacing: 2px;
+    z-index: 2;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-top: 10px;
+    z-index: 2;
+}
+
+/* NAVIGATION */
+.topnav {
+    background: #111;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.topnav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.topnav a {
+    color: #e6e1d5;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.topnav a:hover {
+    opacity: 1;
+}
+
+/* INTRO SECTION */
+.intro {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.intro h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* SPLIT SECTION */
+.split-section {
+    display: flex;
+    margin-top: 80px;
+}
+
+.split-text {
+    flex: 1;
+    padding: 60px;
+}
+
+.split-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+/* LEADERSHIP */
+.leadership {
+    margin: 100px auto;
+    text-align: center;
+}
+
+.leader-card {
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+.leader-card img {
+    width: 300px;
+    display: block;
+    margin: 0 auto 20px;
+    opacity: 0.7;
+}
+
+.note {
+    margin-top: 10px;
+    opacity: 0.6;
+    font-size: 0.85rem;
+}
+
+/* OFFICES */
+.offices {
+    margin: 80px 0;
+    text-align: center;
+}
+
+.offices p {
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+/* FOOTER */
+footer {
+    background: url('assets/img/footer-texture.png') center/cover no-repeat;
+    padding: 40px 0;
+    margin-top: 80px;
+}
+
+.footer-inner {
+    text-align: center;
+    opacity: 0.85;
+}
+
+.smallprint {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
