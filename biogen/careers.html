@@ -5,68 +5,77 @@
     <title>BioGen Industries – Careers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Shared global styles + navbar logic -->
+    <!-- Global styles & scripts -->
     <link rel="stylesheet" href="style.css">
-    <script src="scripts.js" defer></script>
-
     <link rel="icon" href="biogen_favicon.png">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar no-hero">
-    <div class="logo-container">
-        <!-- static black-on-white logo for non-hero pages -->
-        <img id="navbarLogo" src="biogen_logo_nav_black.webp" alt="BioGen Industries Logo">
+<!-- =========================================================
+     NAVBAR — STATIC WHITE (MATCHES BGRES / BGMAN)
+========================================================= -->
+<header class="navbar navbar-static">
+    <div class="nav-left">
+        <img src="biogen_logo_nav_black.webp" class="nav-logo" alt="BioGen Industries">
     </div>
 
-    <nav class="nav-links" id="desktopNav">
-        <a href="index.html">Home</a>
-        <a href="bgres.html">Research</a>
-        <a href="bgman.html">Leadership</a>
-        <a href="careers.html" class="active">Careers</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <div class="nav-right">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="bgres.html">Research</a>
+            <a href="bgman.html">Leadership</a>
+            <a href="careers.html" class="active">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-    <!-- Hamburger for mobile -->
-    <div class="hamburger dark" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
+        <!-- Hamburger for mobile -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <nav class="mobile-menu" id="mobileMenu">
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Home</a>
         <a href="bgres.html">Research</a>
         <a href="bgman.html">Leadership</a>
         <a href="careers.html">Careers</a>
         <a href="#contact">Contact</a>
-    </nav>
+    </div>
 </header>
 
-<!-- PAGE HEADER -->
+
+<!-- =========================================================
+     CAREERS HEADER
+========================================================= -->
 <section class="page-header careers-header">
     <h1>Careers at BioGen Industries</h1>
     <p>
-        We work at the forefront of haemological research, developing new insights 
-        and supporting advancements in medical science. Our teams collaborate with 
-        clinicians, universities, and international partners to improve the future of blood health.
-        If you’re passionate about research, innovation, and making a genuine impact, we'd love to hear from you.
+        We work at the forefront of haemological research, developing new insights and supporting advancements
+        in medical science. Our teams collaborate with clinicians, universities, and international partners to
+        improve the future of blood health. If you’re passionate about research, innovation, and making a genuine
+        impact, we'd love to hear from you.
     </p>
 </section>
 
-<!-- JOB LISTINGS -->
+
+<!-- =========================================================
+     JOB LISTINGS
+========================================================= -->
 <section class="jobs-section">
 
     <div class="job-card">
         <h2>Research Assistant – Haemology</h2>
         <h3>Full-time · London, UK</h3>
         <p>
-            Supporting laboratory projects involving bloodborne condition analysis, sample preparation,
-            and data management. Ideal for early-career researchers seeking hands-on research experience.
+            Supporting laboratory projects involving bloodborne condition analysis, sample preparation, and data
+            management. Ideal for early-career researchers seeking hands-on research experience.
         </p>
         <p><strong>Requirements:</strong> BSc in Biomedical Science or related field.</p>
-        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Research%20Assistant">Apply by Email</a>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Research%20Assistant">
+            Apply by Email
+        </a>
     </div>
 
     <div class="job-card">
@@ -76,8 +85,10 @@
             Coordinating recruitment, trial scheduling, and compliance documentation across ongoing studies.
             Involves frequent collaboration with clinical partners and internal researchers.
         </p>
-        <p><strong>Requirements:</strong> Prior experience in clinical trial admin preferred.</p>
-        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Clinical%20Trials%20Coordinator">Apply by Email</a>
+        <p><strong>Requirements:</strong> Prior experience in clinical trial administration preferred.</p>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Clinical%20Trials%20Coordinator">
+            Apply by Email
+        </a>
     </div>
 
     <div class="job-card">
@@ -87,7 +98,9 @@
             Handling biological samples, maintaining equipment, and ensuring accurate laboratory records.
         </p>
         <p><strong>Requirements:</strong> Lab experience helpful but not required; full training provided.</p>
-        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Lab%20Technician">Apply by Email</a>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Lab%20Technician">
+            Apply by Email
+        </a>
     </div>
 
     <div class="job-card">
@@ -97,12 +110,17 @@
             Analysing experimental datasets, contributing to internal reporting, and supporting scientific decisions.
         </p>
         <p><strong>Requirements:</strong> Experience with R, SPSS, or Python for clinical data analysis.</p>
-        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Data%20Analyst">Apply by Email</a>
+        <a class="apply" href="mailto:careers@techcenter.com?subject=Application%20-%20Data%20Analyst">
+            Apply by Email
+        </a>
     </div>
 
 </section>
 
-<!-- FOOTER -->
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 <footer class="footer" id="contact">
     <p><strong>Contact Us</strong></p>
     <p>
@@ -112,15 +130,17 @@
         United Kingdom
     </p>
 
-    <p style="margin-top: 30px;">
+    <div class="footer-logos">
         <img src="AMRC1.png" height="70" alt="AMRC Member">
         <img src="AMRC2.png" height="70" alt="AMRC Accredited">
-    </p>
+    </div>
 
-    <p style="margin-top: 20px; font-size:14px;">
-        © 2025 BioGen Industries. All rights reserved.
-    </p>
+    <p class="footer-copy">© 2025 BioGen Industries. All rights reserved.</p>
 </footer>
+
+
+<!-- Global scripts (includes toggleMenu) -->
+<script src="scripts.js"></script>
 
 </body>
 </html>
