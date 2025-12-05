@@ -4,7 +4,7 @@
 window.addEventListener("scroll", () => {
     const navbar = document.querySelector(".navbar");
 
-    if (window.scrollY > 50) {
+    if (window.scrollY > 180) {
         navbar.classList.add("scrolled");
     } else {
         navbar.classList.remove("scrolled");
@@ -35,14 +35,19 @@ function triggerFadeIns() {
 triggerFadeIns();
 
 /* ----------------------------------------------
-   MOLECULAR ANIMATION (Particles + Nodes)
+   TRUE PARALLAX
+---------------------------------------------- */
+const hero = document.querySelector('.hero');
+window.addEventListener("scroll", () => {
+    let offset = window.pageYOffset * 0.3;
+    hero.style.backgroundPositionY = `${offset}px`;
+});
+
+/* ----------------------------------------------
+   MOLECULAR ANIMATION
 ---------------------------------------------- */
 const canvas = document.getElementById("molecularCanvas");
 const ctx = canvas.getContext("2d");
-
-let particles = [];
-let nodes = [];
-let nodeActive = false;
 
 function resizeCanvas() {
     canvas.width = canvas.offsetWidth;
@@ -51,7 +56,10 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Create drifting particles
+let particles = [];
+let nodes = [];
+let nodeActive = false;
+
 for (let i = 0; i < 40; i++) {
     particles.push({
         x: Math.random() * canvas.width,
@@ -62,7 +70,6 @@ for (let i = 0; i < 40; i++) {
     });
 }
 
-// Nodes for molecular effect
 for (let i = 0; i < 12; i++) {
     nodes.push({
         x: Math.random() * canvas.width,
@@ -71,14 +78,9 @@ for (let i = 0; i < 12; i++) {
     });
 }
 
-canvas.addEventListener("mousemove", () => {
-    activateNodes();
-});
-
+canvas.addEventListener("mousemove", activateNodes);
 window.addEventListener("scroll", () => {
-    if (window.scrollY < window.innerHeight * 0.8) {
-        activateNodes();
-    }
+    if (window.scrollY < window.innerHeight * 0.8) activateNodes();
 });
 
 function activateNodes() {
@@ -90,11 +92,9 @@ function activateNodes() {
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw particles
+    // Particles
     particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-
+        p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
@@ -104,7 +104,7 @@ function animate() {
         ctx.fill();
     });
 
-    // Draw nodes + connecting lines only if active
+    // Nodes
     if (nodeActive) {
         nodes.forEach(n1 => {
             ctx.beginPath();
@@ -113,9 +113,8 @@ function animate() {
             ctx.fill();
 
             nodes.forEach(n2 => {
-                let dx = n1.x - n2.x;
-                let dy = n1.y - n2.y;
-                let dist = Math.sqrt(dx * dx + dy * dy);
+                let dx = n1.x - n2.x, dy = n1.y - n2.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
 
                 if (dist < 140) {
                     ctx.beginPath();
