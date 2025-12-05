@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Redirecting…</title>
+</head>
+<body>
+<script>
+// Mapping for in-game sites (folders)
+const INGAME_MAP = {
+    "augury13": "/augury13/",
+    "biogen": "/biogen/",
+    "metromash": "/metromash/"
+};
+
+// Mapping for filler/CSV external domains (optional)
+const EXTERNAL_MAP = {
+    "filler-metro": "/filler/metro_daily.html",
+    "filler-citygov": "/filler/citygov_records.html"
+};
+
+// On load
+const u = new URLSearchParams(location.search).get("u");
+
+if (INGAME_MAP[u]) {
+    location.href = INGAME_MAP[u];
+} else if (EXTERNAL_MAP[u]) {
+    location.href = EXTERNAL_MAP[u];
+} else {
+    // External domain? redirect user to plausible "off-site"
+    if (/^[\w.-]+\.[A-Za-z]{2,}$/.test(u)) {
+        location.href = "https://" + u;
+    } else {
+        location.href = "index.html"; // fallback
+    }
+}
+</script>
+</body>
+</html>

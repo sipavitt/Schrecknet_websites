@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Findr Results</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="results-body">
+
+<div class="topbar">
+    <div class="logo-small" onclick="window.location='index.html'">
+        <span>F</span><span>i</span><span>n</span><span>d</span>r
+    </div>
+
+    <input id="search" class="search-box" type="text" placeholder="Search…" />
+</div>
+
+<div class="nav-tabs">
+    <div class="tab active">All</div>
+    <div class="tab">News</div>
+    <div class="tab">Images</div>
+    <div class="tab">Maps</div>
+</div>
+
+<div id="results"></div>
+
+<script>
+/* ----------------------------
+   CONFIG
+----------------------------- */
+
+// In-game site folders to scan
+const INGAME_SITES = [
+    "augury13",
+    "biogen",
+    "metromash"
+];
+
+// Fake domains for display masking
+const DISPLAY_DOMAINS = [
+    "metro-daily.co.uk",
+    "citygov.uk",
+    "knowledgegraph.io",
+    "observerdesk.co",
+    "civicdigest.org",
+    "forumhub.net",
+    "londonwire.news"
+];
+
+/* ----------------------------
+   Load CSV of top 100 UK sites
+----------------------------- */
+
+async function loadTopSites() {
+    try {
+        const res = await fetch("top_sites.csv");
+        const text = await res.text();
+        const lines = text.trim().split("\n").slice(1);
+
+        return lines.map(line => {
+            const [domain, title, category, description] = line.split(",");
+            return { domain, title, category, description };
+        });
+
+    } catch (e) {
+        console.error("CSV load error", e);
+        return [];
+    }
+}
+
+/* ----------------------------
+   Fetch in-game site data
+----------------------------- */
+
+async function fetchSite(site) {
+    try {
+        const res = await fetch(`/${site}/index.html`);
+        if (!res.ok) return null;
+
+        const html = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        const title = doc.querySelector("h1")?.innerText || site;
+        const text = doc.body.innerText.toLowerCase();
+
+        return { site, title, text };
+    } catch {
+        return null;
+    }
+}
+
+function rankInGame(query, pages) {
+    const q = query.toLowerCase();
+    return pages
+        .filter(p => p)
+        .map(p => {
+            let score = 0;
+            if (p.title.toLowerCase().includes(q)) score += 50;
+            if (p.text.includes(q)) score += 30;
+            if (p.site.includes(q)) score += 10;
+            return { ...p, score };
+        })
+        .filter(p => p.score > 0)
+        .sort((a, b) => b.score - a.score);
+}
+
+/* ----------------------------
+   Generate CSV-driven noise results
+----------------------------- */
+
+function generateNoise(query, pool) {
+    const q = query.toLowerCase();
+
+    const relevant = pool.filter(x =>
+        x.title.toLowerCase().includes(q) ||
+        x.description.toLowerCase().includes(q)
+    );
+
+    const general = pool;
+
+    const selected = [
+        ...pickRandom(relevant, 2),
+        ...pickRandom(general, 3)
+    ];
+
+    return selected.map(s => ({
+        title: `${s.title} – Results for "${query}"`,
+        display: `${s.domain}/search?q=${encodeURIComponent(query)}`,
+        snippet: s.description,
+        go: `go.html?u=${encodeURIComponent(s.domain)}`
+    }));
+}
+
+/* ----------------------------
+   Additional filler results
+----------------------------- */
+
+function generateFiller(query) {
+    const qdash = query.replace(/\s+/g, "-");
+
+    const chosen = [
+        {
+            title: `Metro Daily – Updates about "${query}"`,
+            display: `metro-daily.co.uk/news/${qdash}`,
+            go: `go.html?u=filler-metro`
+        },
+        {
+            title: `CityGov Public Records`,
+            display: `citygov.uk/records/search?id=${Math.floor(Math.random()*90000+10000)}`,
+            go: `go.html?u=filler-citygov`
+        }
+    ];
+
+    return chosen;
+}
+
+/* ----------------------------
+   Utility
+----------------------------- */
+
+function pickRandom(arr, count) {
+    return arr
+        .map(a => ({ val: a, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .slice(0, count)
+        .map(x => x.val);
+}
+
+/* ----------------------------
+   Render results
+----------------------------- */
+
+function renderResults(real, noise, filler) {
+    const container = document.getElementById("results");
+    container.innerHTML = "";
+
+    // In-game results
+    real.forEach(r => {
+        const displayDomain = DISPLAY_DOMAINS[Math.floor(Math.random() * DISPLAY_DOMAINS.length)];
+        const fakePath = `${displayDomain}/${r.site}`;
+
+        container.innerHTML += `
+        <div class="result">
+            <a class="result-title" href="go.html?u=${r.site}">${r.title}</a><br>
+            <div class="result-url">${fakePath}</div>
+            <div class="snippet">${r.text.substring(0, 160)}...</div>
+        </div>`;
+    });
+
+    // Top-site noise results
+    noise.forEach(n => {
+        container.innerHTML += `
+        <div class="result">
+            <a class="result-title" href="${n.go}">${n.title}</a><br>
+            <div class="result-url">${n.display}</div>
+            <div class="snippet">${n.snippet}</div>
+        </div>`;
+    });
+
+    // Filler (government, forums, news)
+    filler.forEach(f => {
+        container.innerHTML += `
+        <div class="result">
+            <a class="result-title" href="${f.go}">${f.title}</a><br>
+            <div class="result-url">${f.display}</div>
+            <div class="snippet">Additional indexed content referencing your search.</div>
+        </div>`;
+    });
+}
+
+/* ----------------------------
+   Main execution
+----------------------------- */
+
+async function runFindr() {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q") || "";
+    document.getElementById("search").value = query;
+
+    // Enable search-from-results
+    document.getElementById("search").addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+            window.location.href = `results.html?q=${encodeURIComponent(e.target.value)}`;
+        }
+    });
+
+    if (!query) return;
+
+    const [pages, pool] = await Promise.all([
+        Promise.all(INGAME_SITES.map(fetchSite)),
+        loadTopSites()
+    ]);
+
+    const real = rankInGame(query, pages);
+    const noise = generateNoise(query, pool);
+    const filler = generateFiller(query);
+
+    renderResults(real, noise, filler);
+}
+
+runFindr();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Findr</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="home-body">
+
+    <div class="logo">
+        <span>F</span><span>i</span><span>n</span><span>d</span>r
+    </div>
+
+    <div class="search-container">
+        <input id="search" class="search-box" type="text" placeholder="Search Findr…" />
+    </div>
+
+    <div class="buttons">
+        <button onclick="submitSearch()">Findr Search</button>
+        <button onclick="feelingLucky()">I'm Feeling Lucky</button>
+    </div>
+
+    <footer>Findr © 2025</footer>
+
+<script>
+function submitSearch() {
+    const q = document.getElementById("search").value.trim();
+    if (!q) return;
+    window.location.href = `results.html?q=${encodeURIComponent(q)}`;
+}
+
+function feelingLucky() {
+    window.location.href = `results.html?q=random`;
+}
+
+document.getElementById("search").addEventListener("keydown", e => {
+    if (e.key === "Enter") submitSearch();
+});
+</script>
+
+</body>
+</html>
