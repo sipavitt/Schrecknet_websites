@@ -285,4 +285,11 @@ a { text-decoration: none; }
     .hero-content p { font-size: 15px; }
 }
 
+/* --- Force dark nav links on pages without hero header --- */
+.navbar.navbar-static .nav-links a,
+.navbar.navbar-static .nav-links a:visited,
+.navbar.navbar-static .nav-links a:hover {
+    color: #1e1e1e !important;
+}
+
 
