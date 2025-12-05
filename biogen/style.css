@@ -1,9 +1,9 @@
 /* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    font-family: Verdana, sans-serif; 
-    color: #333; 
-    overflow-x: hidden; 
+body {
+    font-family: Verdana, sans-serif;
+    color: #333;
+    overflow-x: hidden;
     background: #fff;
 }
 
@@ -29,62 +29,44 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 998;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Subtle Apple-style gradient */
-.nav-gradient {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.30),
-        rgba(0,0,0,0)
-    );
-    z-index: -1;
-    transition: opacity 0.4s ease;
-}
-.navbar.scrolled .nav-gradient {
-    opacity: 0;
+/* Transparent state (top of page) */
+.navbar:not(.scrolled) {
+    background: transparent;
 }
 
 .nav-logo {
     height: 44px;
-    transition: height 0.35s ease, opacity 0.35s ease;
-}
-.navbar.scrolled .nav-logo {
-    height: 38px;
+    transition: height 0.35s ease;
 }
 
 .nav-links a {
     margin-left: 26px;
     font-size: 15px;
     font-weight: bold;
-    color: #ffffff;
-    position: relative;
+    color: white;
     transition: color 0.3s;
 }
 
-/* FIX → readable navbar links on scroll */
-.navbar.scrolled .nav-links a {
-    color: #1e1e1e !important;
-    text-shadow: 0px 0px 3px rgba(255,255,255,0.15);
-}
-.navbar.scrolled .nav-links a:hover {
-    color: #312783 !important;
+/* When scrolled → white navbar */
+.navbar.scrolled {
+    background: white;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.12);
 }
 
-/* Hover underline */
-.nav-links a::after {
-    content: "";
-    width: 0;
-    height: 2px;
-    background: #312783;
-    position: absolute;
-    left: 0; bottom: -3px;
-    transition: width 0.3s;
+.navbar.scrolled .nav-logo {
+    height: 38px;
 }
-.nav-links a:hover::after { width: 100%; }
+
+.navbar.scrolled .nav-links a {
+    color: #212121 !important;
+}
+
+.nav-links a:hover {
+    color: #312783;
+}
 
 /* HAMBURGER */
 .hamburger { display: none; cursor: pointer; }
@@ -92,12 +74,18 @@ body {
     display: block; width: 28px; height: 3px;
     margin: 5px 0; background: white;
 }
+.navbar.scrolled .hamburger span {
+    background: #333;
+}
 
 /* MOBILE MENU */
 .mobile-menu {
     display: none;
-    position: fixed; top: 82px; right: 0;
-    width: 220px; padding: 20px;
+    position: fixed;
+    top: 82px;
+    right: 0;
+    width: 220px;
+    padding: 20px;
     background: rgba(255,255,255,0.96);
     box-shadow: -4px 4px 16px rgba(0,0,0,0.2);
     flex-direction: column;
@@ -126,7 +114,6 @@ body {
     z-index: 1;
 }
 
-/* HERO LOGO */
 .hero-logo {
     position: absolute;
     top: 30vh;
@@ -143,7 +130,6 @@ body {
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* HERO CONTENT */
 .hero-content {
     position: absolute;
     bottom: 16%;
@@ -155,7 +141,7 @@ body {
 .hero-content h1 { font-size: 48px; margin-bottom: 12px; }
 .hero-content p { font-size: 18px; max-width: 600px; margin: 0 auto; }
 
-/* MOLECULAR CANVAS */
+/* BACKGROUND PARTICLES */
 .molecular-canvas {
     position: absolute;
     top: 0; left: 0;
@@ -170,7 +156,8 @@ body {
 }
 
 .cards-container {
-    display: flex; gap: 30px; justify-content: space-between;
+    display: flex; gap: 30px;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -182,14 +169,16 @@ body {
     text-align: center;
     transition: transform 0.3s ease;
 }
-.info-card:hover { transform: translateY(-6px); }
+.info-card:hover {
+    transform: translateY(-6px);
+}
 
 .card-icon {
     width: 50px; margin-bottom: 12px;
 }
 
 .info-card h2 {
-    font-size: 22px;
+    font-size: 22px; 
     color: #312783;
     margin-bottom: 10px;
 }
@@ -206,11 +195,12 @@ body {
     margin-top: 20px;
 }
 
-/* MOBILE FIXES */
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .nav-links { display: none; }
     .hamburger { display: block; }
 }
+
 @media (max-width: 700px) {
     .hero-logo { width: 300px; top: 32vh; }
     .hero-content h1 { font-size: 32px; }
