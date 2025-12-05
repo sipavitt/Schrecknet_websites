@@ -25,18 +25,14 @@
 <div id="results"></div>
 
 <script>
-/* ----------------------------
+/* ============================================
    CONFIG
------------------------------ */
+============================================ */
 
-// In-game site folders to scan
-const INGAME_SITES = [
-    "augury13",
-    "biogen",
-    "metromash"
-];
+// In-game directories
+const INGAME_SITES = ["augury13", "biogen", "metromash"];
 
-// Fake domains for display masking
+// Fake displayed domains for masking
 const DISPLAY_DOMAINS = [
     "metro-daily.co.uk",
     "citygov.uk",
@@ -47,30 +43,113 @@ const DISPLAY_DOMAINS = [
     "londonwire.news"
 ];
 
-/* ----------------------------
-   Load CSV of top 100 UK sites
------------------------------ */
+/* --------------------------------------------
+   Curated real-world sites (London-specific)
+-------------------------------------------- */
+
+const REAL_WORLD_SITES = [
+    {
+        id: "electric-ballroom",
+        domain: "electricballroom.co.uk",
+        url: "https://electricballroom.co.uk/",
+        title: "Electric Ballroom Camden",
+        description: "Live music venue in Camden hosting concerts, club nights and major touring acts.",
+        keywords: ["electric ballroom", "camden", "concert", "gig", "club", "venue"]
+    },
+    {
+        id: "nhm",
+        domain: "nhm.ac.uk",
+        url: "https://www.nhm.ac.uk/",
+        title: "Natural History Museum",
+        description: "World-leading science and research museum based in South Kensington.",
+        keywords: ["nhm", "museum", "natural history", "dinosaurs", "exhibit", "kensington"]
+    },
+    {
+        id: "observatory",
+        domain: "rmg.co.uk",
+        url: "https://www.rmg.co.uk/royal-observatory",
+        title: "Greenwich Observatory",
+        description: "Historic astronomical observatory and home of the Prime Meridian.",
+        keywords: ["greenwich", "observatory", "astronomy", "space", "meridian"]
+    },
+    {
+        id: "shard",
+        domain: "the-shard.com",
+        url: "https://www.the-shard.com/",
+        title: "The Shard",
+        description: "Iconic London skyscraper featuring offices, restaurants and sky-high viewing platforms.",
+        keywords: ["shard", "skyscraper", "london bridge", "view", "tower"]
+    },
+    {
+        id: "rbo",
+        domain: "rbo.org.uk",
+        url: "https://www.rbo.org.uk/",
+        title: "Royal Ballet & Opera",
+        description: "The home of the Royal Ballet and Opera, hosting classical and contemporary performances.",
+        keywords: ["royal ballet", "opera", "covent garden", "performance", "dance"]
+    }
+];
+
+/* ============================================
+   UTILS
+============================================ */
+
+function pickRandom(arr, count) {
+    return arr
+        .map(a => ({ v: a, s: Math.random() }))
+        .sort((a, b) => a.s - b.s)
+        .slice(0, count)
+        .map(o => o.v);
+}
+
+function csvParseLine(line) {
+    // Proper CSV parsing with quotes
+    const out = [];
+    let cur = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+            inQuotes = !inQuotes;
+            continue;
+        }
+        if (c === "," && !inQuotes) {
+            out.push(cur.trim());
+            cur = "";
+            continue;
+        }
+        cur += c;
+    }
+    out.push(cur.trim());
+    return out;
+}
+
+/* ============================================
+   LOAD TOP SITES CSV
+============================================ */
 
 async function loadTopSites() {
     try {
         const res = await fetch("top_sites.csv");
         const text = await res.text();
-        const lines = text.trim().split("\n").slice(1);
-
-        return lines.map(line => {
-            const [domain, title, category, description] = line.split(",");
-            return { domain, title, category, description };
-        });
-
+        return text
+            .trim()
+            .split("\n")
+            .slice(1)
+            .map(line => {
+                const [domain, title, category, description] = csvParseLine(line);
+                return { domain, title, category, description };
+            });
     } catch (e) {
         console.error("CSV load error", e);
         return [];
     }
 }
 
-/* ----------------------------
-   Fetch in-game site data
------------------------------ */
+/* ============================================
+   IN-GAME SEARCH
+============================================ */
 
 async function fetchSite(site) {
     try {
@@ -78,8 +157,7 @@ async function fetchSite(site) {
         if (!res.ok) return null;
 
         const html = await res.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
+        const doc = new DOMParser().parseFromString(html, "text/html");
 
         const title = doc.querySelector("h1")?.innerText || site;
         const text = doc.body.innerText.toLowerCase();
@@ -101,27 +179,45 @@ function rankInGame(query, pages) {
             if (p.site.includes(q)) score += 10;
             return { ...p, score };
         })
-        .filter(p => p.score > 0)
+        .filter(r => r.score > 0)
         .sort((a, b) => b.score - a.score);
 }
 
-/* ----------------------------
-   Generate CSV-driven noise results
------------------------------ */
+/* ============================================
+   CURATED REAL-WORLD SEARCH
+============================================ */
+
+function matchRealWorldSites(query) {
+    const q = query.toLowerCase();
+    return REAL_WORLD_SITES
+        .map(s => {
+            let score = 0;
+
+            if (s.title.toLowerCase().includes(q)) score += 40;
+            s.keywords.forEach(k => {
+                if (q.includes(k)) score += 50;
+                if (k.includes(q)) score += 20;
+            });
+
+            return { ...s, score };
+        })
+        .filter(s => s.score > 0)
+        .sort((a, b) => b.score - a.score);
+}
+
+/* ============================================
+   CSV NOISE
+============================================ */
 
 function generateNoise(query, pool) {
     const q = query.toLowerCase();
-
-    const relevant = pool.filter(x =>
-        x.title.toLowerCase().includes(q) ||
-        x.description.toLowerCase().includes(q)
+    const relevant = pool.filter(s =>
+        s.title.toLowerCase().includes(q) ||
+        s.description.toLowerCase().includes(q)
     );
-
-    const general = pool;
-
     const selected = [
         ...pickRandom(relevant, 2),
-        ...pickRandom(general, 3)
+        ...pickRandom(pool, 3)
     ];
 
     return selected.map(s => ({
@@ -132,65 +228,60 @@ function generateNoise(query, pool) {
     }));
 }
 
-/* ----------------------------
-   Additional filler results
------------------------------ */
+/* ============================================
+   FILLER RESULTS
+============================================ */
 
 function generateFiller(query) {
-    const qdash = query.replace(/\s+/g, "-");
-
-    const chosen = [
+    const slug = query.replace(/\s+/g, "-");
+    return [
         {
             title: `Metro Daily – Updates about "${query}"`,
-            display: `metro-daily.co.uk/news/${qdash}`,
+            display: `metro-daily.co.uk/news/${slug}`,
+            snippet: "Breaking stories, commentary and daily updates.",
             go: `go.html?u=filler-metro`
         },
         {
-            title: `CityGov Public Records`,
-            display: `citygov.uk/records/search?id=${Math.floor(Math.random()*90000+10000)}`,
+            title: "CityGov Public Records",
+            display: `citygov.uk/records/view/${Math.floor(Math.random()*90000+10000)}`,
+            snippet: "Official local records and administrative notices.",
             go: `go.html?u=filler-citygov`
         }
     ];
-
-    return chosen;
 }
 
-/* ----------------------------
-   Utility
------------------------------ */
+/* ============================================
+   RENDER
+============================================ */
 
-function pickRandom(arr, count) {
-    return arr
-        .map(a => ({ val: a, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .slice(0, count)
-        .map(x => x.val);
-}
+function renderResults(inGame, realWorld, noise, filler) {
+    const el = document.getElementById("results");
+    el.innerHTML = "";
 
-/* ----------------------------
-   Render results
------------------------------ */
-
-function renderResults(real, noise, filler) {
-    const container = document.getElementById("results");
-    container.innerHTML = "";
-
-    // In-game results
-    real.forEach(r => {
-        const displayDomain = DISPLAY_DOMAINS[Math.floor(Math.random() * DISPLAY_DOMAINS.length)];
-        const fakePath = `${displayDomain}/${r.site}`;
-
-        container.innerHTML += `
+    // In-game sites
+    inGame.forEach(r => {
+        const fake = DISPLAY_DOMAINS[Math.floor(Math.random()*DISPLAY_DOMAINS.length)];
+        el.innerHTML += `
         <div class="result">
             <a class="result-title" href="go.html?u=${r.site}">${r.title}</a><br>
-            <div class="result-url">${fakePath}</div>
-            <div class="snippet">${r.text.substring(0, 160)}...</div>
+            <div class="result-url">${fake}/${r.site}</div>
+            <div class="snippet">${r.text.substring(0,160)}...</div>
         </div>`;
     });
 
-    // Top-site noise results
+    // Curated real-world
+    realWorld.forEach(s => {
+        el.innerHTML += `
+        <div class="result">
+            <a class="result-title" href="go.html?u=${s.id}">${s.title}</a><br>
+            <div class="result-url">${s.domain}/info</div>
+            <div class="snippet">${s.description}</div>
+        </div>`;
+    });
+
+    // CSV noise
     noise.forEach(n => {
-        container.innerHTML += `
+        el.innerHTML += `
         <div class="result">
             <a class="result-title" href="${n.go}">${n.title}</a><br>
             <div class="result-url">${n.display}</div>
@@ -198,30 +289,29 @@ function renderResults(real, noise, filler) {
         </div>`;
     });
 
-    // Filler (government, forums, news)
+    // Filler
     filler.forEach(f => {
-        container.innerHTML += `
+        el.innerHTML += `
         <div class="result">
             <a class="result-title" href="${f.go}">${f.title}</a><br>
             <div class="result-url">${f.display}</div>
-            <div class="snippet">Additional indexed content referencing your search.</div>
+            <div class="snippet">${f.snippet}</div>
         </div>`;
     });
 }
 
-/* ----------------------------
-   Main execution
------------------------------ */
+/* ============================================
+   MAIN
+============================================ */
 
 async function runFindr() {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(location.search);
     const query = params.get("q") || "";
     document.getElementById("search").value = query;
 
-    // Enable search-from-results
     document.getElementById("search").addEventListener("keydown", e => {
         if (e.key === "Enter") {
-            window.location.href = `results.html?q=${encodeURIComponent(e.target.value)}`;
+            location.href = `results.html?q=${encodeURIComponent(e.target.value)}`;
         }
     });
 
@@ -232,11 +322,12 @@ async function runFindr() {
         loadTopSites()
     ]);
 
-    const real = rankInGame(query, pages);
+    const inGame = rankInGame(query, pages);
+    const realWorld = matchRealWorldSites(query);
     const noise = generateNoise(query, pool);
     const filler = generateFiller(query);
 
-    renderResults(real, noise, filler);
+    renderResults(inGame, realWorld, noise, filler);
 }
 
 runFindr();
