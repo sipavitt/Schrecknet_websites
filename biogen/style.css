@@ -1,24 +1,32 @@
-/* RESET */
+/* -------------------------------------------------------
+   RESET + GLOBAL
+------------------------------------------------------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
     font-family: Verdana, sans-serif;
     color: #333;
-    overflow-x: hidden;
     background: #fff;
+    overflow-x: hidden;
 }
 
-/* FADE IN */
+a { text-decoration: none; }
+
+/* Fade-in utility */
 .fade-in-up {
     opacity: 0;
     transform: translateY(40px);
-    transition: 0.9s ease-out;
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
 }
 .fade-in-up.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* NAVBAR */
+/* -------------------------------------------------------
+   NAVBAR
+------------------------------------------------------- */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -28,57 +36,98 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 998;
+    z-index: 999;
+    background: transparent;
     transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Transparent state (top of page) */
-.navbar:not(.scrolled) {
-    background: transparent;
+/* White background fades in on scroll */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.nav-logo {
+/* LEFT SIDE (LOGO) */
+.nav-left {
+    position: relative;
+    width: 160px;      /* Fixes drifting issues */
     height: 44px;
-    transition: height 0.35s ease;
+    display: flex;
+    align-items: center;
+}
+
+/* Stacked overlapping logos (white & black) */
+.nav-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 44px;
+    transition: opacity 0.35s ease;
+}
+
+/* Start state */
+.nav-logo-white { opacity: 1; }
+.nav-logo-black { opacity: 0; }
+
+/* Scroll state transition */
+.navbar.scrolled .nav-logo-white { opacity: 0; }
+.navbar.scrolled .nav-logo-black { opacity: 1; }
+
+/* -------------------------------------------------------
+   NAV LINKS
+------------------------------------------------------- */
+
+.nav-right {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a {
     margin-left: 26px;
     font-size: 15px;
     font-weight: bold;
-    color: white;
-    transition: color 0.3s;
+    color: #ffffff;
+    transition: color 0.3s ease;
 }
 
-/* When scrolled → white navbar */
-.navbar.scrolled {
-    background: white;
-    box-shadow: 0px 1px 6px rgba(0,0,0,0.12);
-}
-
-.navbar.scrolled .nav-logo {
-    height: 38px;
-}
-
+/* Dark text when navbar is white */
 .navbar.scrolled .nav-links a {
-    color: #212121 !important;
+    color: #1e1e1e !important;
 }
 
-.nav-links a:hover {
-    color: #312783;
+/* Hover underline */
+.nav-links a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #312783;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transition: width 0.3s ease;
 }
 
-/* HAMBURGER */
-.hamburger { display: none; cursor: pointer; }
+.nav-links a:hover::after { width: 100%; }
+
+/* -------------------------------------------------------
+   MOBILE MENU
+------------------------------------------------------- */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
 .hamburger span {
-    display: block; width: 28px; height: 3px;
-    margin: 5px 0; background: white;
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: #ffffff;
+    margin: 5px 0;
 }
+
 .navbar.scrolled .hamburger span {
     background: #333;
 }
 
-/* MOBILE MENU */
 .mobile-menu {
     display: none;
     position: fixed;
@@ -87,17 +136,20 @@ body {
     width: 220px;
     padding: 20px;
     background: rgba(255,255,255,0.96);
-    box-shadow: -4px 4px 16px rgba(0,0,0,0.2);
+    box-shadow: -4px 4px 16px rgba(0,0,0,0.18);
     flex-direction: column;
-    z-index: 999;
+    z-index: 998;
 }
+
 .mobile-menu a {
-    margin-bottom: 14px;
-    font-size: 16px;
+    margin-bottom: 16px;
     color: #333;
 }
 
-/* HERO */
+/* -------------------------------------------------------
+   HERO SECTION
+------------------------------------------------------- */
+
 .hero {
     height: 92vh;
     background-image: url('mainback.jpg');
@@ -110,10 +162,11 @@ body {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0,0,0,0.32);
     z-index: 1;
 }
 
+/* HERO LOGO */
 .hero-logo {
     position: absolute;
     top: 30vh;
@@ -121,15 +174,16 @@ body {
     transform: translateX(-50%);
     width: 480px;
     opacity: 0;
-    animation: heroLogoFade 1.6s forwards 0.4s;
-    z-index: 4;
+    animation: heroLogoFade 1.6s forwards 0.3s;
+    z-index: 3;
 }
 
 @keyframes heroLogoFade {
     from { opacity: 0; transform: translate(-50%, 20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
+/* HERO TEXT */
 .hero-content {
     position: absolute;
     bottom: 16%;
@@ -138,10 +192,18 @@ body {
     color: white;
     z-index: 3;
 }
-.hero-content h1 { font-size: 48px; margin-bottom: 12px; }
-.hero-content p { font-size: 18px; max-width: 600px; margin: 0 auto; }
 
-/* BACKGROUND PARTICLES */
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+.hero-content p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* PARTICLE CANVAS */
 .molecular-canvas {
     position: absolute;
     top: 0; left: 0;
@@ -149,53 +211,66 @@ body {
     z-index: 2;
 }
 
-/* CARDS */
+/* -------------------------------------------------------
+   INFO CARDS
+------------------------------------------------------- */
 .info-section {
     background: #f9f9f9;
     padding: 90px 8%;
 }
 
 .cards-container {
-    display: flex; gap: 30px;
+    display: flex;
     justify-content: space-between;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
 .info-card {
-    flex: 1; min-width: 260px;
-    background: #fff; padding: 30px;
+    flex: 1;
+    min-width: 260px;
+    background: white;
+    padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     text-align: center;
     transition: transform 0.3s ease;
 }
+
 .info-card:hover {
     transform: translateY(-6px);
 }
 
 .card-icon {
-    width: 50px; margin-bottom: 12px;
+    width: 50px;
+    margin-bottom: 12px;
 }
 
 .info-card h2 {
-    font-size: 22px; 
     color: #312783;
     margin-bottom: 10px;
+    font-size: 22px;
 }
 
-/* FOOTER */
+/* -------------------------------------------------------
+   FOOTER
+------------------------------------------------------- */
 .footer {
     background: #404040;
     color: white;
     padding: 40px 10%;
     text-align: center;
 }
+
+.footer a { color: #bbb; }
 .footer-note {
-    font-size: 14px;
     margin-top: 20px;
+    font-size: 14px;
 }
 
-/* RESPONSIVE */
+/* -------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------- */
 @media (max-width: 900px) {
     .nav-links { display: none; }
     .hamburger { display: block; }
