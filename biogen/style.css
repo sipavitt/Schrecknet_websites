@@ -396,3 +396,111 @@ a { text-decoration: none; }
     }
 }
 
+/* -------------------------------------------------------
+   CAREERS PAGE — HEADER
+------------------------------------------------------- */
+
+.careers-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 140px auto 40px;
+    padding: 0 20px;
+}
+
+.careers-header h1 {
+    font-size: 38px;
+    color: #312783;
+    margin-bottom: 12px;
+}
+
+.careers-header p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.55;
+    margin-top: 10px;
+}
+
+
+/* -------------------------------------------------------
+   CAREERS PAGE — JOB LISTINGS
+------------------------------------------------------- */
+
+.jobs-section {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 40px;
+}
+
+.job-card {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+.job-card h2 {
+    font-size: 22px;
+    color: #312783;
+    margin-bottom: 4px;
+}
+
+.job-card h3 {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.job-card p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.job-card .apply {
+    margin-top: auto;
+    display: inline-block;
+    background: #312783;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.job-card .apply:hover {
+    background: #241d60;
+}
+
+
+/* -------------------------------------------------------
+   CAREERS PAGE — RESPONSIVE
+------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .jobs-section {
+        grid-template-columns: 1fr;
+    }
+
+    .careers-header h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 600px) {
+    .careers-header {
+        margin-top: 120px;
+    }
+
+    .job-card {
+        padding: 22px;
+    }
+}
+
