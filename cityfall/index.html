@@ -1,11 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>cityfall</title>
+  <title>Cityfall Provisions - London's Survival Store</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      background: url("bg-tile.png") repeat;
+      font-family: "Verdana", sans-serif;
+      color: #111;
+      margin: 0;
+      padding: 0;
+    }
+
+    #container {
+      width: 820px;
+      margin: 0 auto;
+      background: #f7f7f7;
+      border: 2px solid #003300;
+      padding: 10px;
+    }
+
+    #header {
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    #nav {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    #nav a {
+      padding: 0 10px;
+      color: #003300;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #content {
+      display: flex;
+    }
+
+    #sidebar {
+      width: 180px;
+      padding: 10px;
+      border-right: 2px dashed #003300;
+      font-size: 12px;
+    }
+
+    #main {
+      flex-grow: 1;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 22px;
+      text-align: center;
+      color: #004400;
+      text-transform: uppercase;
+      margin-top: 0;
+    }
+
+    .warning {
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    #footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 11px;
+      color: #333;
+    }
+
+    .product-img {
+      border: 1px solid #333;
+    }
+  </style>
 </head>
+
 <body>
-    <h2>cityfall</h2>
-    <p>placeholder site</p>
+
+<div id="container">
+
+  <div id="header">
+    <img src="banner-cityfall.gif" alt="Cityfall Provisions Banner" />
+  </div>
+
+  <div id="nav">
+    <a href="#about">ABOUT</a> |
+    <a href="#stock">STOCK</a> |
+    <a href="#hours">HOURS</a> |
+    <a href="#contact">CONTACT</a>
+  </div>
+
+  <div class="warning">
+    <img src="warning-blink.gif" alt="Warning" />
+    <br />
+    <span style="font-size: 11px;">(STAY READY. STAY SAFE. JUST IN CASE.)</span>
+  </div>
+
+  <div id="content">
+
+    <div id="sidebar">
+      <h3 style="font-size:14px;text-align:center;">Meet the Owner</h3>
+      <img src="owner-portrait.jpg" width="150" height="180" alt="Owner Portrait" />
+      <p><strong>Martin “Marty” Hale</strong></p>
+      <p>
+        Running Cityfall since 1998.<br>
+        “If you’re prepared, you’re NEVER scared!”
+      </p>
+      <p><em>(Website last updated… sometime.)</em></p>
+    </div>
+
+    <div id="main">
+
+      <h1 id="about">WELCOME TO CITYFALL PROVISIONS</h1>
+
+      <p>
+        Based in the heart of <strong>London</strong>, Cityfall Provisions is your friendly local
+        survival & preparedness outlet. Whether you’re camping, commuting, or just keeping a level head while
+        the world gets stranger every day… we’ve got something for you.
+      </p>
+
+      <p style="font-style: italic;">
+        (Not saying anything WILL happen, mind — but have you SEEN the news lately? Exactly.)
+      </p>
+
+      <hr>
+
+      <h2 id="stock">Popular Stock This Month</h2>
+      <img src="products-collage.jpg" class="product-img" width="350" height="250" alt="Products Collage" />
+      <p>
+        Torches, thermal blankets, ration packs, multitools, first-aid kits, radio beacons,
+        personal water filters, tactical gloves, and more. New stock arriving whenever suppliers actually answer their phones.
+      </p>
+
+      <p>
+        Ask about the <strong>Cityfall Emergency Grab-Bag™</strong>.  
+        (Packed by Marty himself. Contents vary depending on his mood.)
+      </p>
+
+      <hr>
+
+      <h2 id="hours">Opening Hours</h2>
+      <ul>
+        <li>Mon–Fri: 10am–6pm</li>
+        <li>Sat: 10am–4pm</li>
+        <li>Sun: “By Appointment or Emergency”</li>
+      </ul>
+
+      <hr>
+
+      <h2 id="contact">Contact Us</h2>
+      <p>Email: <a href="mailto:info@cityfallprovisions.co.uk">info@cityfallprovisions.co.uk</a></p>
+      <p>Phone: 020 7946 XXXX</p>
+      <p>Address: 14 Caledonian Road, London, N1</p>
+      <p><em>(If shutters are down, knock twice and wait.)</em></p>
+
+    </div>
+  </div>
+
+  <div id="footer">
+    <img src="under-construction.gif" alt="Under Construction" /><br>
+    © 2004–2025 Cityfall Provisions. “Prepared for anything, even the internet.”
+  </div>
+
+</div>
+
 </body>
 </html>
