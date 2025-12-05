@@ -49,19 +49,21 @@ a { text-decoration: none; }
 
 /* LEFT SIDE (LOGO) */
 .nav-left {
-    position: relative;
-    width: 160px;      /* Fixes drifting issues */
-    height: 44px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    height: 44px;
+    width: 180px;  /* Perfect width for horizontal logo */
+    position: relative;
 }
 
-/* Stacked overlapping logos (white & black) */
+/* Both logos layered and centered */
 .nav-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
     height: 44px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     transition: opacity 0.35s ease;
 }
 
@@ -281,3 +283,4 @@ a { text-decoration: none; }
     .hero-content h1 { font-size: 32px; }
     .hero-content p { font-size: 15px; }
 }
+
