@@ -1,306 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>BioGen Industries – Leadership Team</title>
-<link rel="icon" href="favi1.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioGen Industries – Leadership</title>
 
-<style>
-/* ------------------------- */
-/*        GLOBAL STYLES      */
-/* ------------------------- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, sans-serif;
-    background-color: #ffffff;
-    color: #333;
-    line-height: 1.6;
-}
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="style.css">
 
-a { text-decoration: none; color: #312783; }
-a:hover { color: #1e1654; }
-
-/* ------------------------- */
-/*     FROSTED NAVBAR        */
-/* ------------------------- */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(0px);
-    transition: background 0.4s ease, backdrop-filter 0.4s ease, 
-                padding 0.4s ease, box-shadow 0.4s ease;
-    z-index: 999;
-}
-
-.navbar.scrolled {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
-    padding: 10px 6%;
-}
-
-.navbar img {
-    height: 55px;
-    transition: height 0.4s ease;
-}
-
-.navbar.scrolled img {
-    height: 45px;
-}
-
-/* NAV LINKS */
-.nav-links a {
-    margin-left: 26px;
-    font-size: 15px;
-    font-weight: bold;
-    position: relative;
-    color: #ffffff;
-    transition: color 0.3s ease;
-}
-
-.navbar.scrolled .nav-links a {
-    color: #414445;
-}
-
-.nav-links a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    background-color: #312783;
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* ------------------------- */
-/*       PAGE HEADER         */
-/* ------------------------- */
-.page-header {
-    margin-top: 150px;
-    text-align: center;
-    padding: 0 10%;
-}
-
-.page-header h1 {
-    font-size: 34px;
-    color: #312783;
-}
-
-.page-header p {
-    max-width: 700px;
-    margin: 10px auto 0 auto;
-    color: #444;
-    font-size: 16px;
-}
-
-/* ------------------------- */
-/*       TEAM PROFILES       */
-/* ------------------------- */
-.team-section {
-    padding: 60px 10%;
-}
-
-.profile {
-    margin: 60px auto;
-    max-width: 900px;
-    display: grid;
-    grid-template-columns: 280px auto;
-    gap: 40px;
-    align-items: start;
-}
-
-.profile img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-.profile h2 {
-    margin-bottom: 4px;
-    color: #312783;
-}
-
-.profile h3 {
-    margin-top: 0;
-    margin-bottom: 14px;
-    color: #555;
-    font-weight: normal;
-    font-size: 18px;
-}
-
-.profile p {
-    color: #444;
-    font-size: 15px;
-}
-
-/* Divider */
-.profile + .profile {
-    border-top: 1px solid #ddd;
-    padding-top: 60px;
-}
-
-/* ------------------------- */
-/*        FOOTER             */
-/* ------------------------- */
-.footer {
-    margin-top: 80px;
-    background-color: #404040;
-    color: white;
-    padding: 40px 10%;
-    text-align: center;
-}
-
-.footer a { color: #bbb; }
-.footer a:hover { color: white; }
-</style>
-
-<script>
-/* NAVBAR SCROLL BEHAVIOUR */
-window.addEventListener("scroll", function() {
-    const nav = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
-});
-</script>
-
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="biogen_favicon.png">
 </head>
 
-<body>
+<body class="static-nav-page">
+<!-- ----------------------------- -->
+<!--         NAVIGATION BAR        -->
+<!-- ----------------------------- -->
+<header class="navbar navbar-static">
+    <div class="nav-left">
+        <img src="biogen_logo_nav_black.webp" class="nav-logo" alt="BioGen Industries">
+    </div>
 
-<!-- NAVBAR -->
-<header class="navbar">
-    <img src="BiogenLogo.png" alt="Biogen Industries Logo">
-    <div class="nav-links">
+    <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="bgres.html">Research</a>
-        <a href="bgman.html">Leadership</a>
-        <a href="#">Careers</a>
+        <a href="bgman.html" class="active">Leadership</a>
+        <a href="careers.html">Careers</a>
         <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- HAMBURGER FOR MOBILE -->
+    <div class="hamburger">
+        <span></span><span></span><span></span>
     </div>
 </header>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-    <h1>Meet Our Leadership Team</h1>
-    <p>
-        BioGen Industries is guided by experienced scientific and business leaders who are committed 
-        to advancing haemological research and ensuring responsible, impactful innovation across the organisation.
-    </p>
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="bgres.html">Research</a>
+    <a href="bgman.html">Leadership</a>
+    <a href="careers.html">Careers</a>
+    <a href="#contact">Contact</a>
 </div>
 
-<!-- PROFILES -->
-<div class="team-section">
+
+<!-- ----------------------------- -->
+<!--        PAGE INTRO HEADER      -->
+<!-- ----------------------------- -->
+<section class="page-header fade-in-up">
+    <h1>Meet Our Leadership Team</h1>
+    <p>
+        BioGen Industries is guided by a multidisciplinary team of scientific and strategic leaders dedicated 
+        to advancing haemological research, developing innovative diagnostics, and ensuring responsible practice 
+        across our organisation.
+    </p>
+</section>
+
+
+<!-- ----------------------------- -->
+<!--     LEADERSHIP PROFILES       -->
+<!-- ----------------------------- -->
+<section class="team-section">
 
     <!-- OCTAVIAN -->
-    <div class="profile">
+    <article class="profile fade-in-up">
         <img src="tavi.jpg" alt="Dr Octavian Juul">
+
         <div>
             <h2>Dr Octavian Juul</h2>
             <h3>Managing Director</h3>
+
             <p>
                 Dr Juul began his scientific career in the early 1970s, completing a doctorate in neurochemistry 
                 at the Université Descartes in Paris. His early research focused on metabolic deficiencies and 
-                enzyme-linked blood disorders, work that contributed to the development of several modern treatment approaches.
+                enzyme-linked blood disorders, helping lay groundwork for several modern therapeutic approaches.
             </p>
+
             <p>
-                After serving as a senior researcher at the Wellside Foundation, Dr Juul co-founded BioGen Industries 
-                with Dr Katerina Marin. Under his leadership, the organisation has expanded its clinical partnerships, 
-                supported numerous early-career researchers, and established a stable platform for long-term haemological research.
+                After senior appointments at the Wellside Foundation, Dr Juul co-founded BioGen Industries with 
+                Dr Katerina Marin. Under his leadership, the organisation has expanded its partnerships, supported 
+                early-career researchers, and established a stable research ecosystem for long-term development.
             </p>
+
             <p>
-                Although he stepped back from active laboratory work in 2007 to focus on strategic development, 
-                Dr Juul remains deeply involved in BioGen’s future direction and maintains oversight of research governance 
-                across the company.
+                Though no longer a laboratory researcher, Dr Juul continues to oversee governance, strategy, and 
+                ethical direction across BioGen’s scientific portfolio.
             </p>
         </div>
-    </div>
+    </article>
 
     <!-- KATERINA -->
-    <div class="profile">
+    <article class="profile fade-in-up">
         <img src="Kat.jpg" alt="Dr Katerina Marin">
+
         <div>
             <h2>Dr Katerina Marin</h2>
             <h3>Director of Research</h3>
+
             <p>
-                Dr Marin began her career as an endocrinologist at East Tallinn Central Hospital, later completing a 
-                research doctorate focused on clotting disorders, particularly Plasminogen Activator Inhibitor Type 1 deficiency. 
-                Her work spans multiple international research institutions, including the Mayo Clinic in Los Angeles 
-                and the National Research Centre for Haematology in Moscow.
+                Dr Marin began her medical career as an endocrinologist before completing her doctorate focusing on 
+                clotting disorders, particularly Plasminogen Activator Inhibitor Type 1 deficiency. Her research 
+                experience spans institutions across Europe and the United States.
             </p>
+
             <p>
-                As Director of Research, Dr Marin oversees BioGen’s scientific portfolio and leads initiatives ranging 
-                from rare disease investigation to behavioural and biochemical studies associated with bloodborne illnesses. 
-                She has published extensively on the interplay between blood composition, addiction pathways, 
-                and long-term physiological outcomes.
+                At BioGen, she leads the organisation’s research portfolio, overseeing programmes in rare disease 
+                investigation, emerging diagnostics, behavioural interactions, and long-term physiological outcomes 
+                associated with bloodborne conditions.
             </p>
+
             <p>
-                Dr Marin continues to supervise several active projects and remains a key contributor to BioGen’s 
-                research strategy and academic collaborations.
+                Dr Marin continues to direct several core projects and maintains a central role in the company’s 
+                scientific direction and international partnerships.
             </p>
         </div>
-    </div>
+    </article>
 
     <!-- JOHANNES -->
-    <div class="profile">
+    <article class="profile fade-in-up">
         <img src="Johan.jpg" alt="Johannes Rehema">
+
         <div>
             <h2>Johannes Rehema</h2>
             <h3>Head of People</h3>
+
             <p>
-                With an extensive background in organisational strategy and people management, 
-                Mr Rehema serves as BioGen’s senior business manager and oversees internal operations, staff development, 
-                and corporate governance. He completed his MBA at the University of Cambridge Judge Business School, 
-                graduating with highest honours.
+                Mr Rehema brings extensive experience in organisational strategy, internal development, and corporate 
+                governance. He holds an MBA from the University of Cambridge Judge Business School, graduating with distinction.
             </p>
+
             <p>
-                Mr Rehema’s early career included consultancy roles at PricewaterhouseCoopers and Deloitte, 
-                where he specialised in restructuring, organisational culture, and large-scale operational improvement. 
-                His transition to BioGen brought a renewed focus on aligning research growth with high standards 
-                of staff wellbeing, regulatory compliance, and long-term strategic planning.
+                Before joining BioGen, he worked at PricewaterhouseCoopers and Deloitte, specialising in restructuring 
+                and operational transformation. His work at BioGen focuses on staff wellbeing, regulatory compliance, 
+                and sustainable organisational growth.
             </p>
+
             <p>
-                He continues to guide BioGen’s organisational development and oversees recruitment, HR policy, 
-                and internal support frameworks across the company.
+                Mr Rehema oversees HR policy, recruitment frameworks, internal culture, and long-term operational planning.
             </p>
         </div>
-    </div>
+    </article>
 
-</div>
+</section>
 
-<!-- FOOTER -->
+
+<!-- ----------------------------- -->
+<!--            FOOTER             -->
+<!-- ----------------------------- -->
 <footer class="footer" id="contact">
     <p><strong>Contact Us</strong></p>
+
     <p>
-        Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
+        Email: 
+        <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
         16 The Edge Business Centre<br>
         Dollis Hill, London, NW2 6<br>
         United Kingdom
     </p>
 
-    <p style="margin-top: 30px;">
-        <img src="AMRC1.png" height="70">
-        <img src="AMRC2.png" height="70">
-    </p>
+    <div class="footer-logos">
+        <img src="AMRC1.png" alt="AMRC Membership" height="70">
+        <img src="AMRC2.png" alt="AMRC Accredited" height="70">
+    </div>
 
-    <p style="margin-top: 20px; font-size: 14px;">© 2025 BioGen Industries. All rights reserved.</p>
+    <p class="footer-copy">© 2025 BioGen Industries. All rights reserved.</p>
 </footer>
+
+
+<!-- GLOBAL SCRIPTS -->
+<script src="scripts.js"></script>
 
 </body>
 </html>
