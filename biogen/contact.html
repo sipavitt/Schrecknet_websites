@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us – BioGen Industries</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="biogen_favicon.png">
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR — STATIC (same as Research, Leadership, Careers)
+========================================================= -->
+<header class="navbar navbar-static">
+    <div class="nav-left">
+        <img src="biogen_logo_nav_black.webp" class="nav-logo" alt="BioGen Industries">
+    </div>
+
+    <div class="nav-right">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="bgres.html">Research</a>
+            <a href="bgman.html">Leadership</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="bgres.html">Research</a>
+        <a href="bgman.html">Leadership</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</header>
+
+
+<!-- =========================================================
+     CONTACT HEADER
+========================================================= -->
+<section class="page-header contact-header">
+    <h1>Contact BioGen Industries</h1>
+    <p>
+        For general enquiries, partnership requests, or media communication,
+        please use the form below. Our team will respond as soon as possible.
+    </p>
+</section>
+
+
+<!-- =========================================================
+     CONTACT FORM
+========================================================= -->
+<section class="contact-form-section">
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you. Your message has been received.');">
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+
+        <label for="org">Organisation (optional)</label>
+        <input type="text" id="org">
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="6" required></textarea>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+
+    </form>
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="footer">
+    <p><strong>Contact Us</strong></p>
+    <p>
+        Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
+        16 The Edge Business Centre<br>
+        Dollis Hill, London, NW2 6<br>
+        United Kingdom
+    </p>
+
+    <div class="footer-logos">
+        <img src="AMRC1.png" height="70" alt="AMRC Member">
+        <img src="AMRC2.png" height="70" alt="AMRC Accredited">
+    </div>
+
+    <p class="footer-copy">© 2025 BioGen Industries. All rights reserved.</p>
+</footer>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
