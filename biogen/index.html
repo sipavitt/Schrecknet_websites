@@ -5,16 +5,17 @@
     <title>BioGen Industries</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" href="biogen_favicon.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favi1.png">
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <header class="navbar">
+    <div class="nav-gradient"></div>
     <div class="nav-left">
-        <img src="biogen_logo_white.webp" alt="Biogen Logo" class="nav-logo">
+        <img src="biogen_logo_nav.webp" alt="Biogen Navbar Logo" class="nav-logo">
     </div>
 
     <div class="nav-right">
@@ -43,10 +44,10 @@
 
 <!-- HERO SECTION -->
 <section class="hero">
-    <img src="biogen_logo_white.webp" class="hero-logo" alt="Biogen Logo">
-
     <div class="hero-overlay"></div>
-    <div id="molecularCanvas" class="molecular-canvas"></div>
+    <canvas id="molecularCanvas" class="molecular-canvas"></canvas>
+
+    <img src="biogen_logo_white.webp" class="hero-logo" alt="Biogen Hero Logo">
 
     <div class="hero-content fade-in-up">
         <h1>Your Future Is In Our Hands</h1>
@@ -54,35 +55,29 @@
     </div>
 </section>
 
-<!-- WHO WE ARE SECTION -->
+<!-- INFO CARDS -->
 <section class="info-section fade-in-up">
     <div class="cards-container">
 
         <div class="info-card">
             <img src="drop.png" class="card-icon" alt="">
             <h2>Who We Are</h2>
-            <p>
-                BioGen Industries is a leader in haemological research, supporting clinicians, laboratories,
-                and patients with innovative diagnostic solutions.
-            </p>
+            <p>BioGen Industries leads in haemological research, supporting clinicians, laboratories,
+                and partners with innovative diagnostic development.</p>
         </div>
 
         <div class="info-card">
             <img src="drop.png" class="card-icon" alt="">
             <h2>What We Do</h2>
-            <p>
-                Our work focuses on advancing understanding of bloodborne conditions through cutting-edge
-                analytics, data science, and clinical partnerships.
-            </p>
+            <p>Our research advances the understanding of bloodborne conditions through analytics,
+                emergent technologies, and clinical collaboration.</p>
         </div>
 
         <div class="info-card">
             <img src="drop.png" class="card-icon" alt="">
             <h2>How We Support You</h2>
-            <p>
-                We collaborate with healthcare organisations to deliver safe, reliable, and meaningful insights
-                that strengthen patient care and scientific progress.
-            </p>
+            <p>We provide meaningful insights to strengthen patient care, improve laboratory standards,
+                and advance scientific discovery across the healthcare sector.</p>
         </div>
 
     </div>
@@ -105,6 +100,5 @@
 </footer>
 
 <script src="scripts.js"></script>
-
 </body>
 </html>
