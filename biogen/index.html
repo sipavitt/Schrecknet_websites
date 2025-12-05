@@ -1,349 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>BioGen Industries</title>
-<link rel="icon" href="favi1.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>BioGen Industries</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-/* ------------------------- */
-/*        GLOBAL STYLES      */
-/* ------------------------- */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, sans-serif;
-    color: #333;
-    background-color: #ffffff;
-    line-height: 1.6;
-}
-
-a { text-decoration: none; color: #312783; }
-a:hover { color: #1e1654; }
-
-/* ------------------------- */
-/*     FROSTED NAVBAR        */
-/* ------------------------- */
-
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 18px 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    /* Start transparent */
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-
-    transition: background 0.4s ease, backdrop-filter 0.4s ease, 
-                padding 0.4s ease, box-shadow 0.4s ease;
-    z-index: 999;
-}
-
-.navbar.scrolled {
-    /* Frosted glass effect */
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    /* Subtle drop shadow */
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
-
-    /* Shrink height slightly */
-    padding: 10px 6%;
-}
-
-.navbar img {
-    height: 55px;
-    transition: height 0.4s ease;
-}
-
-.navbar.scrolled img {
-    height: 45px;
-}
-
-/* NAV LINKS */
-.nav-links a {
-    margin-left: 26px;
-    font-size: 15px;
-    font-weight: bold;
-    position: relative;
-    color: #ffffff;
-    transition: color 0.3s ease;
-}
-
-.navbar.scrolled .nav-links a {
-    color: #414445;
-}
-
-.nav-links a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    background-color: #312783;
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* ------------------------- */
-/*        HERO SECTION       */
-/* ------------------------- */
-
-.hero {
-    background-image: url('mainback.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    padding: 180px 5% 160px 5%;
-    color: white;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        rgba(10, 10, 10, 0.55),
-        rgba(10, 10, 10, 0.25)
-    );
-}
-
-.hero-content {
-    position: relative;
-    max-width: 650px;
-}
-
-.hero h1 {
-    font-size: 44px;
-    font-weight: bold;
-    margin-bottom: 14px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-bottom: 14px;
-}
-
-.tagline {
-    font-size: 20px;
-    font-style: italic;
-    opacity: 0.9;
-}
-
-.cta-btn {
-    display: inline-block;
-    background-color: #312783;
-    padding: 12px 24px;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    margin-top: 18px;
-}
-
-.cta-btn:hover {
-    background-color: #1e1654;
-}
-
-/* ------------------------- */
-/*       SECTION STYLE       */
-/* ------------------------- */
-
-.section {
-    padding: 60px 10%;
-    text-align: center;
-}
-
-.section h2 {
-    color: #312783;
-    font-size: 28px;
-    margin-bottom: 30px;
-}
-
-/* THREE COLUMN INFO */
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
-    text-align: left;
-}
-
-.info-block img {
-    height: 50px;
-    display: block;
-    margin-bottom: 15px;
-}
-
-/* SPOTLIGHT SECTION */
-.spotlight {
-    background-color: #f5f5f5;
-    padding: 60px 10%;
-    text-align: left;
-}
-
-/* STATISTICS */
-.stats-strip {
-    background-image: url('lback.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 90px 10%;
-    color: white;
-    text-align: center;
-    position: relative;
-}
-
-.stats-strip::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-}
-
-.stats-content {
-    position: relative;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.stat-box {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* FOOTER */
-.footer {
-    background-color: #404040;
-    color: white;
-    padding: 40px 10%;
-    text-align: center;
-}
-
-.footer a { color: #bbb; }
-.footer a:hover { color: white; }
-</style>
-
-<script>
-/* NAVBAR SCROLL BEHAVIOUR */
-window.addEventListener("scroll", function() {
-    const nav = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
-});
-</script>
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favi1.png">
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <header class="navbar">
-    <img src="BiogenLogo.png" alt="Biogen Industries Logo">
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="bgres.html">Research</a>
-        <a href="bgman.html">Leadership</a>
-        <a href="careers.html">Careers</a>
-        <a href="contact.html">Contact</a>
+    <div class="nav-left">
+        <img src="biogen_logo_white.webp" alt="Biogen Logo" class="nav-logo">
+    </div>
+
+    <div class="nav-right">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="bgres.html">Research</a>
+            <a href="bgman.html">Leadership</a>
+            <a href="careers.html">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 </header>
 
-<!-- HERO -->
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="bgres.html">Research</a>
+    <a href="bgman.html">Leadership</a>
+    <a href="careers.html">Careers</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO SECTION -->
 <section class="hero">
-    <div class="hero-content">
-        <h1>Leading Innovation in Blood Science</h1>
-        <p>
-            BioGen Industries is a UK-based biotechnology organisation specialising in haemological research, 
-            diagnostic innovation, and next-generation treatment development. For more than forty years, 
-            our scientists have worked alongside clinicians, universities, and regulatory partners to advance 
-            the global understanding of bloodborne conditions.
-        </p>
-        <p class="tagline">Your future is in our hands.</p>
-        <a href="bgres.html" class="cta-btn">Explore Our Research</a>
+    <img src="biogen_logo_white.webp" class="hero-logo" alt="Biogen Logo">
+
+    <div class="hero-overlay"></div>
+    <div id="molecularCanvas" class="molecular-canvas"></div>
+
+    <div class="hero-content fade-in-up">
+        <h1>Your Future Is In Our Hands</h1>
+        <p>Advancing blood science to enhance patient outcomes and shape the future of healthcare.</p>
     </div>
 </section>
 
-<!-- WHO WE ARE / WHAT WE DO -->
-<section class="section">
-    <h2>Committed to Progress in Haemology</h2>
+<!-- WHO WE ARE SECTION -->
+<section class="info-section fade-in-up">
+    <div class="cards-container">
 
-    <div class="info-grid">
-        <div class="info-block">
-            <img src="drop.png">
-            <h3>Who We Are</h3>
+        <div class="info-card">
+            <img src="drop.png" class="card-icon" alt="">
+            <h2>Who We Are</h2>
             <p>
-                BioGen Industries is an independent research organisation located in North West London. 
-                Our mission is to support the advancement of medical knowledge through responsible scientific practice 
-                and meaningful collaboration across the healthcare sector.
+                BioGen Industries is a leader in haemological research, supporting clinicians, laboratories,
+                and patients with innovative diagnostic solutions.
             </p>
         </div>
 
-        <div class="info-block">
-            <img src="drop.png">
-            <h3>What We Do</h3>
+        <div class="info-card">
+            <img src="drop.png" class="card-icon" alt="">
+            <h2>What We Do</h2>
             <p>
-                We investigate the mechanisms behind bloodborne illnesses, clotting disorders, and immune system interactions. 
-                Our teams combine laboratory research with clinical partnerships to explore new diagnostics, 
-                therapeutic pathways, and emerging technologies in haemology.
+                Our work focuses on advancing understanding of bloodborne conditions through cutting-edge
+                analytics, data science, and clinical partnerships.
             </p>
         </div>
 
-        <div class="info-block">
-            <img src="drop.png">
-            <h3>How We Support You</h3>
+        <div class="info-card">
+            <img src="drop.png" class="card-icon" alt="">
+            <h2>How We Support You</h2>
             <p>
-                We offer paid participation opportunities for volunteer contributors, collaborative pathways for early-career researchers, 
-                and grant support for promising PhD candidates seeking to advance discoveries in the field of blood science.
+                We collaborate with healthcare organisations to deliver safe, reliable, and meaningful insights
+                that strengthen patient care and scientific progress.
             </p>
         </div>
-    </div>
-</section>
 
-<!-- WHY BLOOD RESEARCH MATTERS -->
-<section class="spotlight">
-    <h2>Why Blood Research Matters</h2>
-    <p>
-        Blood plays a critical role in nearly every function of the human body. With more than 300 recognised blood disorders worldwide 
-        and millions affected by conditions ranging from anaemia to rare clotting diseases, advancing haemological research is essential 
-        to improving both diagnostic outcomes and long-term quality of life.
-    </p>
-</section>
-
-<!-- STATS STRIP -->
-<section class="stats-strip">
-    <div class="stats-content">
-        <h2>Proudly Supporting UK Medical Research</h2>
-
-        <div class="stats-grid">
-            <div class="stat-box">£20m+ raised over 45 years</div>
-            <div class="stat-box">300+ recognised blood illnesses</div>
-            <div class="stat-box">40+ years of research impact</div>
-        </div>
     </div>
 </section>
 
@@ -352,18 +93,18 @@ window.addEventListener("scroll", function() {
     <p><strong>Contact Us</strong></p>
     <p>
         Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
-        16 The Edge Business Centre<br>
-        Dollis Hill, London, NW2 6<br>
-        United Kingdom
+        16 The Edge Business Centre, Dollis Hill, London, NW2 6, UK
     </p>
 
-    <p style="margin-top: 30px;">
+    <p class="footer-logos">
         <img src="AMRC1.png" height="70">
         <img src="AMRC2.png" height="70">
     </p>
 
-    <p style="margin-top: 20px; font-size: 14px;">© 2025 BioGen Industries. All rights reserved.</p>
+    <p class="footer-note">© 2025 BioGen Industries. All rights reserved.</p>
 </footer>
+
+<script src="scripts.js"></script>
 
 </body>
 </html>
