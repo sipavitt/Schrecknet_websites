@@ -6,33 +6,59 @@
 </head>
 <body>
 <script>
-// Mapping for in-game sites (folders)
+/* ---------------------------------------------
+   IN-GAME SITES
+--------------------------------------------- */
 const INGAME_MAP = {
     "augury13": "/augury13/",
     "biogen": "/biogen/",
     "metromash": "/metromash/"
 };
 
-// Mapping for filler/CSV external domains (optional)
+/* ---------------------------------------------
+   FILLER PAGES
+--------------------------------------------- */
 const EXTERNAL_MAP = {
     "filler-metro": "/filler/metro_daily.html",
     "filler-citygov": "/filler/citygov_records.html"
 };
 
-// On load
+/* ---------------------------------------------
+   CURATED REAL-WORLD SITES
+--------------------------------------------- */
+const REAL_WORLD_MAP = {
+    "electric-ballroom": "https://electricballroom.co.uk/",
+    "nhm": "https://www.nhm.ac.uk/",
+    "observatory": "https://www.rmg.co.uk/royal-observatory",
+    "shard": "https://www.the-shard.com/",
+    "rbo": "https://www.rbo.org.uk/"
+};
+
+/* ---------------------------------------------
+   MAIN REDIRECT LOGIC
+--------------------------------------------- */
+
 const u = new URLSearchParams(location.search).get("u");
 
+// In-game
 if (INGAME_MAP[u]) {
     location.href = INGAME_MAP[u];
-} else if (EXTERNAL_MAP[u]) {
+}
+// Filler pages
+else if (EXTERNAL_MAP[u]) {
     location.href = EXTERNAL_MAP[u];
-} else {
-    // External domain? redirect user to plausible "off-site"
-    if (/^[\w.-]+\.[A-Za-z]{2,}$/.test(u)) {
-        location.href = "https://" + u;
-    } else {
-        location.href = "index.html"; // fallback
-    }
+}
+// Curated real world
+else if (REAL_WORLD_MAP[u]) {
+    location.href = REAL_WORLD_MAP[u];
+}
+// CSV external domains (raw domain passed)
+else if (/^[\w.-]+\.[A-Za-z]{2,}$/.test(u)) {
+    location.href = "https://" + u;
+}
+// Fallback
+else {
+    location.href = "index.html";
 }
 </script>
 </body>
