@@ -44,7 +44,7 @@ window.addEventListener("scroll", () => {
 });
 
 /* ----------------------------------------------
-   MOLECULAR ANIMATION
+   MOLECULAR ANIMATION (Stable Linked Nodes)
 ---------------------------------------------- */
 const canvas = document.getElementById("molecularCanvas");
 const ctx = canvas.getContext("2d");
@@ -56,10 +56,28 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-let particles = [];
+// Nodes arranged in circular pattern
 let nodes = [];
-let nodeActive = false;
+const NODE_COUNT = 14;
 
+for (let i = 0; i < NODE_COUNT; i++) {
+    const angle = (i / NODE_COUNT) * Math.PI * 2;
+    const radius = canvas.width * 0.25;
+    const cx = canvas.width / 2 + Math.cos(angle) * radius;
+    const cy = canvas.height / 2 + Math.sin(angle) * radius;
+
+    nodes.push({
+        baseX: cx,
+        baseY: cy,
+        x: cx,
+        y: cy,
+        r: 3,
+        offset: Math.random() * 1000
+    });
+}
+
+// Background particles
+let particles = [];
 for (let i = 0; i < 40; i++) {
     particles.push({
         x: Math.random() * canvas.width,
@@ -70,31 +88,13 @@ for (let i = 0; i < 40; i++) {
     });
 }
 
-for (let i = 0; i < 12; i++) {
-    nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: 3
-    });
-}
-
-canvas.addEventListener("mousemove", activateNodes);
-window.addEventListener("scroll", () => {
-    if (window.scrollY < window.innerHeight * 0.8) activateNodes();
-});
-
-function activateNodes() {
-    nodeActive = true;
-    clearTimeout(window.nodeTimeout);
-    window.nodeTimeout = setTimeout(() => nodeActive = false, 6000);
-}
-
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Particles
+    // Background particles
     particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
+        p.x += p.vx;
+        p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
@@ -104,28 +104,33 @@ function animate() {
         ctx.fill();
     });
 
-    // Nodes
-    if (nodeActive) {
-        nodes.forEach(n1 => {
-            ctx.beginPath();
-            ctx.arc(n1.x, n1.y, n1.r, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255,255,255,0.55)";
-            ctx.fill();
+    // Node movement
+    nodes.forEach(n => {
+        n.x = n.baseX + Math.sin((Date.now() + n.offset) * 0.001) * 6;
+        n.y = n.baseY + Math.cos((Date.now() + n.offset) * 0.001) * 6;
 
-            nodes.forEach(n2 => {
-                let dx = n1.x - n2.x, dy = n1.y - n2.y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
+        ctx.fill();
+    });
 
-                if (dist < 140) {
-                    ctx.beginPath();
-                    ctx.moveTo(n1.x, n1.y);
-                    ctx.lineTo(n2.x, n2.y);
-                    ctx.strokeStyle = "rgba(255,255,255,0.15)";
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            });
-        });
+    // Node linking
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            let dx = nodes[i].x - nodes[j].x;
+            let dy = nodes[i].y - nodes[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 240) {
+                ctx.beginPath();
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(nodes[j].x, nodes[j].y);
+                ctx.strokeStyle = "rgba(255,255,255,0.15)";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
     }
 
     requestAnimationFrame(animate);
