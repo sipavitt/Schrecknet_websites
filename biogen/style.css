@@ -34,7 +34,7 @@ a { text-decoration: none; }
     height: 82px;
     padding: 0 6%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     z-index: 999;
     background: transparent;
@@ -80,6 +80,7 @@ a { text-decoration: none; }
 ------------------------------------------------------- */
 
 .nav-right {
+    margin-left: auto;  
     display: flex;
     align-items: center;
 }
@@ -283,4 +284,5 @@ a { text-decoration: none; }
     .hero-content h1 { font-size: 32px; }
     .hero-content p { font-size: 15px; }
 }
+
 
