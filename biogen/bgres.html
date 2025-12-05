@@ -1,263 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>BioGen Research Portal</title>
-<link rel="icon" href="favi1.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioGen Research | BioGen Industries</title>
 
-<style>
-/* ------------------------- */
-/*        GLOBAL STYLES      */
-/* ------------------------- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, sans-serif;
-    background-color: #ffffff;
-    color: #333;
-    line-height: 1.6;
-}
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 
-/* ------------------------- */
-/*     FROSTED NAVBAR        */
-/* ------------------------- */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    transition: background 0.4s ease, backdrop-filter 0.4s ease, 
-                padding 0.4s ease, box-shadow 0.4s ease;
-    z-index: 999;
-}
-
-.navbar.scrolled {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
-    padding: 10px 6%;
-}
-
-.navbar img {
-    height: 55px;
-    transition: height 0.4s ease;
-}
-
-.navbar.scrolled img {
-    height: 45px;
-}
-
-/* NAV LINKS */
-.nav-links a {
-    margin-left: 26px;
-    font-size: 15px;
-    font-weight: bold;
-    position: relative;
-    color: #ffffff;
-    transition: color 0.3s ease;
-}
-
-.navbar.scrolled .nav-links a {
-    color: #414445;
-}
-
-.nav-links a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    background-color: #312783;
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* ------------------------- */
-/*       PAGE CONTENT        */
-/* ------------------------- */
-.page-header {
-    margin-top: 150px;
-    text-align: center;
-    padding: 0 10%;
-}
-
-.page-header h1 {
-    font-size: 34px;
-    color: #312783;
-}
-
-.page-header p {
-    max-width: 700px;
-    margin: 10px auto 0 auto;
-    color: #444;
-    font-size: 16px;
-}
-
-/* ------------------------- */
-/*     SEARCH CARD           */
-/* ------------------------- */
-.portal-card {
-    margin: 40px auto;
-    width: 350px;
-    padding: 30px 25px;
-
-    background: rgba(255, 255, 255, 0.65);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 18px;
-    text-align: center;
-}
-
-.portal-card input {
-    width: 85%;
-    height: 42px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding-left: 10px;
-    font-size: 15px;
-}
-
-.portal-card input:focus {
-    outline: none;
-    border-color: #312783;
-}
-
-.portal-card button {
-    margin-top: 18px;
-    width: 85%;
-    height: 44px;
-    border: none;
-    border-radius: 8px;
-    background-color: #312783;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.portal-card button:hover {
-    background-color: #1e1654;
-}
-
-/* ------------------------- */
-/*        FOOTER             */
-/* ------------------------- */
-.footer {
-    margin-top: 80px;
-    background-color: #404040;
-    color: white;
-    padding: 40px 10%;
-    text-align: center;
-}
-
-.footer a { color: #bbb; }
-.footer a:hover { color: white; }
-
-/* ------------------------- */
-/*       JAVASCRIPT          */
-/* ------------------------- */
-</style>
-
-<script>
-/* NAVBAR SCROLL BEHAVIOUR */
-window.addEventListener("scroll", function() {
-    const nav = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
-});
-
-function searchProject(event) {
-    event.preventDefault();
-
-    let code = document.querySelector("input[name='pid']").value.trim().toUpperCase();
-
-    const routes = {
-        "RVK-17": "rvk.html",
-        "HMT-04": "hmt04.html",
-        "PLS-92": "pls92.html",
-        "CLN-31": "cln31.html",
-        "DRG-07": "drg07.html",
-        "NRV-22": "nrv22.html"
-    };
-
-    if (routes[code]) {
-        window.location.href = routes[code];
-    } else {
-        window.location.href = "error2.html";
-    }
-}
-
-</script>
-
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="biogen_favicon.png">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-    <img src="BiogenLogo.png" alt="Biogen Industries Logo">
-    <div class="nav-links">
+<!-- =========================================================
+     NAVBAR (Static White Version for Non-Hero Pages)
+========================================================= -->
+<header class="navbar navbar-static">
+    <div class="nav-left">
+        <img src="biogen_logo_nav_black.webp" alt="Biogen Logo" class="nav-logo">
+    </div>
+
+    <div class="nav-right">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="bgres.html">Research</a>
+            <a href="bgman.html">Leadership</a>
+            <a href="careers.html">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Home</a>
         <a href="bgres.html">Research</a>
         <a href="bgman.html">Leadership</a>
-        <a href="#">Careers</a>
+        <a href="careers.html">Careers</a>
         <a href="#contact">Contact</a>
     </div>
 </header>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-    <h1>Researcher Access Portal</h1>
-    <p>
-        This portal provides authorised BioGen researchers with access to internal documentation, 
-        active study materials, and project reference codes.  
+
+<!-- =========================================================
+     PAGE CONTENT
+========================================================= -->
+
+<section class="content-section" style="padding-top:140px; padding-bottom:80px; max-width:900px; margin:auto; text-align:center;">
+    
+    <h1 class="fade-in-up" style="color:#312783; margin-bottom:20px; font-size:36px;">
+        Researcher Access Portal
+    </h1>
+
+    <p class="fade-in-up" style="max-width:650px; margin:auto; font-size:16px; color:#444;">
+        This portal provides authorised BioGen researchers with access to internal 
+        documentation, active study materials, and project reference codes. 
         Please enter your assigned product ID to continue.
     </p>
-</div>
 
-<!-- SEARCH CARD -->
-<div class="portal-card">
-    <form onsubmit="searchProject(event)">
-    <input type="text" name="pid" placeholder="Enter Product ID">
-    <button type="submit">Search</button>
-    </form>
-</div>
+    <div class="fade-in-up" style="
+        margin: 40px auto 0;
+        padding: 30px;
+        background: white;
+        width: 380px;
+        border-radius: 12px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    ">
+        <input id="productInput" type="text"
+            placeholder="Enter Product ID"
+            style="
+                width: 100%;
+                padding: 14px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                margin-bottom: 16px;
+                font-size: 15px;
+            ">
 
-<!-- FOOTER -->
-<footer class="footer" id="contact">
-    <p><strong>Contact Us</strong></p>
-    <p>
-        Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a><br>
-        16 The Edge Business Centre<br>
-        Dollis Hill, London, NW2 6<br>
-        United Kingdom
-    </p>
+        <button onclick="searchProduct()" style="
+            width: 100%;
+            padding: 12px;
+            background: #312783;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        ">Search</button>
+    </div>
 
-    <p style="margin-top: 30px;">
-        <img src="AMRC1.png" height="70">
-        <img src="AMRC2.png" height="70">
-    </p>
+</section>
 
-    <p style="margin-top: 20px; font-size: 14px;">© 2025 BioGen Industries. All rights reserved.</p>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer id="contact" class="footer">
+    <h3>Contact Us</h3>
+
+    <p>Email: <a href="mailto:biogen@techcenter.com">biogen@techcenter.com</a></p>
+    <p>16 The Edge Business Centre<br>
+       Dollis Hill, London, NW2 6<br>
+       United Kingdom</p>
+
+    <img src="amrc.webp" alt="AMRC" style="height:55px; margin-top:15px;">
+    <img src="amrc2020.webp" alt="AMRC 2020" style="height:55px; margin-left:10px;">
+
+    <p class="footer-note">© 2025 BioGen Industries. All rights reserved.</p>
 </footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="scripts.js"></script>
+
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+
+/* Product Search Logic */
+function searchProduct() {
+    const id = document.getElementById("productInput").value.trim().toLowerCase();
+
+    // Secret redirects
+    if (id === "rvk-17" || id === "rvk17") {
+        window.location.href = "rvk.html"; 
+        return;
+    }
+
+    // Add harmless decoy examples (optional)
+    const decoys = {
+        "hema-01": "error2.html",
+        "proto-5": "error2.html"
+    };
+
+    if (decoys[id]) {
+        window.location.href = decoys[id];
+        return;
+    }
+
+    alert("Invalid Product ID. Please try again.");
+}
+</script>
 
 </body>
 </html>
