@@ -21,10 +21,10 @@ function attemptLogin() {
 `ERROR 42601: malformed wildcard in query
 Attempting table recovery...
 
-DEAD_DROP.DB / CONFIG TABLE
-config_id | binary_octet | comment
--------------------------------------
-0001      | 01100101     | admin override key
+DEAD_DROP.DB
+binary_octet | comment
+-------------|--------
+01100101     | admin override key
 
 WARNING: table metadata corrupted
 WARNING: unauthorised query logged
