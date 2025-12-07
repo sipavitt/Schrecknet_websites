@@ -1,7 +1,5 @@
-// Admin code revealed through SQL dump (binary 01100101 → 101)
 const ADMIN_CODE = "101";
 
-// Detect lightweight SQL injection
 function isSQLi(input) {
     const lowered = input.toLowerCase().trim();
     return (
@@ -16,7 +14,7 @@ function attemptLogin() {
     const input = document.getElementById("adminpass").value.trim();
     const output = document.getElementById("output");
 
-    // Trigger SQL injection behaviour
+    // SQL injection detected
     if (isSQLi(input)) {
         output.textContent =
 `ERROR 42601: malformed wildcard in query
@@ -31,10 +29,10 @@ WARNING: table metadata corrupted
 WARNING: unauthorised query logged
 Engine state: DEGRADED`;
 
-        return; 
+        return;
     }
 
-    // Correct admin login
+    // Normal login
     if (input === ADMIN_CODE) {
         window.location.href = "access.html";
     } else {
