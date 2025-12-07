@@ -4,6 +4,7 @@
     <title>ENTER</title>
     <link rel="icon" href="favicon.png">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
@@ -14,18 +15,28 @@
             color:white;
         }
 
+        /* Responsive container */
+        #container {
+            max-width:600px;
+            margin:0 auto;
+            padding:20px;
+        }
+
+        /* Logo */
         .logo {
             width:240px;
             display:block;
-            margin:60px auto 40px auto;
+            margin:40px auto 40px auto;
         }
 
-        #container {
-            width:700px;
-            margin:0 auto;
-            text-align:left;
+        @media (max-width:600px) {
+            .logo {
+                width:160px;
+                margin-top:20px;
+            }
         }
 
+        /* RFID verification box */
         .verified {
             background:#092;
             padding:12px;
@@ -34,25 +45,29 @@
             text-align:center;
             margin-bottom:30px;
             font-size:16px;
+            max-width:100%; /* match input widths */
         }
 
+        /* Inputs */
         #loginput, #adminpass {
-            width:600px;
-            height:55px;
+            width:100%;
+            height:48px;
             font-size:18px;
-            padding-left:14px;
+            padding-left:12px;
             background:#111;
             border:1px solid #333;
             border-radius:6px;
             color:#ccc;
+            box-sizing:border-box;
         }
 
+        /* Button */
         #submit {
-            width:600px;
-            height:60px;
+            width:100%;
+            height:55px;
             border:none;
             border-radius:20px;
-            font-size:30px;
+            font-size:26px;
             font-weight:bold;
             cursor:pointer;
             background:#fff;
@@ -65,11 +80,14 @@
             color:#fff;
         }
 
+        /* SQL Error Output */
         #output {
             margin-top:30px;
             white-space:pre-wrap;
-            color:#0f0;
+            color:#fff;        /* changed from green */
             font-size:14px;
+            line-height:1.4;
+            overflow-x:auto;   /* allow horizontal scroll for ugly long dumps */
         }
     </style>
 </head>
