@@ -103,11 +103,46 @@
         <br><small>Field unit authenticated for presence-only mode.</small>
     </div>
 
-    <h2>LOG REPORT:</h2>
-    <input id="loginput" placeholder="Type report here" disabled>
-    <small>Submission disabled: this unit lacks write privileges.</small>
+        <h2>LOG REPORT:</h2>
+
+    <!-- Larger log box, now typeable -->
+    <textarea id="loginput" placeholder="Enter field observation here..."
+        style="
+            width:100%;
+            height:120px;
+            font-size:16px;
+            padding:12px;
+            background:#111;
+            border:1px solid #333;
+            border-radius:6px;
+            color:#ccc;
+            resize:none;
+            box-sizing:border-box;
+        "
+    ></textarea>
+
+    <!-- Disabled submit button -->
+    <button id="submitReport"
+        onclick="attemptReport()"
+        style="
+            width:100%;
+            margin-top:10px;
+            height:45px;
+            border-radius:10px;
+            border:none;
+            font-size:18px;
+            cursor:not-allowed;
+            background:#333;
+            color:#777;
+        "
+    >
+        SUBMIT REPORT
+    </button>
+
+    <small style="color:#666;">This device lacks write privileges.</small>
 
     <br><br><br>
+
 
     <h2>ADMIN NUMBER (3 digits):</h2>
     <input type="password" id="adminpass" placeholder="000–999">
@@ -126,3 +161,4 @@
 
 </body>
 </html>
+
