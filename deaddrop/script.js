@@ -39,3 +39,8 @@ Engine state: DEGRADED`;
         output.textContent = "Incorrect admin number.";
     }
 }
+
+function attemptReport() {
+    const output = document.getElementById("output");
+    output.textContent = "ERROR: This device is not authorised to submit logs.";
+}
