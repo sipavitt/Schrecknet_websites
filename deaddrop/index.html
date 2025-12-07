@@ -5,108 +5,53 @@
     <link rel="icon" href="favicon.png">
     <meta charset="UTF-8">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color:#000;
-            font-family: "Courier New", monospace;
-            color:white;
-        }
-        .logo {
-            width:240px;
-            display:block;
-            margin:60px auto 40px auto; /* ADDED TOP MARGIN */
-        }
-        #container {
-            margin: 0 auto;
-            width: 700px;
-        }
-        h2 { color: white; margin-bottom:10px; }
+        body { background:#000; margin:0; padding:0; font-family:"Courier New", monospace; color:white; }
+        .logo { width:240px; display:block; margin:60px auto 40px auto; }
+        #container { width:700px; margin:0 auto; }
         .verified {
-            background:#092;
-            padding:12px;
-            border-radius:6px;
-            font-size:16px;
-            text-align:center;
-            margin-bottom:30px;
-            border:1px solid #0f0;
-            box-shadow:0 0 8px #040;
+            background:#092; padding:12px; border-radius:6px;
+            border:1px solid #0f0; text-align:center; margin-bottom:30px;
         }
-        #loginput, #adminpass {
-            width: 600px;
-            height: 55px;
-            font-size: 18px;
-            padding-left: 14px;
-            border: none;
-            border-radius: 6px;
-            background: #111;
-            color: #ccc;
+        #adminpass, #loginput {
+            width:600px; height:55px; font-size:18px; padding-left:14px;
+            background:#111; border:1px solid #333; border-radius:6px; color:#ccc;
         }
         #submit {
-            width: 600px;
-            height: 60px;
-            border: none;
-            border-radius: 20px;
-            font-size: 30px;
-            font-weight: bold;
-            background: #fff;
-            color: #000;
-            cursor: pointer;
-            margin-top:20px;
+            width:600px; height:60px; border:none; border-radius:20px;
+            font-size:30px; font-weight:bold; cursor:pointer;
+            background:#fff; color:#000; margin-top:20px;
         }
-        #submit:hover {
-            background:#cc0000;
-            color:#fff;
-        }
-        small { color:#666; }
+        #submit:hover { background:#cc0000; color:#fff; }
     </style>
 </head>
+
 <body>
 
-    <img src="Logo2.png" class="logo">
+<img src="Logo2.png" class="logo">
 
-    <div id="container">
+<div id="container">
 
-        <!-- NEW: Verified tag -->
-        <div class="verified">
-            ✔ RFID CHECKPOINT: LOCATION VERIFIED  
-            <br><small>Field unit authenticated for presence-only mode.</small>
-        </div>
-
-        <h2>LOG REPORT:</h2>
-        <input id="loginput" placeholder="Type report here" disabled>
-        <small>Submission disabled: this unit lacks write privileges.</small>
-
-        <br><br><br>
-
-        <h2>ADMIN LOGIN ONLY:</h2>
-        <input type="password" id="adminpass" placeholder="Password">
-
-        <button id="submit" onclick="attemptLogin()">ENTER</button>
-
+    <div class="verified">
+        ✔ RFID CHECKPOINT: LOCATION VERIFIED  
+        <br><small>Field unit authenticated for presence-only mode.</small>
     </div>
 
-<script src="md5.js"></script>
-<script>
-const correctHash = "22d0c572bbf311b75b315a861787092c";
+    <h2>LOG REPORT:</h2>
+    <input id="loginput" placeholder="Type report here" disabled>
+    <small>Submission disabled: this unit lacks write privileges.</small>
 
-function attemptLogin() {
-    const input = document.getElementById("adminpass").value;
-    const hashed = md5(input);
+    <br><br><br>
 
-    if (hashed === correctHash) {
-        window.location.href = "access.html";
-    } else {
-        window.location.href = "failed.html";
-    }
-}
-</script>
+    <h2>ADMIN NUMBER (3 digits):</h2>
+    <input type="password" id="adminpass" placeholder="000–999">
+
+    <button id="submit" onclick="attemptLogin()">ENTER</button>
+
+</div>
+
+<script src="script.js"></script>
 
 <!--
-RFID authentication system:
-Presence confirmed.
-Write access restricted to authorised Eyes only.
-
 "Lex super voluntate."
 -->
 
