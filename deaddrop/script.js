@@ -46,15 +46,23 @@ function attemptReport() {
 
 /* ---------- Theme Toggle Logic ---------- */
 
-function toggleTheme() {
-    const body = document.body;
-    const newTheme = body.classList.contains("dark") ? "light" : "dark";
-    body.className = newTheme;
-    localStorage.setItem("theme", newTheme);
+function applyTheme(theme) {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+
+    // Update label text
+    const label = document.getElementById("themeLabel");
+    if (label) label.textContent = theme === "dark" ? "Dark" : "Light";
 }
 
-// Apply saved theme
+function toggleTheme() {
+    const current = document.body.classList.contains("dark") ? "dark" : "light";
+    const newTheme = current === "dark" ? "light" : "dark";
+    applyTheme(newTheme);
+}
+
+// Apply stored theme on load
 window.addEventListener("load", () => {
-    const saved = localStorage.getItem("theme");
-    if (saved) document.body.className = saved;
+    const saved = localStorage.getItem("theme") || "dark";
+    applyTheme(saved);
 });
