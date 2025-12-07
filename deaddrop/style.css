@@ -135,3 +135,21 @@ a:hover {
     cursor: pointer;
     z-index: 50;
 }
+
+/* --------------------------------------------------
+   SPEAKER COLOUR CODING FOR EYES LOG PAGE
+----------------------------------------------------- */
+
+.J { color: #ff4a4a; font-weight: bold; }        /* Janus (red) */
+.G { color: #e6d341; font-weight: bold; }        /* G (yellow) */
+.C { color: #6aff6a; font-weight: bold; }        /* C (green) */
+.F { color: #ff6aff; font-weight: bold; }        /* F (magenta/pink) */
+.P { color: orange; font-weight: bold; }         /* P (orange) */
+.Y { color: #5ed9f5; font-weight: bold; }        /* Y (cyan/light blue) */
+
+/* Entry block styling */
+.entry {
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
