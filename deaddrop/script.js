@@ -53,7 +53,14 @@ function applyTheme(theme) {
     // Update label text
     const label = document.getElementById("themeLabel");
     if (label) label.textContent = theme === "dark" ? "Dark" : "Light";
+
+    // Update logo
+    const logo = document.getElementById("logo");
+    if (logo) {
+        logo.src = theme === "dark" ? "logo_white.webp" : "logo_black.webp";
+    }
 }
+
 
 function toggleTheme() {
     const current = document.body.classList.contains("dark") ? "dark" : "light";
