@@ -3,63 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Vesperine — London</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+
+  <!-- ================= NAV ================= -->
   <header class="nav">
-    <img src="assets/img/vesperine-logo.svg" alt="Vesperine Logo" class="logo">
-    <nav>
+    <img src="assets/img/vesperine-logo.svg" alt="Vesperine" class="logo">
+
+    <nav aria-label="Primary">
       <a href="#">Collections</a>
-      <a href="#">House</a>
+      <a href="#">The House</a>
       <a href="#">Boutiques</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-label="Vesperine hero">
     <picture>
       <source media="(max-width: 768px)" srcset="assets/img/hero-mobile.jpg">
-      <img src="assets/img/hero-desktop.jpg" alt="Vesperine Hero">
+      <img src="assets/img/hero-desktop.jpg" alt="Vesperine editorial campaign image">
     </picture>
+
     <div class="hero-text">
       <h1>VESPERINE</h1>
-      <p>Where shadow meets silhouette.</p>
+      <p>Where shadow meets silhouette</p>
     </div>
   </section>
 
-  <!-- COLLECTION TEASER -->
+  <!-- ================= COLLECTIONS ================= -->
   <section class="collections">
     <h2>Latest Release</h2>
+
     <div class="grid">
-      <img src="assets/img/collection-1.jpg" alt="Collection Look 1">
-      <img src="assets/img/collection-2.jpg" alt="Collection Look 2">
-      <img src="assets/img/collection-3.jpg" alt="Collection Look 3">
+      <img src="assets/img/collection-1.jpg" alt="Vesperine collection look one">
+      <img src="assets/img/collection-2.jpg" alt="Vesperine collection look two">
+      <img src="assets/img/collection-3.jpg" alt="Vesperine collection look three">
     </div>
-    <a class="cta" href="#">Explore the Collection</a>
+
+    <a href="#" class="cta">Explore the Collection</a>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ================= ABOUT ================= -->
   <section class="about">
     <h2>The House of Vesperine</h2>
+
     <div class="about-content">
-      <img src="assets/img/antonia-donato.jpg" alt="Antonia Donato">
+      <img src="assets/img/antonia-donato.jpg" alt="Antonia Donato, founder of Vesperine">
+
       <p>
-        Founded in London by the reclusive designer <strong>Antonia Donato</strong>,
-        Vesperine is a study in restraint, form, and shadow.  
-        Each piece is crafted with the precision of couture and the austerity of modern architecture.
+        Founded in London by the reclusive designer <strong>Antonia Donato</strong>, Vesperine is a
+        study in restraint, form, and shadow. Each piece is crafted with the precision of couture
+        and the austerity of modern architecture.
       </p>
     </div>
   </section>
 
+  <!-- ================= FOOTER ================= -->
   <footer>
-    <p>© Vesperine, London.</p>
+    <p>© Vesperine, London</p>
   </footer>
+
 </body>
 </html>
