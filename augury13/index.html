@@ -3,128 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Augury13 — Psychic Readings</title>
+  <title>Augury13 — Psychic Readings, Soho London</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="augury13-favicon.png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400&display=swap');
+    :root {
+      --navy: #181e2a;
+      --orange: #e84d35;
+      --offwhite: #f2f2f2;
+    }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      background: #0a0a0c;
-      color: #e6e6e6;
+      background: var(--navy);
+      color: var(--offwhite);
       font-family: 'Inter', sans-serif;
+      line-height: 1.6;
     }
 
     header {
-      background: url('hero.jpg') center/cover no-repeat;
-      height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 1rem;
+      background: url('augury13-hero.webp') center/cover no-repeat;
+      min-height: 85vh;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
     }
 
     header::after {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(24, 30, 42, 0.75);
     }
 
-    header h1 {
+    .hero-content {
       position: relative;
-      font-family: 'Cinzel', serif;
-      font-size: 3.5rem;
-      letter-spacing: 0.15em;
-      margin: 0;
-      color: #c4e3ff;
-      text-shadow: 0 0 12px rgba(120,180,255,0.5);
+      max-width: 700px;
     }
 
-    header p {
-      position: relative;
-      max-width: 500px;
-      margin-top: 1rem;
+    .hero-logo {
+      max-width: 320px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content p {
       font-size: 1.1rem;
-      color: #e0d4ff;
+      color: #e6dcd6;
     }
 
-    .section {
+    section {
       padding: 4rem 1.5rem;
-      max-width: 800px;
+      background: url('augury13-texture-dark.webp');
+    }
+
+    section:nth-of-type(even) {
+      background: var(--navy);
+    }
+
+    .container {
+      max-width: 900px;
       margin: auto;
     }
 
     h2 {
       font-family: 'Cinzel', serif;
-      letter-spacing: 0.1em;
-      color: #c4e3ff;
-      text-shadow: 0 0 8px rgba(120,180,255,0.4);
-      margin-bottom: 1.5rem;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
-    .services ul {
-      list-style: none;
-      padding: 0;
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
     }
 
-    .services li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .service {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .service img {
+      width: 64px;
+      margin-bottom: 1rem;
+      filter: brightness(0) saturate(100%) invert(45%) sepia(72%) saturate(742%) hue-rotate(339deg);
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
     }
 
     .contact {
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     .contact a {
-      color: #8bb7ff;
+      color: var(--orange);
       text-decoration: none;
     }
 
     footer {
+      background: url('augury13-footer-bg.webp') center/cover no-repeat;
+      position: relative;
+      padding: 3rem 1.5rem;
       text-align: center;
-      padding: 2rem;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(24, 30, 42, 0.85);
+    }
+
+    footer p {
+      position: relative;
+      margin: 0.3rem 0;
       font-size: 0.9rem;
-      color: #777;
+      color: #cfcfcf;
+    }
+
+    @media (max-width: 600px) {
+      .hero-logo { max-width: 240px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>AUGURY13</h1>
-    <p>London's sanctuary of intuition, shadows, and the unseen. Step inside and let the veil thin.</p>
-  </header>
 
-  <section class="section services">
+<header>
+  <div class="hero-content">
+    <img src="augury13-logo-full.webp" alt="Augury13 Psychic Readings" class="hero-logo" />
+    <p>
+      Hidden in the shadows of Soho, Augury13 offers quiet insight for those willing to listen.
+      We do not tell you what will happen — we reveal what already stirs beneath the surface.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="container">
     <h2>Readings & Offerings</h2>
-    <ul>
-      <li>Tarot & Oracle Readings</li>
-      <li>Spirit & Ancestral Guidance</li>
-      <li>Dream Interpretation</li>
-      <li>Candle Rituals & Energetic Cleansing</li>
-    </ul>
-  </section>
+    <div class="services">
+      <div class="service">
+        <img src="icon-tarot.svg" alt="Tarot Readings" />
+        <p>Tarot & Oracle Readings</p>
+      </div>
+      <div class="service">
+        <img src="icon-moon.svg" alt="Spiritual Guidance" />
+        <p>Spirit & Ancestral Guidance</p>
+      </div>
+      <div class="service">
+        <img src="icon-candle.svg" alt="Ritual Work" />
+        <p>Candle Rituals & Cleansing</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="section about">
+<section>
+  <div class="container about">
     <h2>About Augury13</h2>
     <p>
-      Hidden in the rain‑glossed streets of London, Augury13 has served as a quiet refuge for wanderers seeking truth. Our readings do not predict your fate—they illuminate the paths already unfolding beneath your feet.
+      Augury13 has served Soho’s artists, night-workers, and wanderers for years.
+      Our practice is rooted in intuition, symbolism, and careful listening — never spectacle.
+      Each reading is private, grounded, and conducted with discretion.
     </p>
-  </section>
+  </div>
+</section>
 
-  <section class="section contact">
+<section>
+  <div class="container contact">
     <h2>Visit Us</h2>
-    <p>📍 73 Red Lantern Way, London</p>
-    <p>🕒 Open Daily — 6pm to Midnight</p>
-    <p>📬 <a href="mailto:contact@augury13.co.uk">contact@augury13.co.uk</a></p>
-  </section>
+    <p>📍 13 Archer Street, Soho, London W1D 7AA</p>
+    <p>🕯 Open daily from dusk until late</p>
+    <p>📧 <a href="mailto:contact@augury13.co.uk">contact@augury13.co.uk</a></p>
+  </div>
+</section>
 
-  <footer>
-    © 2025 Augury13 — Walk gently between worlds.
-  </footer>
+<footer>
+  <p>© 2025 Augury13 — Psychic Readings</p>
+  <p>Walk gently. The signs are already there.</p>
+</footer>
+
 </body>
 </html>
