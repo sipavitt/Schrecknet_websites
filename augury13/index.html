@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Augury13 — Psychic Readings, Soho London</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="augury13-favicon.png" />
+  <!-- Favicon (SVG is OK in all modern browsers) -->
+  <link rel="icon" type="image/svg+xml" href="augury13-favicon.svg" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
       line-height: 1.6;
     }
 
+    /* ================= HERO ================= */
     header {
       background: url('augury13-hero.webp') center/cover no-repeat;
       min-height: 85vh;
@@ -39,16 +40,17 @@
       padding: 2rem;
     }
 
+    /* Lighter overlay so logo & text are not crushed */
     header::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(24, 30, 42, 0.75);
+      background: rgba(24, 30, 42, 0.45);
     }
 
     .hero-content {
       position: relative;
-      max-width: 700px;
+      max-width: 720px;
     }
 
     .hero-logo {
@@ -58,9 +60,10 @@
 
     .hero-content p {
       font-size: 1.1rem;
-      color: #e6dcd6;
+      color: #f0e8e2;
     }
 
+    /* ================= SECTIONS ================= */
     section {
       padding: 4rem 1.5rem;
       background: url('augury13-texture-dark.webp');
@@ -83,6 +86,7 @@
       text-align: center;
     }
 
+    /* ================= SERVICES ================= */
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -94,18 +98,33 @@
       padding: 1.5rem;
     }
 
+    /* IMPORTANT FIX:
+       Do NOT color SVGs with filters.
+       These SVGs should have strokes/fills set to currentColor.
+    */
     .service img {
       width: 64px;
+      height: 64px;
       margin-bottom: 1rem;
-      filter: brightness(0) saturate(100%) invert(45%) sepia(72%) saturate(742%) hue-rotate(339deg);
     }
 
+    .service {
+      color: var(--orange);
+    }
+
+    .service p {
+      color: var(--offwhite);
+      margin: 0.5rem 0 0;
+    }
+
+    /* ================= ABOUT ================= */
     .about p {
       max-width: 700px;
       margin: auto;
       text-align: center;
     }
 
+    /* ================= CONTACT ================= */
     .contact {
       text-align: center;
       font-size: 1.05rem;
@@ -116,6 +135,7 @@
       text-decoration: none;
     }
 
+    /* ================= FOOTER ================= */
     footer {
       background: url('augury13-footer-bg.webp') center/cover no-repeat;
       position: relative;
@@ -127,7 +147,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(24, 30, 42, 0.85);
+      background: rgba(24, 30, 42, 0.75);
     }
 
     footer p {
@@ -146,7 +166,7 @@
 
 <header>
   <div class="hero-content">
-    <img src="augury13-logo-full.webp" alt="Augury13 Psychic Readings" class="hero-logo" />
+    <img src="augury13-logo-full.svg" alt="Augury13 Psychic Readings" class="hero-logo" />
     <p>
       Hidden in the shadows of Soho, Augury13 offers quiet insight for those willing to listen.
       We do not tell you what will happen — we reveal what already stirs beneath the surface.
