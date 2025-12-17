@@ -1,47 +1,70 @@
-/* GENERAL RESET */
+/* =========================
+   FONT IMPORT EXPECTATION
+   =========================
+   Ensure these are in <head>:
+
+   Cormorant Garamond (headings)
+   Inter (body)
+*/
+
+/* =========
+   RESET
+   ========= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 body {
+  font-family: "Inter", Helvetica, Arial, sans-serif;
   background: #ffffff;
   color: #111;
-  line-height: 1.6;
+  line-height: 1.7;
   letter-spacing: 0.02em;
 }
 
-/* NAVBAR */
+/* =========
+   NAVIGATION
+   ========= */
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 28px 48px;
   position: sticky;
   top: 0;
-  background: #ffffffcc;
+  z-index: 10;
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
 }
 
 .logo {
-  height: 32px;
+  height: 48px;
+  transform: translateY(1px);
 }
 
-.nav a {
-  margin-left: 24px;
+.nav nav a {
+  margin-left: 32px;
   text-decoration: none;
-  color: #111;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #111;
 }
 
-/* HERO */
+/* =========
+   HERO
+   ========= */
 .hero {
   position: relative;
-  width: 100%;
   height: 90vh;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -53,77 +76,170 @@ body {
 
 .hero-text {
   position: absolute;
-  bottom: 8%;
-  left: 5%;
-  color: white;
-  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+  bottom: 10%;
+  left: 6%;
+  color: #fff;
+  max-width: 600px;
 }
 
 .hero-text h1 {
-  font-size: 4rem;
-  letter-spacing: 0.15em;
-  font-weight: 300;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4.5rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin-bottom: 12px;
 }
 
-/* COLLECTION TEASER */
+.hero-text p {
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* =========
+   SECTION DEFAULTS
+   ========= */
+section {
+  padding: 96px 64px;
+}
+
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+/* Accent rule */
+h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: #999933;
+  margin-top: 16px;
+}
+
+/* =========
+   COLLECTIONS
+   ========= */
 .collections {
-  padding: 80px 40px;
   text-align: center;
-}
-
-.collections h2 {
-  font-size: 2rem;
-  margin-bottom: 40px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 32px;
 }
 
 .grid img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.grid img:hover {
+  opacity: 0.92;
 }
 
 .cta {
   display: inline-block;
-  margin-top: 40px;
-  padding: 12px 30px;
+  margin-top: 56px;
+  padding: 14px 40px;
   border: 1px solid #111;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   text-decoration: none;
   color: #111;
-  text-transform: uppercase;
-  font-size: 0.8rem;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* ABOUT */
+.cta:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* =========
+   ABOUT / ANTONIA
+   ========= */
 .about {
-  padding: 80px 40px;
+  background: #fafafa;
 }
 
 .about-content {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: center;
 }
 
 .about img {
-  width: 300px;
-  object-fit: cover;
+  filter: grayscale(100%);
 }
 
 .about p {
-  max-width: 600px;
-  font-size: 1rem;
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.85;
 }
 
-/* FOOTER */
+/* =========
+   FOOTER
+   ========= */
 footer {
+  padding: 48px;
   text-align: center;
-  padding: 40px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: #666;
+}
+
+/* =========
+   RESPONSIVE
+   ========= */
+@media (max-width: 1024px) {
+  section {
+    padding: 80px 48px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 20px 32px;
+  }
+
+  .hero-text h1 {
+    font-size: 3.2rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .about img {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 64px 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text {
+    left: 24px;
+    right: 24px;
+  }
 }
