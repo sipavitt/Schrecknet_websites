@@ -1,42 +1,39 @@
-/* =========================
-   GLOBAL RESET & VARIABLES
-   ========================= */
-
 :root {
     --gold: #ffcc66;
     --black: #0b0b0b;
-    --dark-grey: #111;
-    --text-main: #e6e1d5;
-    --text-muted: rgba(230, 225, 213, 0.65);
+    --dark: #111;
+    --text: #e6e1d5;
+    --muted: rgba(230,225,213,0.65);
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: "Inter", system-ui, sans-serif;
 }
 
 body {
     background: var(--black);
-    color: var(--text-main);
-    line-height: 1.7;
+    color: var(--text);
+    line-height: 1.75;
 }
 
-/* =========================
-   HERO
-   ========================= */
+/* HERO */
 
 .hero {
-    position: relative;
-    height: 80vh;
+    height: 85vh;
     background: url("assets/img/hero-lobby.webp") center / cover no-repeat;
+    position: relative;
 }
 
-.hero .overlay {
+.overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.45)
+    );
 }
 
 .hero-content {
@@ -45,96 +42,77 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
 .hero-logo {
-    width: 160px;
-    margin-bottom: 25px;
-}
-
-.hero h1 {
-    font-size: 3.2rem;
-    letter-spacing: 2px;
-    color: var(--gold);
+    width: 240px;
+    margin-bottom: 28px;
 }
 
 .tagline {
-    margin-top: 12px;
-    font-size: 1.15rem;
-    opacity: 0.85;
+    letter-spacing: 1.5px;
+    font-size: 1.05rem;
+    opacity: 0.9;
 }
 
-/* =========================
-   NAVIGATION
-   ========================= */
+/* NAV */
 
 .topnav {
-    background: var(--dark-grey);
-    border-bottom: 1px solid rgba(255, 204, 102, 0.2);
+    background: var(--dark);
+    border-bottom: 1px solid rgba(255,204,102,0.25);
 }
 
 .topnav ul {
     display: flex;
     justify-content: center;
-    gap: 42px;
-    padding: 18px 0;
+    gap: 40px;
+    padding: 20px;
     list-style: none;
 }
 
 .topnav a {
+    color: var(--text);
     text-decoration: none;
-    color: var(--text-main);
-    font-size: 0.95rem;
     letter-spacing: 1px;
-    transition: color 0.2s ease;
 }
 
 .topnav a:hover {
     color: var(--gold);
 }
 
-/* =========================
-   INTRO
-   ========================= */
+/* INTRO */
 
 .intro {
-    max-width: 900px;
-    margin: 70px auto;
+    max-width: 860px;
+    margin: 90px auto;
     padding: 0 20px;
     text-align: center;
 }
 
 .intro h2 {
-    font-size: 2rem;
-    margin-bottom: 22px;
     color: var(--gold);
+    font-size: 2.1rem;
+    margin-bottom: 24px;
 }
 
-.intro p {
-    margin-bottom: 18px;
-}
-
-/* =========================
-   SPLIT SECTION
-   ========================= */
+/* SPLIT */
 
 .split-section {
     display: flex;
-    min-height: 420px;
-    margin-top: 90px;
+    min-height: 480px;
 }
 
 .split-text {
     flex: 1;
-    padding: 70px;
+    padding: 80px;
 }
 
 .split-text h3 {
     color: var(--gold);
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .split-image {
@@ -143,44 +121,50 @@ body {
     filter: grayscale(100%) contrast(1.1);
 }
 
-/* =========================
-   LEADERSHIP
-   ========================= */
+/* LEADERSHIP */
 
 .leadership {
-    margin: 110px auto;
+    margin: 120px auto;
     text-align: center;
 }
 
 .leadership h2 {
     color: var(--gold);
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-.leader-card {
-    max-width: 600px;
+.leader-frame {
+    max-width: 900px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,204,102,0.05),
+        rgba(0,0,0,0.8)
+    );
+    border: 1px solid rgba(255,204,102,0.2);
 }
 
-.leader-card img {
-    width: 300px;
-    margin-bottom: 25px;
-    opacity: 0.75;
+.leader-image img {
+    width: 100%;
+    opacity: 0.8;
 }
 
-.leader-card h3 {
-    margin-bottom: 12px;
+.leader-text {
+    text-align: left;
 }
 
 .note {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--muted);
 }
 
-/* =========================
-   OFFICES
-   ========================= */
+/* OFFICES */
 
 .offices {
     margin: 90px 0;
@@ -192,18 +176,16 @@ body {
 }
 
 .offices p {
-    margin-top: 12px;
+    margin-top: 10px;
     letter-spacing: 1px;
-    color: var(--text-muted);
+    color: var(--muted);
 }
 
-/* =========================
-   FOOTER
-   ========================= */
+/* FOOTER */
 
 footer {
     background: url("assets/img/footer-texture.webp") center / cover no-repeat;
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 
 .footer-inner {
@@ -214,5 +196,35 @@ footer {
 .smallprint {
     margin-top: 10px;
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--muted);
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+    .split-section {
+        flex-direction: column;
+    }
+
+    .split-text {
+        padding: 50px 30px;
+    }
+
+    .leader-frame {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .leader-text {
+        text-align: center;
+    }
+
+    .topnav ul {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero-logo {
+        width: 200px;
+    }
 }
