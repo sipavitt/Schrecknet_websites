@@ -16,6 +16,7 @@
     <img src="images/gallery19-logo.svg" alt="Gallery19 logo">
   </a>
 
+  <!-- This only appears on mobile (and works) -->
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
     Menu
   </button>
@@ -51,10 +52,10 @@
   </div>
 
   <div class="works-grid">
-    <figure class="work"><img src="images/gallery-1.webp" alt=""></figure>
-    <figure class="work"><img src="images/gallery-2.webp" alt=""></figure>
-    <figure class="work"><img src="images/gallery-3.webp" alt=""></figure>
-    <figure class="work"><img src="images/gallery-4.webp" alt=""></figure>
+    <figure class="work"><img src="images/gallery-1.webp" alt="Selected work 1"></figure>
+    <figure class="work"><img src="images/gallery-2.webp" alt="Selected work 2"></figure>
+    <figure class="work"><img src="images/gallery-3.webp" alt="Selected work 3"></figure>
+    <figure class="work"><img src="images/gallery-4.webp" alt="Selected work 4"></figure>
   </div>
 </section>
 
@@ -65,10 +66,10 @@
     <p class="muted">Represented painters working beyond institutional frameworks.</p>
   </div>
 
-  <div class="artist-carousel-wrap">
+  <div class="artist-carousel-wrap" aria-label="Artist gallery">
     <div class="artist-carousel">
 
-      <button class="artist-card" data-artist="fp">
+      <button class="artist-card" type="button" data-artist="fp">
         <img src="images/fabian-perez.webp" alt="Fabian Perez">
         <div class="artist-card-meta">
           <span class="artist-name">Fabian Perez</span>
@@ -76,7 +77,7 @@
         </div>
       </button>
 
-      <button class="artist-card" data-artist="lr">
+      <button class="artist-card" type="button" data-artist="lr">
         <img src="images/lola-ravel.webp" alt="Lola Ravel">
         <div class="artist-card-meta">
           <span class="artist-name">Lola Ravel</span>
@@ -84,7 +85,7 @@
         </div>
       </button>
 
-      <button class="artist-card" data-artist="os">
+      <button class="artist-card" type="button" data-artist="os">
         <img src="images/ophelia-sable.webp" alt="Ophelia Sable">
         <div class="artist-card-meta">
           <span class="artist-name">Ophelia Sable</span>
@@ -92,7 +93,7 @@
         </div>
       </button>
 
-      <button class="artist-card" data-artist="sm">
+      <button class="artist-card" type="button" data-artist="sm">
         <img src="images/sabine-montclair.webp" alt="Sabine Montclair">
         <div class="artist-card-meta">
           <span class="artist-name">Sabine Montclair</span>
@@ -100,7 +101,7 @@
         </div>
       </button>
 
-      <button class="artist-card" data-artist="zd">
+      <button class="artist-card" type="button" data-artist="zd">
         <img src="images/zara-devereaux.webp" alt="Zara Devereaux">
         <div class="artist-card-meta">
           <span class="artist-name">Zara Devereaux</span>
@@ -125,12 +126,13 @@
       through private salons and long-term patronage rather than public institutions.
     </p>
     <p class="muted">McKellan does not give interviews.</p>
+    <p class="fineprint">Archive note: select works were first shown in Bristol (2016–2019).</p>
   </div>
 </section>
 
 <!-- ATMOSPHERE -->
-<section class="atmosphere">
-  <img src="images/interior-gallery19.webp" alt="">
+<section class="atmosphere" aria-label="Gallery interior at night">
+  <img src="images/interior-gallery19.webp" alt="Gallery19 interior at night">
   <div class="atmosphere-overlay"></div>
 </section>
 
@@ -144,16 +146,20 @@
 </section>
 
 <footer class="footer">
-  <img src="images/gallery19-logo.svg" alt="">
+  <img src="images/gallery19-logo.svg" alt="Gallery19 logo">
   <p>© Gallery19 — Camden, London</p>
 </footer>
 
 <!-- MODAL -->
 <div id="artistModal" class="modal" aria-hidden="true">
-  <div class="modal-panel">
-    <button class="modal-close" id="modalClose">×</button>
-    <h3 id="artistName"></h3>
-    <p id="artistBio" class="muted"></p>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="artistName">
+    <button class="modal-close" type="button" aria-label="Close" id="modalClose">×</button>
+
+    <div class="modal-header">
+      <h3 id="artistName"></h3>
+      <p id="artistBio" class="muted"></p>
+    </div>
+
     <div id="artistGallery" class="artist-gallery"></div>
   </div>
 </div>
