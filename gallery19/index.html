@@ -5,19 +5,21 @@
   <title>Gallery19 — Contemporary Art, Camden</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- IMPORTANT: relative path, not /images/... -->
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
   <nav class="nav">
-    <a class="brand" href="#">
-      <img src="images/gallery19-logo.png" alt="Gallery19 logo">
+    <a class="brand" href="#" aria-label="Gallery19 home">
+      <img src="images/gallery19-logo.svg" alt="Gallery19 logo">
     </a>
 
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      Menu
+    </button>
+
+    <div class="nav-links" data-nav-links>
       <a href="#works">Works</a>
       <a href="#artists">Artists</a>
       <a href="#about">About</a>
@@ -27,12 +29,17 @@
 
   <!-- HERO -->
   <header class="hero">
-    <img class="hero-media" src="images/hero-gallery19.webp" alt="Gallery19 event at night">
+    <picture>
+      <!-- If you add hero-gallery19-mobile.webp, this will automatically use it on phones -->
+      <source media="(max-width: 700px)" srcset="images/hero-gallery19-mobile.webp">
+      <img class="hero-media" src="images/hero-gallery19.webp" alt="Gallery19 private view at night">
+    </picture>
+
     <div class="hero-overlay"></div>
 
     <div class="hero-text">
       <h1>Gallery19</h1>
-      <p>Contemporary works exploring desire, control, and unease.</p>
+      <p>Desire. Unease. Control.</p>
     </div>
   </header>
 
@@ -40,28 +47,14 @@
   <section id="works" class="section featured-works">
     <div class="section-head">
       <h2>Selected Works</h2>
-      <p class="muted">
-        A small selection indicative of our curatorial direction.
-      </p>
+      <p class="muted">A small selection indicative of our curatorial direction.</p>
     </div>
 
-    <!-- NOTE: you do not currently have gallery-1.webp..gallery-4.webp in /images
-         So I’m using fp-1..fp-4 as placeholders so the section renders correctly.
-         If you want dedicated featured works, rename files to gallery-1.webp..gallery-4.webp
-         and then swap these src values. -->
     <div class="works-grid">
-      <figure class="work">
-        <img src="images/fp-1.webp" alt="Featured work 1">
-      </figure>
-      <figure class="work">
-        <img src="images/fp-2.webp" alt="Featured work 2">
-      </figure>
-      <figure class="work">
-        <img src="images/fp-3.webp" alt="Featured work 3">
-      </figure>
-      <figure class="work">
-        <img src="images/fp-4.webp" alt="Featured work 4">
-      </figure>
+      <figure class="work"><img src="images/gallery-1.webp" alt="Selected work 1"></figure>
+      <figure class="work"><img src="images/gallery-2.webp" alt="Selected work 2"></figure>
+      <figure class="work"><img src="images/gallery-3.webp" alt="Selected work 3"></figure>
+      <figure class="work"><img src="images/gallery-4.webp" alt="Selected work 4"></figure>
     </div>
   </section>
 
@@ -69,9 +62,7 @@
   <section id="artists" class="section artists">
     <div class="section-head">
       <h2>Artists</h2>
-      <p class="muted">
-        Represented artists and selected bodies of work.
-      </p>
+      <p class="muted">Click an artist to view profile and selected works.</p>
     </div>
 
     <div class="artist-carousel" aria-label="Artist gallery">
@@ -95,7 +86,7 @@
         <img src="images/ophelia-sable.webp" alt="Ophelia Sable">
         <div class="artist-card-meta">
           <span class="artist-name">Ophelia Sable</span>
-          <span class="artist-sub">Photographer</span>
+          <span class="artist-sub">Photography</span>
         </div>
       </button>
 
@@ -115,8 +106,6 @@
         </div>
       </button>
     </div>
-
-    <p class="hint muted">Click an artist to view profile and works.</p>
   </section>
 
   <!-- ABOUT / NOLA -->
@@ -128,11 +117,16 @@
     <div class="nola-copy">
       <h2>Nola McKellan</h2>
       <p>
-        Founder and curator of Gallery19. Formerly based in Bristol, where her work
-        circulated privately among collectors and social circles rather than public institutions.
+        Founder and curator of Gallery19. Formerly based in Bristol, where her work circulated
+        privately among collectors and social circles rather than public institutions.
       </p>
       <p class="muted">
         McKellan does not give interviews. Requests are reviewed selectively.
+      </p>
+
+      <!-- Bristol seed (subtle, expandable later) -->
+      <p class="fineprint">
+        Archive note: selected works were first shown in Bristol in small private salons between 2016–2019.
       </p>
     </div>
   </section>
@@ -153,7 +147,7 @@
   </section>
 
   <footer class="footer">
-    <img src="images/gallery19-logo.png" alt="Gallery19 logo">
+    <img src="images/gallery19-logo.svg" alt="Gallery19 logo">
     <p>© Gallery19 — Camden, London</p>
   </footer>
 
