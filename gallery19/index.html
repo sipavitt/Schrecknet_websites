@@ -3,70 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <title>Gallery19 — Contemporary Art, Camden</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<nav>
-  <a href="#works">Works</a>
-  <a href="#artists">Artists</a>
-  <a href="#visit">Visit</a>
+<nav class="nav">
+  <img src="/images/gallery19-logo.png" alt="Gallery19 logo">
+  <div class="nav-links">
+    <a href="#works">Works</a>
+    <a href="#artists">Artists</a>
+    <a href="#visit">Visit</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <img src="hero-gallery19.jpg" alt="Gallery event">
+  <img src="/images/hero-gallery19.jpg" alt="Gallery event">
   <div class="hero-text">
     <h1>Gallery19</h1>
-    <p>Desire. Unease. Control.</p>
+    <p>Contemporary works exploring desire, control, and unease.</p>
   </div>
 </section>
 
 <!-- FEATURED WORKS -->
-<section id="works" class="featured">
-  <h2>Featured Works</h2>
-
-  <div class="work-spotlight">
-    <img id="workImage" src="work01.jpg" alt="">
-    <div class="work-meta">
-      <span id="workTitle">Untitled (Red)</span>
-      <span id="workYear">2023</span>
-      <span id="workMedium">Oil on linen</span>
-    </div>
+<section id="works" class="featured-works">
+  <h2>Selected Works</h2>
+  <div class="works-grid">
+    <img src="/images/gallery-1.webp" alt="">
+    <img src="/images/gallery-2.webp" alt="">
+    <img src="/images/gallery-3.webp" alt="">
+    <img src="/images/gallery-4.webp" alt="">
   </div>
 </section>
 
 <!-- ARTISTS -->
 <section id="artists" class="artists">
   <h2>Artists</h2>
-
-  <div class="artist-grid">
-
-    <div class="artist-card">
-      <img src="artist01-headshot.jpg" alt="">
-      <div class="artist-info">
-        <h3>Elena Voss</h3>
-        <p>Figurative painter exploring intimacy and erasure.</p>
-        <img src="artist01-work.jpg" alt="">
-      </div>
-    </div>
-
-    <!-- repeat x4 -->
-
+  <div class="artist-strip">
+    <button onclick="openArtist('fp')">Fabian Perez</button>
+    <button onclick="openArtist('lr')">Lola Ravel</button>
+    <button onclick="openArtist('os')">Ophelia Sable</button>
+    <button onclick="openArtist('sm')">Sabine Montclair</button>
+    <button onclick="openArtist('zd')">Zara Devereaux</button>
   </div>
 </section>
 
-<!-- ATMOSPHERE -->
-<section class="atmosphere">
-  <img src="interior-gallery19.jpg" alt="Gallery interior">
+<!-- NOLA -->
+<section class="nola">
+  <img src="/images/nola-mckellan.webp" alt="Nola McKellan">
+  <div>
+    <h2>Nola McKellan</h2>
+    <p>
+      Founder and curator of Gallery19. Formerly based in Bristol, where her work
+      circulated privately among collectors and social circles rather than public institutions.
+      McKellan does not give interviews.
+    </p>
+  </div>
 </section>
 
+<!-- VISIT -->
 <section id="visit" class="visit">
-  <p><strong>Unit 19, Camden Stables Market</strong></p>
+  <p><strong>Unit 19, Camden Stables Market, London NW1</strong></p>
   <p>Private viewings by appointment</p>
+  <p><a href="mailto:curation@gallery19.co.uk">curation@gallery19.co.uk</a></p>
 </section>
 
-<script src="gallery.js"></script>
+<footer>
+  <img src="/images/gallery19-logo.png" alt="Gallery19 logo">
+  <p>© Gallery19</p>
+</footer>
+
+<!-- MODAL -->
+<div id="artistModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h3 id="artistName"></h3>
+    <p id="artistBio"></p>
+    <div id="artistGallery" class="artist-gallery"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
