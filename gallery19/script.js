@@ -2,17 +2,17 @@ const artists = {
   fp: {
     name: "Fabian Perez",
     bio: "Painter of nocturnal intimacy — glamour edged with violence, tenderness, and restraint.",
-    images: 8
+    images: 7
   },
   lr: {
     name: "Lola Ravel",
     bio: "Mixed media works exploring private ritual, curated vulnerability, and controlled exposure.",
-    images: 3
+    images: 2
   },
   os: {
     name: "Ophelia Sable",
     bio: "Photographic studies of erasure and presence, where the subject is always half-withheld.",
-    images: 4
+    images: 2
   },
   sm: {
     name: "Sabine Montclair",
@@ -32,6 +32,7 @@ const artistName = document.getElementById("artistName");
 const artistBio = document.getElementById("artistBio");
 const artistGallery = document.getElementById("artistGallery");
 
+/* Artist modal */
 function openArtist(key) {
   const a = artists[key];
   if (!a) return;
@@ -58,18 +59,25 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-/* wire up artist cards */
+/* Bind artist cards */
 document.querySelectorAll(".artist-card").forEach(btn => {
   btn.addEventListener("click", () => openArtist(btn.dataset.artist));
 });
 
-/* close interactions */
-modalClose.addEventListener("click", closeModal);
-
-modal.addEventListener("click", (e) => {
+/* Close interactions */
+modalClose?.addEventListener("click", closeModal);
+modal?.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
-
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal.style.display === "block") closeModal();
+});
+
+/* Mobile nav */
+const toggle = document.querySelector(".nav-toggle");
+const links = document.querySelector("[data-nav-links]");
+
+toggle?.addEventListener("click", () => {
+  const open = links.classList.toggle("is-open");
+  toggle.setAttribute("aria-expanded", open ? "true" : "false");
 });
