@@ -1,54 +1,75 @@
 const artists = {
   fp: {
     name: "Fabian Perez",
-    bio: "Internationally renowned painter exploring masculinity, solitude, and excess.",
-    images: 7
+    bio: "Painter of nocturnal intimacy — glamour edged with violence, tenderness, and restraint.",
+    images: 8
   },
   lr: {
     name: "Lola Ravel",
-    bio: "Mixed media artist working with ritual, intimacy, and constraint.",
-    images: 2
+    bio: "Mixed media works exploring private ritual, curated vulnerability, and controlled exposure.",
+    images: 3
   },
   os: {
     name: "Ophelia Sable",
-    bio: "Photographic work examining erasure and the body.",
-    images: 2
+    bio: "Photographic studies of erasure and presence, where the subject is always half-withheld.",
+    images: 4
   },
   sm: {
     name: "Sabine Montclair",
-    bio: "Painter focused on memory, flesh, and distortion.",
+    bio: "Painter working with memory, flesh, and distortion — intimacy rendered as architecture.",
     images: 2
   },
   zd: {
     name: "Zara Devereaux",
-    bio: "Neo-expressionist works exploring desire and decay.",
+    bio: "Expressionist works exploring desire and decay, glamour turned feral at the edges.",
     images: 5
   }
 };
 
+const modal = document.getElementById("artistModal");
+const modalClose = document.getElementById("modalClose");
+const artistName = document.getElementById("artistName");
+const artistBio = document.getElementById("artistBio");
+const artistGallery = document.getElementById("artistGallery");
+
 function openArtist(key) {
-  const artist = artists[key];
-  document.getElementById("artistName").innerText = artist.name;
-  document.getElementById("artistBio").innerText = artist.bio;
+  const a = artists[key];
+  if (!a) return;
 
-  const gallery = document.getElementById("artistGallery");
-  gallery.innerHTML = "";
+  artistName.textContent = a.name;
+  artistBio.textContent = a.bio;
 
-  for (let i = 1; i <= artist.images; i++) {
+  artistGallery.innerHTML = "";
+  for (let i = 1; i <= a.images; i++) {
     const img = document.createElement("img");
-    img.src = `/images/${key}-${i}.webp`;
-    gallery.appendChild(img);
+    img.src = `images/${key}-${i}.webp`;
+    img.alt = `${a.name} work ${i}`;
+    artistGallery.appendChild(img);
   }
 
-  document.getElementById("artistModal").style.display = "block";
+  modal.style.display = "block";
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
-  document.getElementById("artistModal").style.display = "none";
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
 }
 
-window.onclick = function(e) {
-  if (e.target.classList.contains("modal")) {
-    closeModal();
-  }
-};
+/* wire up artist cards */
+document.querySelectorAll(".artist-card").forEach(btn => {
+  btn.addEventListener("click", () => openArtist(btn.dataset.artist));
+});
+
+/* close interactions */
+modalClose.addEventListener("click", closeModal);
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.style.display === "block") closeModal();
+});
