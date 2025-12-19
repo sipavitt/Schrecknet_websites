@@ -2,7 +2,7 @@ const artists = {
   fp: {
     name: "Fabian Perez",
     bio: "Painter of nocturnal intimacy — glamour edged with violence, tenderness, and restraint.",
-    images: 7
+    images: 6
   },
   lr: {
     name: "Lola Ravel",
