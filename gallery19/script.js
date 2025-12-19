@@ -1,83 +1,71 @@
 const artists = {
   fp: {
     name: "Fabian Perez",
-    bio: "Painter of nocturnal intimacy — glamour edged with violence, tenderness, and restraint.",
+    bio: "Fabian Perez’s work explores solitude, masculinity, and ritualised intimacy. His paintings draw on cinematic lighting and choreographed stillness, positioning the figure as both subject and spectacle.",
     images: 6
   },
   lr: {
     name: "Lola Ravel",
-    bio: "Mixed media works exploring private ritual, curated vulnerability, and controlled exposure.",
+    bio: "Lola Ravel’s paintings engage with absence and presence, often depicting figures caught between gesture and erasure.",
     images: 2
   },
   os: {
     name: "Ophelia Sable",
-    bio: "Photographic studies of erasure and presence, where the subject is always half-withheld.",
+    bio: "Ophelia Sable’s practice centres on the body as a site of interruption, fragmentation, and withheld authorship.",
     images: 2
   },
   sm: {
     name: "Sabine Montclair",
-    bio: "Painter working with memory, flesh, and distortion — intimacy rendered as architecture.",
+    bio: "Sabine Montclair works with organic materials and physical processes of decay, exploring devotion, sacrifice, and permanence.",
     images: 2
   },
   zd: {
     name: "Zara Devereaux",
-    bio: "Expressionist works exploring desire and decay, glamour turned feral at the edges.",
+    bio: "Zara Devereaux’s paintings reward prolonged attention, revealing meaning slowly while resisting fixed interpretation.",
     images: 5
   }
 };
 
 const modal = document.getElementById("artistModal");
-const modalClose = document.getElementById("modalClose");
 const artistName = document.getElementById("artistName");
 const artistBio = document.getElementById("artistBio");
 const artistGallery = document.getElementById("artistGallery");
+const modalClose = document.getElementById("modalClose");
 
-/* Artist modal */
-function openArtist(key) {
+function openArtist(key){
   const a = artists[key];
-  if (!a) return;
+  if(!a) return;
 
-  artistName.textContent = a.name;
-  artistBio.textContent = a.bio;
+  // deliberate delay (gallery-grade pacing)
+  setTimeout(() => {
+    artistName.textContent = a.name;
+    artistBio.textContent = a.bio;
 
-  artistGallery.innerHTML = "";
-  for (let i = 1; i <= a.images; i++) {
-    const img = document.createElement("img");
-    img.src = `images/${key}-${i}.webp`;
-    img.alt = `${a.name} work ${i}`;
-    artistGallery.appendChild(img);
-  }
+    artistGallery.innerHTML = "";
+    for(let i=1;i<=a.images;i++){
+      const img = document.createElement("img");
+      img.src = `images/${key}-${i}.webp`;
+      artistGallery.appendChild(img);
+    }
 
-  modal.style.display = "block";
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+  }, 150);
 }
 
-function closeModal() {
+function closeModal(){
   modal.style.display = "none";
-  modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
-/* Bind artist cards */
-document.querySelectorAll(".artist-card").forEach(btn => {
-  btn.addEventListener("click", () => openArtist(btn.dataset.artist));
+document.querySelectorAll(".artist-card").forEach(card=>{
+  card.addEventListener("click",()=>openArtist(card.dataset.artist));
 });
 
-/* Close interactions */
-modalClose?.addEventListener("click", closeModal);
-modal?.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
+modalClose.addEventListener("click",closeModal);
+modal.addEventListener("click",e=>{
+  if(e.target===modal) closeModal();
 });
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && modal.style.display === "block") closeModal();
-});
-
-/* Mobile nav */
-const toggle = document.querySelector(".nav-toggle");
-const links = document.querySelector("[data-nav-links]");
-
-toggle?.addEventListener("click", () => {
-  const open = links.classList.toggle("is-open");
-  toggle.setAttribute("aria-expanded", open ? "true" : "false");
+window.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
 });
