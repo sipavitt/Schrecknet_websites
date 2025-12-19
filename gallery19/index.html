@@ -1,92 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Gallery19 — Contemporary Art, Camden</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Gallery19 — Contemporary Art, Camden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-<link rel="stylesheet" href="style.css">
+  <!-- IMPORTANT: relative path, not /images/... -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<nav class="nav">
-  <img src="/images/gallery19-logo.png" alt="Gallery19 logo">
-  <div class="nav-links">
-    <a href="#works">Works</a>
-    <a href="#artists">Artists</a>
-    <a href="#visit">Visit</a>
+  <nav class="nav">
+    <a class="brand" href="#">
+      <img src="images/gallery19-logo.png" alt="Gallery19 logo">
+    </a>
+
+    <div class="nav-links">
+      <a href="#works">Works</a>
+      <a href="#artists">Artists</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <img class="hero-media" src="images/hero-gallery19.webp" alt="Gallery19 event at night">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-text">
+      <h1>Gallery19</h1>
+      <p>Contemporary works exploring desire, control, and unease.</p>
+    </div>
+  </header>
+
+  <!-- FEATURED WORKS -->
+  <section id="works" class="section featured-works">
+    <div class="section-head">
+      <h2>Selected Works</h2>
+      <p class="muted">
+        A small selection indicative of our curatorial direction.
+      </p>
+    </div>
+
+    <!-- NOTE: you do not currently have gallery-1.webp..gallery-4.webp in /images
+         So I’m using fp-1..fp-4 as placeholders so the section renders correctly.
+         If you want dedicated featured works, rename files to gallery-1.webp..gallery-4.webp
+         and then swap these src values. -->
+    <div class="works-grid">
+      <figure class="work">
+        <img src="images/fp-1.webp" alt="Featured work 1">
+      </figure>
+      <figure class="work">
+        <img src="images/fp-2.webp" alt="Featured work 2">
+      </figure>
+      <figure class="work">
+        <img src="images/fp-3.webp" alt="Featured work 3">
+      </figure>
+      <figure class="work">
+        <img src="images/fp-4.webp" alt="Featured work 4">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ARTISTS -->
+  <section id="artists" class="section artists">
+    <div class="section-head">
+      <h2>Artists</h2>
+      <p class="muted">
+        Represented artists and selected bodies of work.
+      </p>
+    </div>
+
+    <div class="artist-carousel" aria-label="Artist gallery">
+      <button class="artist-card" type="button" data-artist="fp">
+        <img src="images/fabian-perez.webp" alt="Fabian Perez">
+        <div class="artist-card-meta">
+          <span class="artist-name">Fabian Perez</span>
+          <span class="artist-sub">Painter</span>
+        </div>
+      </button>
+
+      <button class="artist-card" type="button" data-artist="lr">
+        <img src="images/lola-ravel.webp" alt="Lola Ravel">
+        <div class="artist-card-meta">
+          <span class="artist-name">Lola Ravel</span>
+          <span class="artist-sub">Mixed media</span>
+        </div>
+      </button>
+
+      <button class="artist-card" type="button" data-artist="os">
+        <img src="images/ophelia-sable.webp" alt="Ophelia Sable">
+        <div class="artist-card-meta">
+          <span class="artist-name">Ophelia Sable</span>
+          <span class="artist-sub">Photographer</span>
+        </div>
+      </button>
+
+      <button class="artist-card" type="button" data-artist="sm">
+        <img src="images/sabine-montclair.webp" alt="Sabine Montclair">
+        <div class="artist-card-meta">
+          <span class="artist-name">Sabine Montclair</span>
+          <span class="artist-sub">Painter</span>
+        </div>
+      </button>
+
+      <button class="artist-card" type="button" data-artist="zd">
+        <img src="images/zara-devereaux.webp" alt="Zara Devereaux">
+        <div class="artist-card-meta">
+          <span class="artist-name">Zara Devereaux</span>
+          <span class="artist-sub">Expressionist</span>
+        </div>
+      </button>
+    </div>
+
+    <p class="hint muted">Click an artist to view profile and works.</p>
+  </section>
+
+  <!-- ABOUT / NOLA -->
+  <section id="about" class="section nola">
+    <div class="nola-media">
+      <img src="images/nola-mckellan.webp" alt="Nola McKellan">
+    </div>
+
+    <div class="nola-copy">
+      <h2>Nola McKellan</h2>
+      <p>
+        Founder and curator of Gallery19. Formerly based in Bristol, where her work
+        circulated privately among collectors and social circles rather than public institutions.
+      </p>
+      <p class="muted">
+        McKellan does not give interviews. Requests are reviewed selectively.
+      </p>
+    </div>
+  </section>
+
+  <!-- ATMOSPHERE -->
+  <section class="atmosphere" aria-label="Gallery interior at night">
+    <img src="images/interior-gallery19.webp" alt="Gallery19 interior at night">
+    <div class="atmosphere-overlay"></div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" class="section visit">
+    <h2>Visit</h2>
+    <p><strong>Unit 19, Camden Stables Market, London NW1</strong></p>
+    <p>Wednesday – Sunday, 11:00–19:00</p>
+    <p>Private viewings by appointment only</p>
+    <p><a href="mailto:curation@gallery19.co.uk">curation@gallery19.co.uk</a></p>
+  </section>
+
+  <footer class="footer">
+    <img src="images/gallery19-logo.png" alt="Gallery19 logo">
+    <p>© Gallery19 — Camden, London</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="artistModal" class="modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="artistName">
+      <button class="modal-close" type="button" aria-label="Close" id="modalClose">×</button>
+
+      <div class="modal-header">
+        <h3 id="artistName"></h3>
+        <p id="artistBio" class="muted"></p>
+      </div>
+
+      <div id="artistGallery" class="artist-gallery"></div>
+    </div>
   </div>
-</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <img src="/images/hero-gallery19.jpg" alt="Gallery event">
-  <div class="hero-text">
-    <h1>Gallery19</h1>
-    <p>Contemporary works exploring desire, control, and unease.</p>
-  </div>
-</section>
-
-<!-- FEATURED WORKS -->
-<section id="works" class="featured-works">
-  <h2>Selected Works</h2>
-  <div class="works-grid">
-    <img src="/images/gallery-1.webp" alt="">
-    <img src="/images/gallery-2.webp" alt="">
-    <img src="/images/gallery-3.webp" alt="">
-    <img src="/images/gallery-4.webp" alt="">
-  </div>
-</section>
-
-<!-- ARTISTS -->
-<section id="artists" class="artists">
-  <h2>Artists</h2>
-  <div class="artist-strip">
-    <button onclick="openArtist('fp')">Fabian Perez</button>
-    <button onclick="openArtist('lr')">Lola Ravel</button>
-    <button onclick="openArtist('os')">Ophelia Sable</button>
-    <button onclick="openArtist('sm')">Sabine Montclair</button>
-    <button onclick="openArtist('zd')">Zara Devereaux</button>
-  </div>
-</section>
-
-<!-- NOLA -->
-<section class="nola">
-  <img src="/images/nola-mckellan.webp" alt="Nola McKellan">
-  <div>
-    <h2>Nola McKellan</h2>
-    <p>
-      Founder and curator of Gallery19. Formerly based in Bristol, where her work
-      circulated privately among collectors and social circles rather than public institutions.
-      McKellan does not give interviews.
-    </p>
-  </div>
-</section>
-
-<!-- VISIT -->
-<section id="visit" class="visit">
-  <p><strong>Unit 19, Camden Stables Market, London NW1</strong></p>
-  <p>Private viewings by appointment</p>
-  <p><a href="mailto:curation@gallery19.co.uk">curation@gallery19.co.uk</a></p>
-</section>
-
-<footer>
-  <img src="/images/gallery19-logo.png" alt="Gallery19 logo">
-  <p>© Gallery19</p>
-</footer>
-
-<!-- MODAL -->
-<div id="artistModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h3 id="artistName"></h3>
-    <p id="artistBio"></p>
-    <div id="artistGallery" class="artist-gallery"></div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
