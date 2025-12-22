@@ -116,6 +116,7 @@ a:hover {
 .logo-image {
   width: 170px;
   margin-top: 160px;
+  margin-bottom: 28px;
 }
 
 /* Buttons row */
@@ -278,3 +279,4 @@ a:hover {
     padding-right: 48px;
   }
 }
+
