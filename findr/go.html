@@ -1,65 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Redirecting…</title>
+  <meta charset="UTF-8">
+  <title>Redirecting…</title>
 </head>
 <body>
+
 <script>
-/* ---------------------------------------------
-   IN-GAME SITES
---------------------------------------------- */
-const INGAME_MAP = {
-    "augury13": "/augury13/",
-    "biogen": "/biogen/",
-    "metromash": "/metromash/"
-};
+/* =========================================================
+   CONFIG
+========================================================= */
 
-/* ---------------------------------------------
-   FILLER PAGES
---------------------------------------------- */
-const EXTERNAL_MAP = {
-    "filler-metro": "/filler/metro_daily.html",
-    "filler-citygov": "/filler/citygov_records.html"
-};
+const INWORLD_CSV = "inworld_sites.csv";
 
-/* ---------------------------------------------
-   CURATED REAL-WORLD SITES
---------------------------------------------- */
-const REAL_WORLD_MAP = {
-    "electric-ballroom": "https://electricballroom.co.uk/",
-    "nhm": "https://www.nhm.ac.uk/",
-    "observatory": "https://www.rmg.co.uk/royal-observatory",
-    "shard": "https://www.the-shard.com/",
-    "rbo": "https://www.rbo.org.uk/"
-};
+/* =========================================================
+   CSV LOADER (same logic as results.html)
+========================================================= */
 
-/* ---------------------------------------------
+function parseCSV(text) {
+  const lines = text.trim().split("\n");
+  const headers = lines.shift().split(",");
+
+  return lines.map(line => {
+    const values = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let char of line) {
+      if (char === '"') {
+        inQuotes = !inQuotes;
+        continue;
+      }
+      if (char === "," && !inQuotes) {
+        values.push(current);
+        current = "";
+        continue;
+      }
+      current += char;
+    }
+    values.push(current);
+
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (values[i] || "").trim());
+    return obj;
+  });
+}
+
+async function loadCSV(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) return [];
+    const text = await res.text();
+    return parseCSV(text);
+  } catch {
+    return [];
+  }
+}
+
+/* =========================================================
    MAIN REDIRECT LOGIC
---------------------------------------------- */
+========================================================= */
 
-const u = new URLSearchParams(location.search).get("u");
+(async function redirect() {
+  const u = new URLSearchParams(location.search).get("u");
 
-// In-game
-if (INGAME_MAP[u]) {
-    location.href = INGAME_MAP[u];
-}
-// Filler pages
-else if (EXTERNAL_MAP[u]) {
-    location.href = EXTERNAL_MAP[u];
-}
-// Curated real world
-else if (REAL_WORLD_MAP[u]) {
-    location.href = REAL_WORLD_MAP[u];
-}
-// CSV external domains (raw domain passed)
-else if (/^[\w.-]+\.[A-Za-z]{2,}$/.test(u)) {
-    location.href = "https://" + u;
-}
-// Fallback
-else {
+  if (!u) {
     location.href = "index.html";
-}
+    return;
+  }
+
+  // Load in-world sites
+  const inworldSites = await loadCSV(INWORLD_CSV);
+
+  // 1. Internal in-world match (path)
+  const internal = inworldSites.find(site => site.path === u);
+
+  if (internal) {
+    location.href = internal.path;
+    return;
+  }
+
+  // 2. External domain (noise site)
+  if (/^[\w.-]+\.[A-Za-z]{2,}$/.test(u)) {
+    location.href = "https://" + u;
+    return;
+  }
+
+  // 3. Fallback
+  location.href = "index.html";
+})();
 </script>
+
 </body>
 </html>
