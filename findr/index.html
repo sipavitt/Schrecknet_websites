@@ -1,41 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Findr</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Findr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/findr-favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="home-body">
 
-    <div class="logo">
-        <span>F</span><span>i</span><span>n</span><span>d</span>r
-    </div>
+<header class="top-header">
+  <nav class="top-left">
+    <a href="#">About</a>
+    <a href="#">Store</a>
+  </nav>
+</header>
 
-    <div class="search-container">
-        <input id="search" class="search-box" type="text" placeholder="Search Findr…" />
-    </div>
+<main class="home-main">
+  <img src="assets/findr-logo.svg" alt="Findr" class="logo-image">
 
-    <div class="buttons">
-        <button onclick="submitSearch()">Findr Search</button>
-        <button onclick="feelingLucky()">I'm Feeling Lucky</button>
-    </div>
+  <div class="search-wrapper">
+    <input id="search" class="search-box" type="text" placeholder="Search Findr…">
+    <span class="icon mic"></span>
+    <span class="icon scan"></span>
+  </div>
 
-    <footer>Findr © 2025</footer>
+  <div class="buttons">
+    <button onclick="submitSearch()">Findr Search</button>
+    <button onclick="feelingLucky()">I'm Feeling Lucky</button>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-left">
+    <a href="#">Advertising</a>
+    <a href="#">Business</a>
+    <a href="#">How Search Works</a>
+  </div>
+  <div class="footer-right">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Settings</a>
+  </div>
+</footer>
 
 <script>
 function submitSearch() {
-    const q = document.getElementById("search").value.trim();
-    if (!q) return;
-    window.location.href = `results.html?q=${encodeURIComponent(q)}`;
+  const q = document.getElementById("search").value.trim();
+  if (q) location.href = `results.html?q=${encodeURIComponent(q)}`;
 }
 
 function feelingLucky() {
-    window.location.href = `results.html?q=random`;
+  location.href = "results.html?q=random";
 }
 
 document.getElementById("search").addEventListener("keydown", e => {
-    if (e.key === "Enter") submitSearch();
+  if (e.key === "Enter") submitSearch();
 });
 </script>
 
