@@ -60,32 +60,30 @@ function renderResult({ title, url, snippet, href }) {
   `;
 }
 
-/* Dummy demo render – replace with your real pipeline */
-const params = new URLSearchParams(location.search);
-const q = params.get("q") || "";
-document.getElementById("search").value = q;
+async function runFindr() {
+  const params = new URLSearchParams(location.search);
+  const query = params.get("q") || "";
+  document.getElementById("search").value = query;
 
-document.getElementById("results").innerHTML = `
-  ${renderResult({
-    title: "TimeOut London",
-    url: "timeout.com/london",
-    snippet: pick(NOISE_SNIPPETS)({ title: "TimeOut London" }),
-    href: "go.html?u=timeout.com"
-  })}
-  ${renderResult({
-    title: "The Guardian",
-    url: "theguardian.com",
-    snippet: pick(NOISE_SNIPPETS)({ title: "The Guardian" }),
-    href: "go.html?u=theguardian.com"
-  })}
-`;
+  if (!query) return;
 
-document.getElementById("search").addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    location.href = `results.html?q=${encodeURIComponent(e.target.value)}`;
-  }
-});
+  const [pages, pool] = await Promise.all([
+    Promise.all(INGAME_SITES.map(fetchSite)),
+    loadTopSites()
+  ]);
+
+  const inGame = rankInGame(query, pages);
+  const realWorld = matchRealWorldSites(query);
+  const noise = generateNoise(query, pool);
+  const filler = generateFiller(query);
+
+  renderResults(inGame, realWorld, noise, filler);
+}
+
+runFindr();
+
 </script>
 
 </body>
 </html>
+
