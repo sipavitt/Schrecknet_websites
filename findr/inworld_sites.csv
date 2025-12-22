@@ -1,4 +1,3 @@
-id,title,path,keywords,description
-augury13,Augury 13,/augury13/,"augury,prophecy,ritual,occult","Fringe research group investigating predictive anomalies."
-metromash,MetroMash,/metromash/,"metro,london,transport,urban","Urban media outlet focused on London infrastructure."
-biogen,BioGen Systems,/biogen/,"biogen,biotech,genetics,lab","Private biotech firm operating in the UK."
+id,title,path,display_url,keywords,description
+biogen,BioGen Systems,/biogen/,biogen-systems.co.uk,"biogen,biotech,genetics","Private biotech firm operating in the UK."
+augury13,Augury 13,/augury13/,augury13.org,"augury,prophecy,ritual","Fringe research group investigating predictive anomalies."
