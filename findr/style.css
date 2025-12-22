@@ -29,17 +29,62 @@ a:hover {
 }
 
 /* =========================================================
-   SHARED: LOGO COLOURS (if any text fallback exists)
+   SHARED: SEARCH BAR (two markup variants supported)
+   Home uses: .search-wrapper + .search-box + .icon
+   Results uses: .search-shell + .search-input + .search-icon
 ========================================================= */
 
-.logo-text span:nth-child(1) { color: #4285f4; }
-.logo-text span:nth-child(2) { color: #ea4335; }
-.logo-text span:nth-child(3) { color: #fbbc05; }
-.logo-text span:nth-child(4) { color: #34a853; }
+/* Shared wrapper behaviour */
+.search-wrapper,
+.search-shell {
+  position: relative;
+  width: min(92vw, 600px);
+}
+
+/* Shared input look */
+.search-box,
+.search-input {
+  width: 100%;
+  padding: 14px 56px 14px 20px; /* room for right-side icons */
+  font-size: 16px;
+  line-height: 1.4;
+  border-radius: 24px;
+  border: 1px solid #dfe1e5;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.22);
+  transition: box-shadow 0.15s ease;
+}
+
+.search-box:hover,
+.search-box:focus,
+.search-input:hover,
+.search-input:focus {
+  box-shadow: 0 4px 12px rgba(32, 33, 36, 0.30);
+}
+
+/* Shared icons */
+.icon,
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* icon positions */
+.icon.mic,
+.search-icon.mic { right: 44px; }
+
+.icon.scan,
+.search-icon.scan { right: 16px; }
 
 /* =========================================================
-   HOME / INDEX (matches your current index.html)
-   body class: home-body
+   HOME PAGE (index.html as uploaded)
+   body class: .home-body
 ========================================================= */
 
 .home-body {
@@ -48,7 +93,7 @@ a:hover {
   flex-direction: column;
 }
 
-/* Top-left header links */
+/* Top-left links */
 .top-header {
   padding: 16px 24px;
 }
@@ -59,7 +104,7 @@ a:hover {
   color: #5f6368;
 }
 
-/* Main center block */
+/* Main block */
 .home-main {
   flex: 1;
   display: flex;
@@ -67,54 +112,13 @@ a:hover {
   align-items: center;
 }
 
-/* SVG logo */
+/* SVG logo image */
 .logo-image {
   width: 170px;
   margin-top: 160px;
 }
 
-/* Search bar wrapper */
-.search-wrapper {
-  position: relative;
-  width: min(92vw, 600px);
-  margin-top: 28px;
-}
-
-/* Input */
-.search-box {
-  width: 100%;
-  padding: 14px 56px 14px 20px; /* room for icons on right */
-  font-size: 16px;
-  line-height: 1.4;
-  border-radius: 24px;
-  border: 1px solid #dfe1e5;
-  outline: none;
-  background: #fff;
-  box-shadow: 0 1px 6px rgba(32,33,36,0.22);
-  transition: box-shadow 0.15s ease;
-}
-
-.search-box:hover,
-.search-box:focus {
-  box-shadow: 0 4px 12px rgba(32,33,36,0.30);
-}
-
-/* Icons inside bar (purely visual) */
-.icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-/* Right-side icon positions */
-.icon.mic { right: 44px; }
-.icon.scan { right: 16px; }
-
-/* Buttons */
+/* Buttons row */
 .buttons {
   margin-top: 26px;
 }
@@ -153,17 +157,16 @@ a:hover {
 }
 
 /* =========================================================
-   RESULTS PAGE (supports common classnames we've used)
+   RESULTS PAGE (results.html as uploaded)
+   body class: .results
 ========================================================= */
 
-/* Body wrapper (some versions use results-body) */
-.results-body,
 .results {
   padding-left: clamp(24px, 8vw, 180px);
   padding-right: 24px;
 }
 
-/* Header row */
+/* Header */
 .results-header {
   display: flex;
   align-items: center;
@@ -171,60 +174,50 @@ a:hover {
   padding: 16px 0;
 }
 
-/* SVG logo in results header */
-.results-logo,
-.logo-small {
+/* Logo */
+.results-logo {
   width: 92px;
   flex-shrink: 0;
   cursor: pointer;
 }
 
-/* If results uses .results-search form wrapper */
+/* Let the form/search area flex to fill the row */
 .results-search {
   flex: 1;
+  min-width: 0; /* critical: prevents overflow in flex layouts */
 }
 
-/* Make results search bar flex-safe (prevents overflow on mobile) */
-.results-header .search-wrapper {
-  flex: 1;
-  width: auto;
-  max-width: none;
-  margin-top: 0;
-}
-
-.results-header .search-box {
+/* On results page, search should fill available space (not fixed vw) */
+.results-header .search-shell {
   width: 100%;
+  max-width: none;
 }
 
 /* Tabs */
-.results-tabs,
-.nav-tabs {
+.results-tabs {
   display: flex;
   gap: 24px;
   border-bottom: 1px solid #eaeaea;
   margin-bottom: 28px;
 }
 
-.results-tabs a,
-.nav-tabs .tab {
+.results-tabs a {
   font-size: 14px;
   padding-bottom: 10px;
   color: #5f6368;
 }
 
-.results-tabs a.active,
-.nav-tabs .tab.active {
+.results-tabs a.active {
   color: #1a73e8;
   border-bottom: 3px solid #1a73e8;
 }
 
 /* Results container */
-#results-container,
-#results {
+#results-container {
   max-width: 700px;
 }
 
-/* Result card */
+/* Result formatting */
 .result {
   margin-bottom: 36px;
 }
@@ -253,39 +246,35 @@ a:hover {
 ========================================================= */
 
 @media (max-width: 600px) {
-  /* Home */
+  /* Home spacing */
   .logo-image {
     width: 130px;
     margin-top: 110px;
-  }
-
-  .search-wrapper {
-    width: min(94vw, 600px);
-  }
-
-  .search-box {
-    padding-right: 48px; /* slightly tighter */
-  }
-
-  /* Results padding */
-  .results-body,
-  .results {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .results-logo,
-  .logo-small {
-    width: 72px;
-  }
-
-  .results-header {
-    gap: 10px;
   }
 
   /* Footer stacks */
   .site-footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Results padding */
+  .results {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .results-header {
+    gap: 10px;
+  }
+
+  .results-logo {
+    width: 72px;
+  }
+
+  /* Slightly tighter icon padding */
+  .search-box,
+  .search-input {
+    padding-right: 48px;
   }
 }
