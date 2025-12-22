@@ -71,30 +71,33 @@ function shuffle(array) {
 ========================================================= */
 
 function parseCSV(text) {
-  const lines = text.trim().split("\n");
-  const headers = lines.shift().split(",");
+  const lines = text.trim().split(/\r?\n/);
+
+  const headers = lines.shift()
+    .split(",")
+    .map(h =>
+      h
+        .replace(/^\uFEFF/, "") // remove BOM if present
+        .trim()
+        .toLowerCase()
+    );
 
   return lines.map(line => {
     const values = [];
     let current = "";
     let inQuotes = false;
 
-    for (let char of line) {
-      if (char === '"') {
-        inQuotes = !inQuotes;
-        continue;
-      }
-      if (char === "," && !inQuotes) {
-        values.push(current);
-        current = "";
-        continue;
-      }
-      current += char;
+    for (const ch of line) {
+      if (ch === '"') { inQuotes = !inQuotes; continue; }
+      if (ch === "," && !inQuotes) { values.push(current); current = ""; continue; }
+      current += ch;
     }
     values.push(current);
 
     const obj = {};
-    headers.forEach((h, i) => obj[h] = (values[i] || "").trim());
+    headers.forEach((h, i) => {
+      obj[h] = (values[i] || "").trim();
+    });
     return obj;
   });
 }
@@ -219,8 +222,11 @@ async function runFindr() {
         {
           title: site.title,
           url: site.display_url || site.path,
-          snippet: site.description,
-          href: `go.html?u=${site.id}`
+          snippet:
+            site.description && site.description.length
+              ? site.description
+              : `Information about ${site.title}.`,
+          href: `go.html?u=${site.path}`
         }
       );
     }
@@ -252,3 +258,4 @@ runFindr();
 
 </body>
 </html>
+
