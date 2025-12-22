@@ -52,7 +52,19 @@
 
 const RESULTS_PER_PAGE = 9;
 const NOISE_CSV = "top_sites.csv";
-const INWORLD_CSV = "inworld_sites.csv"; // create when ready
+const INWORLD_CSV = "inworld_sites.csv";
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 /* =========================================================
    CSV LOADER (safe for commas + quotes)
@@ -136,7 +148,7 @@ function searchNoise(query, sites) {
 }
 
 /* =========================================================
-   IN-WORLD SEARCH (only if keyword hit)
+   IN-WORLD SEARCH (keyword-gated)
 ========================================================= */
 
 function searchInWorld(query, sites) {
@@ -178,7 +190,7 @@ async function runFindr() {
 
   const [noiseSites, inworldSites] = await Promise.all([
     loadCSV(NOISE_CSV),
-    loadCSV(INWORLD_CSV) // empty until you add it
+    loadCSV(INWORLD_CSV)
   ]);
 
   const noiseMatches = searchNoise(query, noiseSites);
@@ -186,19 +198,19 @@ async function runFindr() {
 
   const results = [];
 
-  /* 1. Strong noise hits first (e.g. YouTube search → YouTube) */
+  /* 1. Relevant noise first */
   noiseMatches.forEach(site => {
     if (results.length < RESULTS_PER_PAGE) {
       results.push({
         title: site.title,
         url: site.domain,
-        snippet: site.description,
+        snippet: site.description || `Information from ${site.title}.`,
         href: `go.html?u=${site.domain}`
       });
     }
   });
 
-  /* 2. Inject in-world results naturally if triggered */
+  /* 2. Inject in-world results naturally */
   inworldMatches.forEach(site => {
     if (results.length < RESULTS_PER_PAGE) {
       results.splice(
@@ -206,7 +218,7 @@ async function runFindr() {
         0,
         {
           title: site.title,
-          url: site.path,
+          url: site.display_url || site.path,
           snippet: site.description,
           href: `go.html?u=${site.id}`
         }
@@ -214,16 +226,18 @@ async function runFindr() {
     }
   });
 
-  /* 3. Pad with general noise to fill the page */
+  /* 3. Randomised filler noise */
   const usedDomains = new Set(results.map(r => r.url));
-  const remainingNoise = noiseSites.filter(s => !usedDomains.has(s.domain));
+  const fillerNoise = shuffle(
+    noiseSites.filter(s => !usedDomains.has(s.domain))
+  );
 
-  while (results.length < RESULTS_PER_PAGE && remainingNoise.length) {
-    const site = remainingNoise.shift();
+  while (results.length < RESULTS_PER_PAGE && fillerNoise.length) {
+    const site = fillerNoise.shift();
     results.push({
       title: site.title,
       url: site.domain,
-      snippet: site.description,
+      snippet: site.description || `Information from ${site.title}.`,
       href: `go.html?u=${site.domain}`
     });
   }
