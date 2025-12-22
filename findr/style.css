@@ -266,3 +266,51 @@ a:hover {
     gap: 8px;
   }
 }
+
+/* =========================================================
+   INDEX PAGE REFINEMENT (HOME ONLY)
+========================================================= */
+
+/* Give the homepage a strong vertical centre */
+.home-main {
+  justify-content: flex-start;
+}
+
+/* Re-balance vertical rhythm */
+.home .logo {
+  margin-top: 180px;
+  margin-bottom: 24px;
+}
+
+/* Make the search area feel anchored */
+.home .search-area {
+  margin-top: 0;
+}
+
+/* Subtly soften homepage shadow (Google does this) */
+.home .search-input {
+  box-shadow: 0 1px 4px rgba(32,33,36,.24);
+}
+
+.home .search-input:hover,
+.home .search-input:focus {
+  box-shadow: 0 4px 10px rgba(32,33,36,.30);
+}
+
+/* Footer should feel distant, not present */
+.home .footer {
+  margin-top: 60px;
+}
+
+/* Mobile: homepage needs more breathing room */
+@media (max-width: 600px) {
+
+  .home .logo {
+    margin-top: 120px;
+    margin-bottom: 20px;
+  }
+
+  .home .search-buttons {
+    margin-top: 22px;
+  }
+}
