@@ -142,7 +142,9 @@ function searchNoise(query, sites) {
       const score =
         scoreMatch(query, site.title) +
         scoreMatch(query, site.domain) +
-        scoreMatch(query, site.description || "");
+        scoreMatch(query, site.description || "") +
+        scoreMatch(query, site.keywords || "");
+
 
       return { ...site, score };
     })
@@ -258,4 +260,5 @@ runFindr();
 
 </body>
 </html>
+
 
