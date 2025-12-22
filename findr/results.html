@@ -42,45 +42,195 @@
   <a>Maps</a>
 </nav>
 
-<!-- Results container -->
+<!-- Results -->
 <main id="results-container"></main>
 
-<!-- Search logic -->
 <script>
-/*
-  IMPORTANT:
-  This file assumes your existing logic provides:
+/* =========================================================
+   CONFIG
+========================================================= */
 
-  - loadTopSites()
-  - fetchSite()
-  - rankInGame()
-  - matchRealWorldSites()
-  - generateNoise()
-  - generateFiller()
-  - renderResults(inGame, realWorld, noise, filler)
+const RESULTS_PER_PAGE = 9;
+const NOISE_CSV = "top_sites.csv";
+const INWORLD_CSV = "inworld_sites.csv"; // create when ready
 
-  DO NOT stub or demo-render here.
-*/
+/* =========================================================
+   CSV LOADER (safe for commas + quotes)
+========================================================= */
+
+function parseCSV(text) {
+  const lines = text.trim().split("\n");
+  const headers = lines.shift().split(",");
+
+  return lines.map(line => {
+    const values = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let char of line) {
+      if (char === '"') {
+        inQuotes = !inQuotes;
+        continue;
+      }
+      if (char === "," && !inQuotes) {
+        values.push(current);
+        current = "";
+        continue;
+      }
+      current += char;
+    }
+    values.push(current);
+
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (values[i] || "").trim());
+    return obj;
+  });
+}
+
+async function loadCSV(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) return [];
+    const text = await res.text();
+    return parseCSV(text);
+  } catch {
+    return [];
+  }
+}
+
+/* =========================================================
+   SEARCH SCORING
+========================================================= */
+
+function scoreMatch(query, text) {
+  const q = query.toLowerCase();
+  const t = text.toLowerCase();
+
+  if (t === q) return 100;
+  if (t.includes(q)) return 60;
+
+  let score = 0;
+  q.split(" ").forEach(word => {
+    if (t.includes(word)) score += 15;
+  });
+
+  return score;
+}
+
+/* =========================================================
+   NOISE SEARCH (top_sites.csv)
+========================================================= */
+
+function searchNoise(query, sites) {
+  return sites
+    .map(site => {
+      const score =
+        scoreMatch(query, site.title) +
+        scoreMatch(query, site.domain) +
+        scoreMatch(query, site.description || "");
+
+      return { ...site, score };
+    })
+    .filter(s => s.score > 0)
+    .sort((a, b) => b.score - a.score);
+}
+
+/* =========================================================
+   IN-WORLD SEARCH (only if keyword hit)
+========================================================= */
+
+function searchInWorld(query, sites) {
+  const q = query.toLowerCase();
+
+  return sites.filter(site => {
+    if (!site.keywords) return false;
+    return site.keywords
+      .toLowerCase()
+      .split(",")
+      .some(k => q.includes(k.trim()));
+  });
+}
+
+/* =========================================================
+   RENDERING
+========================================================= */
+
+function renderResult({ title, url, snippet, href }) {
+  return `
+    <div class="result">
+      <a class="result-title" href="${href}">${title}</a>
+      <div class="result-url">${url}</div>
+      <p class="snippet">${snippet}</p>
+    </div>
+  `;
+}
+
+/* =========================================================
+   MAIN SEARCH EXECUTION
+========================================================= */
 
 async function runFindr() {
   const params = new URLSearchParams(location.search);
   const query = params.get("q") || "";
-  const searchInput = document.getElementById("search");
-  searchInput.value = query;
+  document.getElementById("search").value = query;
 
   if (!query) return;
 
-  const [pages, pool] = await Promise.all([
-    Promise.all(INGAME_SITES.map(fetchSite)),
-    loadTopSites()
+  const [noiseSites, inworldSites] = await Promise.all([
+    loadCSV(NOISE_CSV),
+    loadCSV(INWORLD_CSV) // empty until you add it
   ]);
 
-  const inGame = rankInGame(query, pages);
-  const realWorld = matchRealWorldSites(query);
-  const noise = generateNoise(query, pool);
-  const filler = generateFiller(query);
+  const noiseMatches = searchNoise(query, noiseSites);
+  const inworldMatches = searchInWorld(query, inworldSites);
 
-  renderResults(inGame, realWorld, noise, filler);
+  const results = [];
+
+  /* 1. Strong noise hits first (e.g. YouTube search → YouTube) */
+  noiseMatches.forEach(site => {
+    if (results.length < RESULTS_PER_PAGE) {
+      results.push({
+        title: site.title,
+        url: site.domain,
+        snippet: site.description,
+        href: `go.html?u=${site.domain}`
+      });
+    }
+  });
+
+  /* 2. Inject in-world results naturally if triggered */
+  inworldMatches.forEach(site => {
+    if (results.length < RESULTS_PER_PAGE) {
+      results.splice(
+        Math.min(2, results.length),
+        0,
+        {
+          title: site.title,
+          url: site.path,
+          snippet: site.description,
+          href: `go.html?u=${site.id}`
+        }
+      );
+    }
+  });
+
+  /* 3. Pad with general noise to fill the page */
+  const usedDomains = new Set(results.map(r => r.url));
+  const remainingNoise = noiseSites.filter(s => !usedDomains.has(s.domain));
+
+  while (results.length < RESULTS_PER_PAGE && remainingNoise.length) {
+    const site = remainingNoise.shift();
+    results.push({
+      title: site.title,
+      url: site.domain,
+      snippet: site.description,
+      href: `go.html?u=${site.domain}`
+    });
+  }
+
+  /* Render */
+  document.getElementById("results-container").innerHTML =
+    results.map(renderResult).join("");
 }
 
 runFindr();
