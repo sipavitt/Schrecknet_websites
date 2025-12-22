@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Findr Results</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="assets/findr-favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Findr Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/findr-favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="results-body">
+<body class="results">
 
+<!-- Header -->
 <header class="results-header">
-  <img src="assets/findr-logo.svg" class="logo-small" onclick="location.href='index.html'">
-  <div class="search-wrapper small">
-    <input id="search" class="search-box" type="text">
-    <span class="icon mic"></span>
-    <span class="icon scan"></span>
-  </div>
+  <img
+    src="assets/findr-logo.svg"
+    alt="Findr"
+    class="results-logo"
+    onclick="location.href='index.html'"
+  >
+
+  <form class="results-search" action="results.html" method="get">
+    <div class="search-shell">
+      <input
+        type="text"
+        name="q"
+        id="search"
+        class="search-input"
+        autocomplete="off"
+      >
+      <span class="search-icon mic"></span>
+      <span class="search-icon scan"></span>
+    </div>
+  </form>
 </header>
 
-<nav class="nav-tabs">
-  <span class="tab active">All</span>
-  <span class="tab">News</span>
-  <span class="tab">Images</span>
-  <span class="tab">Maps</span>
+<!-- Tabs -->
+<nav class="results-tabs">
+  <a class="active">All</a>
+  <a>News</a>
+  <a>Images</a>
+  <a>Maps</a>
 </nav>
 
-<main id="results"></main>
+<!-- Results container -->
+<main id="results-container"></main>
 
+<!-- Search logic -->
 <script>
-/* --- Noise phrasing pools --- */
-const NOISE_TITLES = [
-  s => s.title,
-  s => `${s.title} | Official Site`,
-  s => `${s.title} – Latest Updates`,
-  s => `${s.title}: News & Information`
-];
+/*
+  IMPORTANT:
+  This file assumes your existing logic provides:
 
-const NOISE_SNIPPETS = [
-  s => s.description,
-  s => `Coverage, commentary and public information from ${s.title}.`,
-  s => `Explore articles and references related to this topic.`,
-  s => `Information sourced from public and editorial material.`
-];
+  - loadTopSites()
+  - fetchSite()
+  - rankInGame()
+  - matchRealWorldSites()
+  - generateNoise()
+  - generateFiller()
+  - renderResults(inGame, realWorld, noise, filler)
 
-/* --- Utilities --- */
-function pick(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-/* --- Render only (search logic assumed already present) --- */
-function renderResult({ title, url, snippet, href }) {
-  return `
-    <article class="result">
-      <a class="result-title" href="${href}">${title}</a>
-      <div class="result-url">${url}</div>
-      <p class="snippet">${snippet}</p>
-    </article>
-  `;
-}
+  DO NOT stub or demo-render here.
+*/
 
 async function runFindr() {
   const params = new URLSearchParams(location.search);
   const query = params.get("q") || "";
-  document.getElementById("search").value = query;
+  const searchInput = document.getElementById("search");
+  searchInput.value = query;
 
   if (!query) return;
 
@@ -81,9 +84,7 @@ async function runFindr() {
 }
 
 runFindr();
-
 </script>
 
 </body>
 </html>
-
