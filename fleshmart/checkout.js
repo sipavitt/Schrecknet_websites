@@ -29,7 +29,7 @@ function renderSummary() {
     <button id="payBtn">Confirm payment</button>
 
     <p class="muted" style="margin-top:12px;">
-      Payments are monitored manually.
+      Incoming payments are detected automatically.
     </p>
   `;
 
@@ -43,7 +43,7 @@ function renderProcessing() {
     <p class="muted">Do not refresh.</p>
   `;
 
-  setTimeout(renderFulfilment, 1400);
+  setTimeout(renderFulfilment, 6500);
 }
 
 function renderFulfilment() {
@@ -62,7 +62,10 @@ function renderFulfilment() {
     </p>
 
     <p>
-      Locate <strong>Spitalfield Meats</strong> on Findr.
+      Collection point:
+      <a href="https://web.londonchronicles.co.uk/meatpack/" target="_blank">
+        LONDON COLLECTION
+      </a>
     </p>
 
     <p>
