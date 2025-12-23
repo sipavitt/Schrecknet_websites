@@ -27,8 +27,10 @@ function closeModal(id) {
 
 // --------- DATA LOAD ---------
 async function loadCSV() {
-  const res = await fetch('items.csv');
+  const res = await fetch('items.csv', { cache: 'no-store' });
+  if (!res.ok) throw new Error(`Failed to load items.csv (${res.status})`);
   const text = await res.text();
+
   const rows = text.trim().split('\n').slice(1);
 
   ALL_ITEMS = rows.map(r => {
@@ -50,15 +52,19 @@ function applyFilter(items) {
 // --------- RENDERING ---------
 function renderPage(page = 1) {
   CURRENT_PAGE = page;
+
   let items = applyFilter([...ALL_ITEMS]);
   shuffle(items);
+
   const pageItems = items.slice(0, ITEMS_PER_PAGE);
 
   const grid = $('grid');
+  if (!grid) return;
   grid.innerHTML = '';
 
   pageItems.forEach(it => {
     const imgIndex = Math.floor(Math.random() * IMAGE_POOL) + 1;
+
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
@@ -85,6 +91,8 @@ function renderPage(page = 1) {
 
 function initPager() {
   const pager = $('pager');
+  if (!pager) return;
+
   pager.innerHTML = '';
   for (let i = 1; i <= PAGES_SHOWN; i++) {
     const a = document.createElement('a');
@@ -110,6 +118,8 @@ function updateCartBadge() {
 function renderCart() {
   const list = $('cartItems');
   const totalEl = $('cartTotal');
+  if (!list || !totalEl) return;
+
   list.innerHTML = '';
 
   let total = 0;
@@ -124,43 +134,47 @@ function renderCart() {
   totalEl.textContent = `${total.toFixed(3)} BTC`;
 }
 
-function clearCart() {
-  CART = [];
-  updateCartBadge();
-}
-
 // --------- CHECKOUT ---------
 function proceedToCheckout() {
-  // Persist cart to sessionStorage
   sessionStorage.setItem('FM_CART', JSON.stringify(CART));
   window.location.href = 'checkout.onion.html';
 }
 
 // --------- INIT ---------
 function initMarket() {
-  loadCSV().then(() => {
-    renderPage(1);
-    initPager();
-    document.querySelectorAll('#categoryList li').forEach(li => {
-  li.onclick = () => {
-    FILTER.cat = li.dataset.cat || '';
-    renderPage(1);
-  };
-});
+  loadCSV()
+    .then(() => {
+      renderPage(1);
+      initPager();
 
-  });
+      // Sidebar category filtering
+      document.querySelectorAll('#categoryList li').forEach(li => {
+        li.style.cursor = 'pointer';
+        li.onclick = () => {
+          FILTER.cat = li.dataset.cat || '';
+          renderPage(1);
+        };
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      const grid = $('grid');
+      if (grid) {
+        grid.innerHTML = `<div class="card">Error loading listings. Check console.</div>`;
+      }
+    });
 
+  // Search button (no live search)
   const search = $('searchInput');
-  if (search) {
-    const searchBtn = $('searchBtn');
-    if (searchBtn) {
-      searchBtn.onclick = () => {
-        FILTER.q = search.value;
-        renderPage(1);
-      };
-    }
+  const searchBtn = $('searchBtn');
+  if (search && searchBtn) {
+    searchBtn.onclick = () => {
+      FILTER.q = search.value;
+      renderPage(1);
+    };
   }
 
+  // Dropdown category filter
   const cat = $('categorySelect');
   if (cat) {
     cat.onchange = e => {
@@ -169,6 +183,7 @@ function initMarket() {
     };
   }
 
+  // Modal controls
   const cartBtn = $('cartBtn');
   if (cartBtn) cartBtn.onclick = () => openModal('cartModal');
 
@@ -178,28 +193,11 @@ function initMarket() {
   const checkoutBtn = $('checkoutBtn');
   if (checkoutBtn) checkoutBtn.onclick = proceedToCheckout;
 
-
-function confirmOrder() {
-  closeModal('checkoutModal');
-
-  const orderId = 'FM-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-
-  setTimeout(() => {
-    alert(
-      `Payment accepted.\n\n` +
-      `Order: ${orderId}\n\n` +
-      `Next steps:\n` +
-      `• Locate Spitalfield Meats on Findr\n` +
-      `• Submit order reference\n` +
-      `• Call to confirm collection\n\n` +
-      `Do not attend without confirmation.`
-    );
-    clearCart();
-  }, 900);
+  // Close modal on clicking backdrop
+  const backdrop = document.querySelector('#cartModal .modal-backdrop');
+  if (backdrop) backdrop.onclick = () => closeModal('cartModal');
 }
 
-
-// Auto-init when used on market page
 document.addEventListener('DOMContentLoaded', () => {
   if ($('grid')) initMarket();
 });
