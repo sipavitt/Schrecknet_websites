@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- ===== Header / Market Bar ===== -->
   <div class="header">
     <div class="market-bar">
       <div class="logo">
@@ -17,6 +16,8 @@
       </div>
 
       <input id="searchInput" type="text" placeholder="Search listings" />
+      <button id="searchBtn">Search</button>
+
 
       <select id="categorySelect">
         <option value="">All categories</option>
@@ -35,7 +36,6 @@
     </div>
   </div>
 
-  <!-- ===== Layout ===== -->
   <div class="layout">
     <aside class="sidebar">
       <h3>Categories</h3>
@@ -56,7 +56,6 @@
     </main>
   </div>
 
-  <!-- ===== Cart Modal ===== -->
   <div id="cartModal" class="modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog" role="dialog" aria-modal="true">
@@ -67,7 +66,6 @@
 
       <div class="modal-body">
         <div id="cartItems" class="cart-items">
-          <!-- items injected by script.js -->
         </div>
       </div>
 
@@ -78,7 +76,6 @@
     </div>
   </div>
 
-  <!-- ===== Checkout Modal ===== -->
   <div id="checkoutModal" class="modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog" role="dialog" aria-modal="true">
