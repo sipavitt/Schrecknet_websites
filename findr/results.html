@@ -64,6 +64,23 @@ function shuffle(array) {
   return array;
 }
 
+function logSearch(query) {
+  fetch("https://script.google.com/macros/s/AKfycbyBCC_DBGloXOATNP4l756HCQVL5AW_LezexKMjeC51nN7KGG4NO4fHJqHiBlsn0Js/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      query: query,
+      page: window.location.href,
+      user_agent: navigator.userAgent
+    })
+  }).catch(() => {
+    // fail silently – never affect player experience
+  });
+}
+
 /* =========================================================
    CSV LOADER (hardened)
 ========================================================= */
@@ -195,6 +212,7 @@ function renderResult({ title, url, snippet, href }) {
 async function runFindr() {
   const params = new URLSearchParams(location.search);
   const query = params.get("q") || "";
+  logSearch(query);
   document.getElementById("search").value = query;
 
   if (!query) return;
@@ -272,3 +290,4 @@ runFindr();
 
 </body>
 </html>
+
