@@ -1,0 +1,49 @@
+<!-- ===================== style.css ===================== -->
+
+
+.card p {
+font-size: 0.8rem;
+margin: 4px 0;
+}
+
+
+.card .status {
+margin-top: 8px;
+font-style: italic;
+}
+
+
+.footer {
+margin-top: 60px;
+padding: 20px 24px;
+border-top: 1px solid #111;
+font-size: 0.75rem;
+}
+
+
+/* Policies */
+.policy-section {
+max-width: 760px;
+margin-bottom: 40px;
+}
+
+
+.policy-section h2 {
+font-size: 1.2rem;
+font-weight: normal;
+border-bottom: 1px solid #111;
+padding-bottom: 6px;
+}
+
+
+.policy-section p {
+font-size: 0.9rem;
+margin-top: 10px;
+}
+
+
+/* Utility */
+.muted {
+font-style: italic;
+font-size: 0.85rem;
+}
