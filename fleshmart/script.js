@@ -141,14 +141,24 @@ function initMarket() {
   loadCSV().then(() => {
     renderPage(1);
     initPager();
+    document.querySelectorAll('#categoryList li').forEach(li => {
+  li.onclick = () => {
+    FILTER.cat = li.dataset.cat || '';
+    renderPage(1);
+  };
+});
+
   });
 
   const search = $('searchInput');
   if (search) {
-    search.oninput = e => {
-      FILTER.q = e.target.value;
-      renderPage(1);
-    };
+    const searchBtn = $('searchBtn');
+    if (searchBtn) {
+      searchBtn.onclick = () => {
+        FILTER.q = search.value;
+        renderPage(1);
+      };
+    }
   }
 
   const cat = $('categorySelect');
