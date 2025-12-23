@@ -136,14 +136,6 @@ function proceedToCheckout() {
   window.location.href = 'checkout.onion.html';
 }
 
-
-function confirmOrder() {
-  // Narrative-only confirmation
-  alert('Order logged. Collection will be arranged via external partner. Do not attend without confirmation.');
-  clearCart();
-  closeModal('checkoutModal');
-}
-
 // --------- INIT ---------
 function initMarket() {
   loadCSV().then(() => {
