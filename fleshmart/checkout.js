@@ -1,4 +1,4 @@
-const BTC_ADDRESS = 'bc1q7f9k2m';
+const BTC_ADDRESS = 'bc1q9d3w8k2m4v5r0c8x7t9l6e2yqk4m8n0s';
 
 function loadCart() {
   try {
