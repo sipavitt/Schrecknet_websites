@@ -57,7 +57,10 @@ html,body{margin:0;padding:0;font-family:"Times New Roman",Times,serif;backgroun
 
 
 /* ===== Policies ===== */
-.policy{max-width:760px}
+.policy{
+  max-width:760px
+  margin:0 auto;     
+}
 .policy h2{font-size:1.1rem;font-weight:normal;border-bottom:1px solid var(--line);padding-bottom:6px}
 .policy p{font-size:.9rem}
 
