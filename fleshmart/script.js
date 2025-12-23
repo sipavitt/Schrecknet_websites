@@ -184,6 +184,25 @@ function initMarket() {
   const confirm = $('confirmOrder');
   if (confirm) confirm.onclick = confirmOrder;
 }
+function confirmOrder() {
+  closeModal('checkoutModal');
+
+  const orderId = 'FM-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+
+  setTimeout(() => {
+    alert(
+      `Payment accepted.\n\n` +
+      `Order: ${orderId}\n\n` +
+      `Next steps:\n` +
+      `• Locate Spitalfield Meats on Findr\n` +
+      `• Submit order reference\n` +
+      `• Call to confirm collection\n\n` +
+      `Do not attend without confirmation.`
+    );
+    clearCart();
+  }, 900);
+}
+
 
 // Auto-init when used on market page
 document.addEventListener('DOMContentLoaded', () => {
