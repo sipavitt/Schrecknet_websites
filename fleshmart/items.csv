@@ -1,0 +1,31 @@
+id,category,age,cause,condition,fulfilment,btc,status
+PM-7811,Prepared,Male 40–50,Blunt trauma,Fresh,External partner (East London),0.034,Available
+UN-7743,Institutional,Unknown,Surgical complications,Partial,Standing arrangement,0.118,Reserved
+PM-7902,Prepared,Female mid-30s,Asphyxiation,Chilled,External partner,0.052,Available
+UN-7815,Unnamed,Unknown,Undisclosed,Incomplete,After-hours intake,0.021,Pending
+INST-7920,Institutional,Unknown,Undisclosed,Intact,Brokered access,0.200,Closed
+PM-7849,Prepared,Male 60–70,Cardiac arrest,Fresh,External partner (East London),0.041,Available
+UN-7883,Unnamed,Unknown,Traumatic injury,Partial,Short notice intake,0.029,Available
+PM-7931,Prepared,Female 20–30,Exsanguination,Chilled,Standing arrangement,0.061,Reserved
+INST-7955,Institutional,Unknown,Medical negligence,Intact,Brokered access,0.185,Available
+PM-7962,Prepared,Male mid-50s,Blunt trauma,Fresh,External partner,0.044,Available
+UN-7990,Unnamed,Unknown,Unknown,Incomplete,After-hours intake,0.018,Pending
+PM-8004,Prepared,Female 40–50,Strangulation,Chilled,Standing arrangement,0.058,Available
+INST-8017,Institutional,Unknown,Surgical complications,Partial,Standing arrangement,0.132,Closed
+PM-8041,Prepared,Male 30–40,Penetrating trauma,Fresh,External partner (East London),0.047,Available
+UN-8056,Unnamed,Unknown,Unknown,Partial,Time-sensitive intake,0.026,Available
+PM-8089,Prepared,Female mid-60s,Cerebral haemorrhage,Chilled,External partner,0.039,Available
+INST-8103,Institutional,Unknown,Undisclosed,Intact,Brokered access,0.210,Reserved
+PM-8128,Prepared,Male 20–30,Asphyxiation,Fresh,Standing arrangement,0.055,Available
+UN-8154,Unnamed,Unknown,Blunt trauma,Incomplete,After-hours intake,0.023,Pending
+PM-8182,Prepared,Female 50–60,Cardiac arrest,Chilled,External partner,0.036,Available
+INST-8207,Institutional,Unknown,Surgical complications,Partial,Standing arrangement,0.149,Available
+PM-8231,Prepared,Male 40–50,Exsanguination,Fresh,External partner (East London),0.062,Reserved
+UN-8259,Unnamed,Unknown,Unknown,Incomplete,Time-sensitive intake,0.019,Available
+PM-8284,Prepared,Female 30–40,Blunt trauma,Chilled,Standing arrangement,0.049,Available
+INST-8306,Institutional,Unknown,Medical error,Intact,Brokered access,0.195,Closed
+PM-8330,Prepared,Male mid-70s,Organ failure,Fresh,External partner,0.033,Available
+UN-8357,Unnamed,Unknown,Unknown,Partial,After-hours intake,0.022,Pending
+PM-8381,Prepared,Female 20–30,Strangulation,Chilled,Standing arrangement,0.057,Available
+INST-8404,Institutional,Unknown,Surgical complications,Partial,Standing arrangement,0.141,Available
+PM-8439,Prepared,Male 50–60,Blunt trauma,Fresh,External partner (East London),0.046,Reserved
