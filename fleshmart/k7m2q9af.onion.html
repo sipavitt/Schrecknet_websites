@@ -4,50 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Routing</title>
-  <!--
-    Gate page for Fleshmart.
-    Purpose: validate borrowed credentials and route accordingly.
-    This page intentionally renders no UI.
-  -->
   <script>
     (function () {
-      // --- minimal helpers ---
       function q(name) {
         return new URLSearchParams(window.location.search).get(name) || '';
       }
-
-      // --- borrowed access (Antonia Donato) ---
-      // NOTE: This is deliberate access theatre, not security.
-      // Keep credentials out of index.html; contain them here.
       var U_OK = 'antonia';
       var P_OK = 'standingorder';
 
-      // --- read submitted params ---
       var u = q('u').toLowerCase().trim();
       var p = q('p').toLowerCase().trim();
 
-      // --- tiny delay to feel like a check is happening ---
       var DELAY_MS = 420;
 
-      // --- route ---
       setTimeout(function () {
         if (u === U_OK && p === P_OK) {
-          // success → market
+
           window.location.replace('r4x8d2p9.onion.html');
         } else {
-          // failure → back to access
-          window.location.replace('index.html');
+
+          window.location.replace('index.html?err=1');
         }
       }, DELAY_MS);
     })();
   </script>
-
-  <!-- Optional meta refresh fallback (legacy-friendly) -->
   <noscript>
     <meta http-equiv="refresh" content="0; url=index.html" />
   </noscript>
 </head>
 <body>
-  <!-- intentionally empty -->
 </body>
 </html>
