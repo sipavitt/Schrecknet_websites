@@ -1,49 +1,88 @@
-<!-- ===================== style.css ===================== -->
+/* Global reset */
+* { box-sizing: border-box; }
 
 
-.card p {
-font-size: 0.8rem;
-margin: 4px 0;
+:root {
+--ink: #111;
+--muted: #666;
+--paper: #f5f5f5;
+--panel: #ffffff;
+--accent: #7a0000; /* restrained market branding */
+--line: #c9c9c9;
 }
 
 
-.card .status {
-margin-top: 8px;
-font-style: italic;
+html, body {
+margin: 0;
+padding: 0;
+font-family: "Times New Roman", Times, serif;
+background: var(--paper);
+color: var(--ink);
 }
 
 
-.footer {
-margin-top: 60px;
-padding: 20px 24px;
-border-top: 1px solid #111;
-font-size: 0.75rem;
+/* ===== Header / Market Bar ===== */
+.header {
+border-bottom: 1px solid var(--line);
+background: var(--panel);
 }
 
 
-/* Policies */
-.policy-section {
-max-width: 760px;
-margin-bottom: 40px;
+.market-bar {
+max-width: 1200px;
+margin: 0 auto;
+padding: 12px 16px;
+display: grid;
+grid-template-columns: auto 1fr auto auto;
+gap: 10px;
+align-items: center;
 }
 
 
-.policy-section h2 {
-font-size: 1.2rem;
-font-weight: normal;
-border-bottom: 1px solid #111;
-padding-bottom: 6px;
+.logo {
+font-weight: bold;
+letter-spacing: 0.5px;
+color: var(--accent);
 }
 
 
-.policy-section p {
-font-size: 0.9rem;
-margin-top: 10px;
-}
-
-
-/* Utility */
-.muted {
-font-style: italic;
+.market-bar input[type="text"],
+.market-bar select {
+padding: 6px 8px;
+font-family: inherit;
 font-size: 0.85rem;
+border: 1px solid var(--line);
+background: #fff;
+}
+
+
+.market-bar .right a {
+margin-left: 14px;
+font-size: 0.8rem;
+color: var(--ink);
+text-decoration: underline;
+}
+
+
+/* ===== Layout ===== */
+.layout {
+max-width: 1200px;
+margin: 0 auto;
+padding: 16px;
+display: grid;
+grid-template-columns: 220px 1fr;
+gap: 16px;
+}
+
+
+/* ===== Sidebar ===== */
+.sidebar {
+background: var(--panel);
+border: 1px solid var(--line);
+padding: 12px;
+}
+
+
+.sidebar h3 {
+margin: 0 0 10px 0;
 }
