@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirecting…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
 <script>
+/* =========================================================
+   CONFIG
+========================================================= */
+
 const INWORLD_CSV = "inworld_sites.csv";
+
+/* =========================================================
+   CSV LOADER (hardened)
+========================================================= */
 
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
-  const headers = lines.shift().split(",");
+
+  const headers = lines.shift()
+    .split(",")
+    .map(h =>
+      h.replace(/^\uFEFF/, "").trim().toLowerCase()
+    );
 
   return lines.map(line => {
     const values = [];
@@ -19,13 +34,19 @@ function parseCSV(text) {
 
     for (const ch of line) {
       if (ch === '"') { inQuotes = !inQuotes; continue; }
-      if (ch === "," && !inQuotes) { values.push(current); current = ""; continue; }
+      if (ch === "," && !inQuotes) {
+        values.push(current);
+        current = "";
+        continue;
+      }
       current += ch;
     }
     values.push(current);
 
     const obj = {};
-    headers.forEach((h, i) => obj[h.trim()] = (values[i] || "").trim());
+    headers.forEach((h, i) => {
+      obj[h] = (values[i] || "").trim();
+    });
     return obj;
   });
 }
@@ -41,72 +62,96 @@ async function loadCSV(path) {
   }
 }
 
-function norm(s) {
-  return (s || "")
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function normalise(value) {
+  return (value || "")
     .trim()
     .toLowerCase()
-    .replace(/^https?:\/\//, "")     // strip protocol
-    .replace(/\/+$/, "");           // strip trailing slashes
+    .replace(/^https?:\/\//, "")
+    .replace(/\/+$/, "");
 }
 
-function isDomainLike(s) {
-  // supports subdomains, but rejects strings with spaces or slashes
-  return /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(s);
+function isDomainLike(value) {
+  return /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(value);
 }
 
-(async function () {
-  const rawU = new URLSearchParams(location.search).get("u");
-  if (!rawU) { location.href = "index.html"; return; }
+/* =========================================================
+   MAIN REDIRECT LOGIC
+========================================================= */
 
-  // Keep the raw value too, but compare with a normalised key
-  const uNorm = norm(rawU);
+(async function redirect() {
+  const rawU = new URLSearchParams(window.location.search).get("u");
 
-  const inworld = await loadCSV(INWORLD_CSV);
+  if (!rawU) {
+    location.replace("index.html");
+    return;
+  }
 
-  // Build a lookup from multiple identifiers -> canonical internal path
+  const uNorm = normalise(rawU);
+
+  // Load in-world definitions
+  const inworldSites = await loadCSV(INWORLD_CSV);
+
+  // Build lookup table → canonical internal path
   const lookup = new Map();
-  for (const s of inworld) {
-    const path = (s.path || "").trim();  // keep original case/slashes for redirect
+
+  for (const site of inworldSites) {
+    const path = (site.path || "").trim();
     if (!path) continue;
 
-    // keys we accept
     const keys = [
-      s.id,
-      s.path,
-      s.display_url,
-      s.title
+      site.id,
+      site.path,
+      site.display_url,
+      site.title
     ];
 
-    for (const k of keys) {
-      const key = norm(k);
+    keys.forEach(k => {
+      const key = normalise(k);
       if (key) lookup.set(key, path);
-    }
+    });
 
-    // Also accept path without leading slash (e.g. "biogen")
-    lookup.set(norm(path.replace(/^\//, "")), path);
+    // Also accept path without leading slash
+    lookup.set(normalise(path.replace(/^\//, "")), path);
   }
 
-  // 1) In-world resolution (id/path/display_url/title)
+  /* ---------------------------------------------
+     1) In-world match
+  --------------------------------------------- */
   if (lookup.has(uNorm)) {
-    location.href = lookup.get(uNorm);
+    location.replace(lookup.get(uNorm));
     return;
   }
 
-  // 2) Full URL passed in
+  /* ---------------------------------------------
+     2) Full URL provided
+  --------------------------------------------- */
   if (/^https?:\/\//i.test(rawU.trim())) {
-    location.href = rawU.trim();
+    location.replace(rawU.trim());
     return;
   }
 
-  // 3) Domain-like external
+  /* ---------------------------------------------
+     3) Domain-like external
+  --------------------------------------------- */
   if (isDomainLike(uNorm)) {
-    location.href = "https://" + uNorm;
+    location.replace("https://" + uNorm);
     return;
   }
 
-  // 4) Fallback
-  location.href = "index.html";
+  /* ---------------------------------------------
+     4) Fallback
+  --------------------------------------------- */
+  location.replace("index.html");
 })();
 </script>
+
+<noscript>
+  <p>Redirecting…</p>
+</noscript>
+
 </body>
 </html>
