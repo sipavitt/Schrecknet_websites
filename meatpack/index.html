@@ -212,9 +212,13 @@
       Approved clients may arrange collection of pre-paid orders using the reference issued at purchase.
       Requests are reviewed manually prior to confirmation.
     </p>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
     <form 
       action="https://script.google.com/macros/s/AKfycbzQcby0J_QnPBpUKTXowH75FwfWBkO1nJTyvyjohJ-kBPpZ78574E-rBh92TaBg6QCFCg/exec"
-      method="post">
+      method="post"
+      target="hidden_iframe"
+      onsubmit="setTimeout(() => window.location.href='confirmation.html', 300);"
+      >
     
       <input type="hidden" name="source" value="public-site">
       <input type="hidden" name="ip" value="">
