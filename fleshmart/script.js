@@ -131,9 +131,11 @@ function clearCart() {
 
 // --------- CHECKOUT ---------
 function proceedToCheckout() {
-  closeModal('cartModal');
-  openModal('checkoutModal');
+  // Persist cart to sessionStorage
+  sessionStorage.setItem('FM_CART', JSON.stringify(CART));
+  window.location.href = 'checkout.onion.html';
 }
+
 
 function confirmOrder() {
   // Narrative-only confirmation
