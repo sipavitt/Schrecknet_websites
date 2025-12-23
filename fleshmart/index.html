@@ -1,101 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Access</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 80px 20px;
-      font-family: "Times New Roman", Times, serif;
-      background: #ffffff;
-      color: #000000;
-      line-height: 1.5;
-    }
-    .container {
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 1.4rem;
-      font-weight: normal;
-      margin-bottom: 30px;
-    }
-    p {
-      margin: 0 0 14px 0;
-      font-size: 0.95rem;
-    }
-    .notice {
-      margin-bottom: 30px;
-    }
-    label {
-      display: block;
-      margin-top: 18px;
-      font-size: 0.9rem;
-    }
-    input {
-      width: 100%;
-      padding: 6px;
-      margin-top: 6px;
-      font-family: "Times New Roman", Times, serif;
-      font-size: 0.95rem;
-      border: 1px solid #000;
-      background: #fff;
-      color: #000;
-    }
-    button {
-      margin-top: 22px;
-      padding: 6px 16px;
-      font-family: "Times New Roman", Times, serif;
-      font-size: 0.95rem;
-      background: #fff;
-      color: #000;
-      border: 1px solid #000;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #f2f2f2;
-    }
-    .small {
-      margin-top: 26px;
-      font-size: 0.8rem;
-    }
-    .footer {
-      margin-top: 60px;
-      font-size: 0.75rem;
-      color: #000;
-    }
-  </style>
-</head>
+<html lang="en"><head><meta charset="UTF-8"><title>Fleshmart — Access</title><link rel="stylesheet" href="style.css"></head>
 <body>
-  <div class="container">
-
-    <h1>Access Restricted</h1>
-
-    <div class="notice">
-      <p>This service is not open to new registrants.</p>
-      <p>Accounts are issued by referral only.</p>
-      <p>Requests for access will not be acknowledged.</p>
-      <p>Improper use will result in permanent exclusion.</p>
-    </div>
-
-    <form action="#" method="post">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" />
-
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" />
-
-      <button type="submit">Log in</button>
-    </form>
-
-    <p class="small">Operational notices are posted irregularly. Users are expected to monitor changes independently.</p>
-
-    <div class="footer">
-      <p>Service availability is not guaranteed.</p>
-    </div>
-
-  </div>
-</body>
-</html>
+<div class="auth">
+<div class="logo"><img src="images/logo.png" alt="Fleshmart">FLESHMART</div>
+<h1>Access Restricted</h1>
+<p>This service is not open to new registrants.</p>
+<p>Accounts are issued by referral only.</p>
+<p>Requests for access will not be acknowledged.</p>
+<form action="listings.html">
+<label>Username</label><input type="text">
+<label>Password</label><input type="password">
+<button type="submit">Log in</button>
+</form>
+</div>
+</body></html>
