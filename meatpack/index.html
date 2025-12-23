@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Billingsgate Meat Packing Co.</title>
+  <title>Spitalfields Meat Packing Co.</title>
   <style>
     body {
       margin: 0;
       font-family: Georgia, serif;
       background-color: #f4f1ec;
       color: #2b2b2b;
-      line-height: 1.6;
+      line-height: 1.65;
     }
     header {
-      background: #7a0f0f;
+      background: #6e0e0e;
       color: #fff;
-      padding: 20px 40px;
+      padding: 28px 40px;
       text-align: center;
-      border-bottom: 4px solid #4a0a0a;
+      border-bottom: 4px solid #3f0808;
+    }
+    header p {
+      max-width: 760px;
+      margin: 10px auto 0;
+      font-style: italic;
+      opacity: 0.95;
     }
     .container {
       max-width: 900px;
@@ -25,35 +31,101 @@
       padding: 40px 20px;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       margin-bottom: 0;
+      letter-spacing: 0.5px;
     }
     h2 {
-      margin-top: 40px;
-      border-bottom: 2px solid #7a0f0f;
+      margin-top: 46px;
+      border-bottom: 2px solid #6e0e0e;
       padding-bottom: 6px;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
     }
+    h3 {
+      margin-top: 26px;
+      font-size: 1.15rem;
+      color: #4a0a0a;
+    }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+
+    .hero {
+      background: url('images/hero-spitalfields.jpg') center/cover;
+      height: 280px;
+      border-bottom: 4px solid #6e0e0e;
+      filter: grayscale(45%) contrast(105%);
+    }
+    .image-block { margin: 22px 0 34px; }
+    .image-block img { width: 100%; border: 2px solid #c9c3ba; }
+    .image-block p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #4a4a4a;
+    }
+    .quiet {
+      font-size: 0.95rem;
+      color: #555;
+      font-style: italic;
+    }
+    .breakout {
+      background: #efeae3;
+      border-left: 4px solid #6e0e0e;
+      padding: 18px 20px;
+      margin: 30px 0;
+    }
+    .hours {
+      font-size: 0.95rem;
+      background: #f0ece6;
+      padding: 16px 20px;
+      border: 1px solid #c9c3ba;
+      margin-top: 16px;
+    }
+    form {
+      background: #f0ece6;
+      padding: 22px;
+      border: 1px solid #c9c3ba;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      font-family: Georgia, serif;
+      border: 1px solid #aaa;
+    }
+    button {
+      margin-top: 18px;
+      padding: 10px 18px;
+      background: #6e0e0e;
+      color: #fff;
+      border: none;
+      font-family: Georgia, serif;
+      cursor: pointer;
+    }
+    button:hover { background: #540b0b; }
+
     .footer {
       text-align: center;
-      padding: 25px;
+      padding: 28px;
       margin-top: 40px;
       background: #e2ddd5;
       font-size: 0.9rem;
       border-top: 2px solid #c9c3ba;
-    }
-    .hero {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Billingsgate_Market_Entrance.jpg') center/cover;
-      height: 260px;
-      border-bottom: 4px solid #7a0f0f;
-      filter: grayscale(40%);
+      color: #444;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Billingsgate Meat Packing Co.</h1>
-    <p>Established Service • Quality Cuts • Traditional Craftsmanship</p>
+    <h1>Spitalfields Meat Packing Co.</h1>
+    <p>Wholesale & Retail Butchery — Established Supply — Absolute Discretion</p>
   </header>
 
   <div class="hero"></div>
@@ -61,42 +133,116 @@
   <div class="container">
     <h2>About Us</h2>
     <p>
-      Based in the historic Billingsgate district of London, Billingsgate Meat Packing Co. has supplied
-      high‑quality, professionally prepared meat products to traders, restaurants, and wholesalers for over
-      four decades. We pride ourselves on traditional workmanship, consistency, and a business‑first
-      approach built on reliability.
+      Operating from Spitalfields for over forty years, Spitalfields Meat Packing Co. supplies
+      restaurants, caterers, and private clients with reliably prepared meat products.
+      Our reputation is built on consistency, trust, and the careful handling of sensitive stock.
+    </p>
+    <p class="quiet">
+      We are accustomed to meeting unusual requirements and operating outside standard hours
+      when necessary.
     </p>
 
-    <h2>Our Services</h2>
-    <ul>
-      <li>Wholesale meat packing and distribution</li>
-      <li>Custom cuts for restaurants and catering suppliers</li>
-      <li>Cold‑chain delivery across Greater London</li>
-      <li>Specialist trimming and preparation</li>
-    </ul>
+    <h2>Specialist & Exotic Meats</h2>
+    <div class="breakout">
+      <p>
+        In addition to conventional red meats, we routinely process a limited range of specialist
+        and exotic stock for approved clients.
+      </p>
+      <ul>
+        <li>Ostrich</li>
+        <li>Kangaroo</li>
+        <li>Wild boar</li>
+        <li>Special order consignments</li>
+        <li>Other non-standard preparations by arrangement</li>
+      </ul>
+      <p class="quiet">
+        Availability varies and enquiries are assessed on a case-by-case basis.
+      </p>
+    </div>
+
+    <h2>Sourcing & Provenance</h2>
+    <p>
+      We work with a discreet network of suppliers across Greater London and the South East,
+      allowing us to respond quickly to time-sensitive consignments.
+    </p>
+    <p>
+      Our sourcing model prioritises traceability, controlled handover, and minimal transit time.
+      Certain materials are received via institutional partners and intermediary facilities
+      where specialist handling is required.
+    </p>
+    <p class="quiet">
+      Full provenance documentation is maintained internally and made available to regulators
+      upon request.
+    </p>
+
+    <h2>Our Facility</h2>
+    <p>
+      Our Spitalfields facility combines traditional cutting rooms with modern cold storage.
+      Segregated preparation areas allow for specialist handling and ensure that every consignment
+      is processed appropriately.
+    </p>
+    <div class="image-block">
+      <img src="images/facility-exterior.jpg" alt="Spitalfields facility exterior" />
+      <p>Discrete access points ensure uninterrupted operations.</p>
+    </div>
+
+    <h2>Product Range</h2>
+    <p>
+      We offer a broad selection of red meats and specialist cuts, prepared to specification.
+      Long-standing clients value our willingness to source less common stock and fulfil
+      exacting requests.
+    </p>
+    <div class="image-block">
+      <img src="images/meat-display.jpg" alt="Wholesale meat cuts" />
+      <p>Prepared, trimmed, and packed on-site.</p>
+    </div>
+
+    <h2>Inside the Workshop</h2>
+    <p>
+      Our experienced staff work to established routines, ensuring uniform results and minimal waste.
+      Every stage of preparation is logged and controlled.
+    </p>
+    <div class="image-block">
+      <img src="images/workshop-team.jpg" alt="Butchers at work" />
+      <p>Traditional methods, strictly observed.</p>
+    </div>
+
+    <h2>Arrange Collection</h2>
+    <p>
+      Approved clients may arrange collection of pre-paid orders using the reference issued at purchase.
+      Requests are reviewed manually prior to confirmation.
+    </p>
+    <form>
+      <label for="order">Order Reference</label>
+      <input type="text" id="order" name="order" placeholder="e.g. SP-784233" />
+
+      <label for="name">Contact Name</label>
+      <input type="text" id="name" name="name" />
+
+      <label for="notes">Additional Notes</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Special handling, timing constraints, etc."></textarea>
+
+      <button type="submit">Submit Request</button>
+      <p class="quiet">Submissions are logged for audit and collection planning purposes.</p>
+    </form>
+
+    <h2>Access & Hours</h2>
+    <div class="hours">
+      <p><strong>Retail Counter:</strong> Tue–Fri, 06:00–12:00</p>
+      <p><strong>Trade Collections:</strong> By appointment only</p>
+      <p><strong>After-hours Access:</strong> Available for approved clients with prior arrangement</p>
+    </div>
 
     <h2>Contact</h2>
     <p>
-      <strong>Address:</strong> Billingsgate, London EC3<br />
-      <strong>Telephone:</strong> 020 7946 1122<br />
-      <strong>Email:</strong> info@billingsgatemeat.co.uk
+      <strong>Address:</strong> Spitalfields Market, London E1<br />
+      <strong>Telephone:</strong> 020 7946 1188<br />
+      <strong>Email:</strong> enquiries@spitalfieldsmeat.co.uk
     </p>
-      <h2>Our Facility</h2>
-    <p>Our operations combine traditional craftsmanship with modern, hygienic production standards.</p>
-    <img src="images/facility-exterior.jpg" alt="Facility exterior" style="width:100%; margin:20px 0; border:2px solid #c9c3ba;" />
-
-    <h2>Product Range</h2>
-    <p>A glimpse at the quality and consistency of our wholesale cuts.</p>
-    <img src="images/meat-display.jpg" alt="Butchered cuts on display" style="width:100%; margin:20px 0; border:2px solid #c9c3ba;" />
-
-    <h2>Inside the Workshop</h2>
-    <p>Our experienced team ensures every cut meets professional standards.</p>
-    <img src="images/workshop-team.jpg" alt="Butchers working in the plant" style="width:100%; margin:20px 0; border:2px solid #c9c3ba;" />
-
   </div>
 
-  <div class="footer"">
-    © 2025 Billingsgate Meat Packing Co. | All Rights Reserved
+  <div class="footer">
+    © 2025 Spitalfields Meat Packing Co. | Trade Enquiries Only
   </div>
 </body>
 </html>
