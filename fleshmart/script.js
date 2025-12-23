@@ -178,12 +178,7 @@ function initMarket() {
   const checkoutBtn = $('checkoutBtn');
   if (checkoutBtn) checkoutBtn.onclick = proceedToCheckout;
 
-  const closeCheckout = $('closeCheckout');
-  if (closeCheckout) closeCheckout.onclick = () => closeModal('checkoutModal');
 
-  const confirm = $('confirmOrder');
-  if (confirm) confirm.onclick = confirmOrder;
-}
 function confirmOrder() {
   closeModal('checkoutModal');
 
