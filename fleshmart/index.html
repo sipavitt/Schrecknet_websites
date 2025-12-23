@@ -8,23 +8,20 @@
 </head>
 <body>
 
-
 <div class="auth">
-<!-- Logo establishes identity; no textual branding -->
 <div class="logo" style="justify-content:center; margin-bottom:18px;">
 <img src="images/logo.png" alt="Fleshmart" />
 </div>
 
-
 <h1>Access Restricted</h1>
-
+<p id="loginError" style="display:none;color:#7a0000;">
+Invalid credentials. Attempt logged.
+</p>
 
 <p>This service is not open to new registrants.</p>
 <p>Accounts are issued by referral only.</p>
 <p>Requests for access will not be acknowledged.</p>
 
-
-<!-- Submit directly to the gate page. No credentials are embedded here. -->
 <form action="k7m2q9af.onion.html" method="get" autocomplete="off">
 <label for="u">Username</label>
 <input id="u" name="u" type="text" />
@@ -37,12 +34,16 @@
 <button type="submit">Log in</button>
 </form>
 
-
 <p class="muted" style="margin-top:16px;">
 Improper use will result in permanent exclusion.
 </p>
 </div>
 
-
 </body>
 </html>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('err')) {
+    document.getElementById('loginError').style.display = 'block';
+  }
+</script>
