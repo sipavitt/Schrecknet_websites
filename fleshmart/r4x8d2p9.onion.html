@@ -1,19 +1,116 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>Fleshmart — Listings</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
-<body onload="initPagination()">
-<div class="header"><div class="market-bar">
-<div class="logo"><img src="images/logo.png" alt="Fleshmart">FLESHMART</div>
-<input type="text" placeholder="Search listings">
-<select><option>All categories</option><option>Prepared</option><option>Unprocessed</option><option>Institutional</option></select>
-<div class="right"><a href="policies.html">Policies</a><a href="index.html">Log out</a></div>
-</div></div>
-<div class="layout">
-<aside class="sidebar"><h3>Categories</h3><ul><li>Prepared</li><li>Unprocessed</li><li>Institutional Intake</li><li>Named</li><li>Unnamed</li></ul></aside>
-<main class="content">
-<div class="notice">Prices are listed in BTC. Listings update irregularly.</div>
-<div id="grid" class="grid"></div>
-<div id="pager" class="pagination"></div>
-</main>
-</div>
-<div class="footer">Transactions are final. Disputes are handled internally.</div>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== Header / Market Bar ===== -->
+  <div class="header">
+    <div class="market-bar">
+      <div class="logo">
+        <img src="images/logo.png" alt="Fleshmart" />
+      </div>
+
+      <input id="searchInput" type="text" placeholder="Search listings" />
+
+      <select id="categorySelect">
+        <option value="">All categories</option>
+        <option value="Prepared">Prepared</option>
+        <option value="Unprocessed">Unprocessed</option>
+        <option value="Institutional">Institutional</option>
+        <option value="Named">Named</option>
+        <option value="Unnamed">Unnamed</option>
+      </select>
+
+      <div class="right">
+        <button id="cartBtn" class="cart-btn">Cart (<span id="cartCount">0</span>)</button>
+        <a href="m9c7w3e2.onion.html">Policies</a>
+        <a href="index.html">Log out</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Layout ===== -->
+  <div class="layout">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul id="categoryList">
+        <li data-cat="Prepared">Prepared</li>
+        <li data-cat="Unprocessed">Unprocessed</li>
+        <li data-cat="Institutional">Institutional Intake</li>
+        <li data-cat="Named">Named</li>
+        <li data-cat="Unnamed">Unnamed</li>
+        <li data-cat="Time">Time‑Sensitive</li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="notice">Prices listed in BTC. Listings update irregularly.</div>
+      <div id="grid" class="grid"></div>
+      <div id="pager" class="pagination"></div>
+    </main>
+  </div>
+
+  <!-- ===== Cart Modal ===== -->
+  <div id="cartModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3>Cart</h3>
+        <button class="modal-close" id="closeCart">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="cartItems" class="cart-items">
+          <!-- items injected by script.js -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="cart-total">Total: <span id="cartTotal">0.000 BTC</span></div>
+        <button id="checkoutBtn" class="primary">Proceed</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Checkout Modal ===== -->
+  <div id="checkoutModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3>Fulfilment</h3>
+        <button class="modal-close" id="closeCheckout">×</button>
+      </div>
+
+      <div class="modal-body">
+        <p>Payment instructions will be issued after confirmation.</p>
+        <label>Collection method</label>
+        <select id="collectionMethod">
+          <option>External partner (East London)</option>
+          <option>After-hours intake</option>
+          <option>Standing arrangement</option>
+        </select>
+
+        <label style="margin-top:10px;">Reference (optional)</label>
+        <input type="text" id="buyerRef" placeholder="Internal reference" />
+
+        <p class="muted" style="margin-top:12px;">Do not attend without confirmation.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button id="confirmOrder" class="primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Transactions are final. Disputes are handled internally.
+  </div>
+
+</body>
+</html>
