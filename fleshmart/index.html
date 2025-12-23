@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>Fleshmart — Access</title><link rel="stylesheet" href="style.css"></head>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Access</title>
+<link rel="stylesheet" href="style.css" />
+</head>
 <body>
+
+
 <div class="auth">
-<div class="logo"><img src="images/logo.png" alt="Fleshmart">FLESHMART</div>
+<!-- Logo establishes identity; no textual branding -->
+<div class="logo" style="justify-content:center; margin-bottom:18px;">
+<img src="images/logo.png" alt="Fleshmart" />
+</div>
+
+
 <h1>Access Restricted</h1>
+
+
 <p>This service is not open to new registrants.</p>
 <p>Accounts are issued by referral only.</p>
 <p>Requests for access will not be acknowledged.</p>
-<form action="listings.html">
-<label>Username</label><input type="text">
-<label>Password</label><input type="password">
+
+
+<!-- Submit directly to the gate page. No credentials are embedded here. -->
+<form action="k7m2q9af.onion.html" method="get" autocomplete="off">
+<label for="u">Username</label>
+<input id="u" name="u" type="text" />
+
+
+<label for="p">Password</label>
+<input id="p" name="p" type="password" />
+
+
 <button type="submit">Log in</button>
 </form>
+
+
+<p class="muted" style="margin-top:16px;">
+Improper use will result in permanent exclusion.
+</p>
 </div>
-</body></html>
+
+
+</body>
+</html>
