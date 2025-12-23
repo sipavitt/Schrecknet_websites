@@ -1,95 +1,19 @@
 <!DOCTYPE html>
-<li>Time‑Sensitive</li>
-</ul>
-</aside>
-
-
+<html lang="en"><head><meta charset="UTF-8"><title>Fleshmart — Listings</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body onload="initPagination()">
+<div class="header"><div class="market-bar">
+<div class="logo"><img src="images/logo.png" alt="Fleshmart">FLESHMART</div>
+<input type="text" placeholder="Search listings">
+<select><option>All categories</option><option>Prepared</option><option>Unprocessed</option><option>Institutional</option></select>
+<div class="right"><a href="policies.html">Policies</a><a href="index.html">Log out</a></div>
+</div></div>
+<div class="layout">
+<aside class="sidebar"><h3>Categories</h3><ul><li>Prepared</li><li>Unprocessed</li><li>Institutional Intake</li><li>Named</li><li>Unnamed</li></ul></aside>
 <main class="content">
-<div class="notice">Listings are updated irregularly. Availability may change without notice.</div>
-
-
-<div class="grid">
-
-
-<div class="card">
-<img src="images/pm-7811.jpg" alt="PM-7811" />
-<h4>PM‑7811</h4>
-<p>Prepared material</p>
-<p class="meta">Male, 40–50</p>
-<p class="meta">Cause: blunt trauma</p>
-<p class="meta">Condition: fresh</p>
-<p class="meta">Fulfilment: external partner (East London)</p>
-<p class="status">Status: available</p>
-</div>
-
-
-<div class="card">
-<img src="images/un-7743.jpg" alt="UN-7743" />
-<h4>UN‑7743</h4>
-<p>Institutional intake</p>
-<p class="meta">Ref: Whitechapel‑19‑447</p>
-<p class="meta">Condition: partial</p>
-<p class="meta">Notes: excess retained</p>
-<p class="status">Status: reserved</p>
-</div>
-
-
-<div class="card">
-<img src="images/pm-7902.jpg" alt="PM-7902" />
-<h4>PM‑7902</h4>
-<p>Prepared material</p>
-<p class="meta">Female, mid‑30s</p>
-<p class="meta">Cause: asphyxiation</p>
-<p class="meta">Condition: chilled</p>
-<p class="meta">Fulfilment: standing arrangement</p>
-<p class="status">Status: available</p>
-</div>
-
-
-<div class="card">
-<img src="images/un-7815.jpg" alt="UN-7815" />
-<h4>UN‑7815</h4>
-<p>Unnamed</p>
-<p class="meta">Condition: incomplete</p>
-<p class="meta">Time‑sensitive intake</p>
-<p class="meta">Collection: after hours</p>
-<p class="status">Status: pending</p>
-</div>
-
-
-<div class="card">
-<img src="images/pm-7849.jpg" alt="PM-7849" />
-<h4>PM‑7849</h4>
-<p>Prepared material</p>
-<p class="meta">Named — see manifest</p>
-<p class="meta">Condition: fresh</p>
-<p class="meta">Fulfilment: external partner</p>
-<p class="status">Status: available</p>
-</div>
-
-
-<div class="card">
-<img src="images/inst-7920.jpg" alt="INST-7920" />
-<h4>INST‑7920</h4>
-<p>Institutional intake</p>
-<p class="meta">Ref: E‑London transfer</p>
-<p class="meta">Condition: intact</p>
-<p class="meta">Notes: brokered access</p>
-<p class="status">Status: closed</p>
-</div>
-
-
-</div>
+<div class="notice">Prices are listed in BTC. Listings update irregularly.</div>
+<div id="grid" class="grid"></div>
+<div id="pager" class="pagination"></div>
 </main>
-
-
 </div>
-
-
-<div class="footer">
-Transactions are final. Disputes are handled internally.
-</div>
-
-
-</body>
-</html>
+<div class="footer">Transactions are final. Disputes are handled internally.</div>
+</body></html>
