@@ -78,6 +78,16 @@ function isDomainLike(value) {
   return /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(value);
 }
 
+function logClick(payload) {
+  fetch("https://script.google.com/macros/s/AKfycbyBCC_DBGloXOATNP4l756HCQVL5AW_LezexKMjeC51nN7KGG4NO4fHJqHiBlsn0Js/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
+  
 /* =========================================================
    MAIN REDIRECT LOGIC
 ========================================================= */
@@ -122,6 +132,13 @@ function isDomainLike(value) {
      1) In-world match
   --------------------------------------------- */
   if (lookup.has(uNorm)) {
+    logClick({
+  event: "click",
+  target: lookup.get(uNorm),
+  type: "inworld",
+  source: document.referrer,
+  user_agent: navigator.userAgent
+});
     location.replace(lookup.get(uNorm));
     return;
   }
@@ -130,6 +147,13 @@ function isDomainLike(value) {
      2) Full URL provided
   --------------------------------------------- */
   if (/^https?:\/\//i.test(rawU.trim())) {
+    logClick({
+  event: "click",
+  target: rawU.trim(),
+  type: "external",
+  source: document.referrer,
+  user_agent: navigator.userAgent
+});
     location.replace(rawU.trim());
     return;
   }
@@ -138,6 +162,13 @@ function isDomainLike(value) {
      3) Domain-like external
   --------------------------------------------- */
   if (isDomainLike(uNorm)) {
+    logClick({
+  event: "click",
+  target: "https://" + uNorm,
+  type: "external",
+  source: document.referrer,
+  user_agent: navigator.userAgent
+});
     location.replace("https://" + uNorm);
     return;
   }
@@ -155,3 +186,4 @@ function isDomainLike(value) {
 
 </body>
 </html>
+
