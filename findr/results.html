@@ -10,7 +10,6 @@
 
 <body class="results">
 
-<!-- Header -->
 <header class="results-header">
   <img
     src="assets/findr-logo.svg"
@@ -34,7 +33,6 @@
   </form>
 </header>
 
-<!-- Tabs -->
 <nav class="results-tabs">
   <a class="active">All</a>
   <a>News</a>
@@ -42,7 +40,6 @@
   <a>Maps</a>
 </nav>
 
-<!-- Results -->
 <main id="results-container"></main>
 
 <script>
@@ -53,6 +50,7 @@
 const RESULTS_PER_PAGE = 9;
 const NOISE_CSV = "top_sites.csv";
 const INWORLD_CSV = "inworld_sites.csv";
+const MAX_INWORLD_RESULTS = 2;
 
 /* =========================================================
    HELPERS
@@ -67,7 +65,7 @@ function shuffle(array) {
 }
 
 /* =========================================================
-   CSV LOADER (safe for commas + quotes)
+   CSV LOADER (hardened)
 ========================================================= */
 
 function parseCSV(text) {
@@ -76,10 +74,7 @@ function parseCSV(text) {
   const headers = lines.shift()
     .split(",")
     .map(h =>
-      h
-        .replace(/^\uFEFF/, "") // remove BOM if present
-        .trim()
-        .toLowerCase()
+      h.replace(/^\uFEFF/, "").trim().toLowerCase()
     );
 
   return lines.map(line => {
@@ -89,7 +84,11 @@ function parseCSV(text) {
 
     for (const ch of line) {
       if (ch === '"') { inQuotes = !inQuotes; continue; }
-      if (ch === "," && !inQuotes) { values.push(current); current = ""; continue; }
+      if (ch === "," && !inQuotes) {
+        values.push(current);
+        current = "";
+        continue;
+      }
       current += ch;
     }
     values.push(current);
@@ -118,6 +117,8 @@ async function loadCSV(path) {
 ========================================================= */
 
 function scoreMatch(query, text) {
+  if (!text) return 0;
+
   const q = query.toLowerCase();
   const t = text.toLowerCase();
 
@@ -133,7 +134,7 @@ function scoreMatch(query, text) {
 }
 
 /* =========================================================
-   NOISE SEARCH (top_sites.csv)
+   NOISE SEARCH
 ========================================================= */
 
 function searchNoise(query, sites) {
@@ -142,9 +143,8 @@ function searchNoise(query, sites) {
       const score =
         scoreMatch(query, site.title) +
         scoreMatch(query, site.domain) +
-        scoreMatch(query, site.description || "") +
-        scoreMatch(query, site.keywords || "");
-
+        scoreMatch(query, site.description) +
+        scoreMatch(query, site.keywords);
 
       return { ...site, score };
     })
@@ -153,19 +153,25 @@ function searchNoise(query, sites) {
 }
 
 /* =========================================================
-   IN-WORLD SEARCH (keyword-gated)
+   IN-WORLD SEARCH (keyword-triggered)
 ========================================================= */
 
 function searchInWorld(query, sites) {
   const q = query.toLowerCase();
 
-  return sites.filter(site => {
-    if (!site.keywords) return false;
-    return site.keywords
-      .toLowerCase()
-      .split(",")
-      .some(k => q.includes(k.trim()));
-  });
+  return sites
+    .filter(site => {
+      if (!site.keywords) return false;
+      return site.keywords
+        .toLowerCase()
+        .split(",")
+        .some(k => q.includes(k.trim()));
+    })
+    .map(site => ({
+      ...site,
+      score: scoreMatch(query, site.keywords)
+    }))
+    .sort((a, b) => b.score - a.score);
 }
 
 /* =========================================================
@@ -183,7 +189,7 @@ function renderResult({ title, url, snippet, href }) {
 }
 
 /* =========================================================
-   MAIN SEARCH EXECUTION
+   MAIN SEARCH
 ========================================================= */
 
 async function runFindr() {
@@ -198,50 +204,57 @@ async function runFindr() {
     loadCSV(INWORLD_CSV)
   ]);
 
-  const noiseMatches = searchNoise(query, noiseSites);
   const inworldMatches = searchInWorld(query, inworldSites);
+  const noiseMatches = searchNoise(query, noiseSites);
 
   const results = [];
 
-  /* 1. Relevant noise first */
-  noiseMatches.forEach(site => {
-    if (results.length < RESULTS_PER_PAGE) {
+  /* =====================================================
+     TIER 1 — IN-WORLD RESULTS (IF ANY TRIGGER)
+  ===================================================== */
+
+  if (inworldMatches.length > 0) {
+    inworldMatches.slice(0, MAX_INWORLD_RESULTS).forEach(site => {
       results.push({
         title: site.title,
-        url: site.domain,
-        snippet: site.description || `Information from ${site.title}.`,
-        href: `go.html?u=${site.domain}`
+        url: site.display_url || site.path,
+        snippet:
+          site.description && site.description.length
+            ? site.description
+            : `Information about ${site.title}.`,
+        href: `go.html?u=${site.path}`
       });
-    }
-  });
+    });
+  }
 
-  /* 2. Inject in-world results naturally */
-  inworldMatches.forEach(site => {
-    if (results.length < RESULTS_PER_PAGE) {
-      results.splice(
-        Math.min(2, results.length),
-        0,
-        {
-          title: site.title,
-          url: site.display_url || site.path,
-          snippet:
-            site.description && site.description.length
-              ? site.description
-              : `Information about ${site.title}.`,
-          href: `go.html?u=${site.path}`
-        }
-      );
-    }
-  });
+  /* =====================================================
+     TIER 2 — NOISE RESULTS
+  ===================================================== */
 
-  /* 3. Randomised filler noise */
   const usedDomains = new Set(results.map(r => r.url));
-  const fillerNoise = shuffle(
+
+  noiseMatches.forEach(site => {
+    if (results.length >= RESULTS_PER_PAGE) return;
+    if (usedDomains.has(site.domain)) return;
+
+    results.push({
+      title: site.title,
+      url: site.domain,
+      snippet: site.description || `Information from ${site.title}.`,
+      href: `go.html?u=${site.domain}`
+    });
+  });
+
+  /* =====================================================
+     FILLER — RANDOM NOISE
+  ===================================================== */
+
+  const filler = shuffle(
     noiseSites.filter(s => !usedDomains.has(s.domain))
   );
 
-  while (results.length < RESULTS_PER_PAGE && fillerNoise.length) {
-    const site = fillerNoise.shift();
+  while (results.length < RESULTS_PER_PAGE && filler.length) {
+    const site = filler.shift();
     results.push({
       title: site.title,
       url: site.domain,
@@ -250,7 +263,6 @@ async function runFindr() {
     });
   }
 
-  /* Render */
   document.getElementById("results-container").innerHTML =
     results.map(renderResult).join("");
 }
@@ -260,5 +272,3 @@ runFindr();
 
 </body>
 </html>
-
-
