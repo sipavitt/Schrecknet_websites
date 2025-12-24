@@ -444,3 +444,47 @@ h2, .h-neon {
 
   .modal-form { grid-template-columns: 1fr; }
 }
+
+.about-card {
+  padding: 60px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-text {
+  max-width: 60ch;
+}
+
+.about-text .ethos {
+  margin-top: 24px;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.about-portrait {
+  margin: 0;
+  text-align: center;
+}
+
+.about-portrait img {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid rgba(255,0,0,0.25);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 30px rgba(255,0,0,0.15);
+}
+
+.about-portrait figcaption {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
