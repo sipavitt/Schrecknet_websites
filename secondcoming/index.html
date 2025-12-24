@@ -5,19 +5,30 @@
   <title>The Second Coming — Soho</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Favicon + Logo -->
-  <link rel="icon" href="images/logo_secondcoming.svg" type="image/svg+xml">
+  <!-- Favicon -->
+  <link rel="icon" href="images/logo_secondcoming.svg" type="image/svg+xml" />
+
+  <!-- Fonts: more character + still readable -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header class="site-header">
   <div class="nav-container">
-    <img src="images/logo_secondcoming.svg" alt="The Second Coming" class="logo" />
-    <nav>
+    <a href="#" class="brand" aria-label="The Second Coming Home">
+      <img src="images/logo_secondcoming.svg" alt="The Second Coming" class="logo neon-flicker" />
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="siteNav" class="nav">
       <a href="#about">About</a>
       <a href="#shop">Shop</a>
       <a href="#events">Events</a>
@@ -26,148 +37,178 @@
   </div>
 </header>
 
-<section class="hero">
-</section>
-
-<main class="content">
-
-<section id="about" class="card two-col">
-  <div class="text">
-    <h2>Amir al Malik</h2>
-    <p>
-      Performer. Provocateur. Proprietor.
-      Amir founded <em>The Second Coming</em> as a response to the idea that pleasure
-      should be hidden, apologised for, or sanitised.
-    </p>
-    <p>
-      This is a shop, yes — but also a club, a cabaret space, and a sanctuary
-      for those who refuse to pretend they are something they are not.
-    </p>
-  </div>
-  <img src="images/amir_portrait.webp" alt="Amir al Malik">
-</section>
-
-<section id="shop" class="card">
-  <h2>The Shop</h2>
-  <p class="section-intro">
-    A carefully curated selection of tools, objects, and artefacts —
-    chosen as much for symbolism as sensation.
-  </p>
-
-  <div class="product-grid">
-
-  <div class="product-card">
-    <img src="images/rope_set.webp">
-    <h3>Saints & Sinners Rope Set</h3>
-    <p>Crimson rope, cut and sealed in-house.</p>
-    <span class="tag">In-store only</span>
-  </div>
-
-  <div class="product-card">
-    <img src="images/confessor_hood.webp">
-    <h3>The Confessor’s Hood</h3>
-    <p>Breathable, theatrical, and deliberately disorienting.</p>
-    <span class="tag">Limited stock</span>
-  </div>
-
-  <div class="product-card">
-    <img src="images/holywater_bottle.webp">
-    <h3>Holy Water</h3>
-    <p>Bergamot, cedar, and something less describable.</p>
-    <span class="tag">Bestseller</span>
-  </div>
-
-  <div class="product-card">
-    <img src="images/gospel_journal.webp">
-    <h3>The Gospel According to You</h3>
-    <p>For confessions best kept written.</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/pilgrim_harness.webp">
-    <h3>The Pilgrim’s Harness</h3>
-    <p>Leather, brass, and deliberate intent.</p>
-    <span class="tag">Fitting required</span>
-  </div>
-
-</div>
-
-</section>
-
-<section id="events" class="card">
-  <h2>Events & Rituals</h2>
-  <div class="two-col">
-    <img src="images/event_cabaret.webp">
-    <div class="text">
-      <p>
-        The doors stay open long after the shop closes.
-        Cabaret nights, rope workshops, private rituals, and invitation-only gatherings
-        take place beneath the neon.
-
-        <ul class="event-list">
-  <li>
-    <strong>Shibari Fundamentals</strong>
-    <span>Guided rope workshop · Monthly</span>
-  </li>
-  <li>
-    <strong>Soho Munch</strong>
-    <span>Casual social · First Thursday</span>
-  </li>
-  <li>
-    <strong>Meet the Dom</strong>
-    <span>Q&A + scene discussion · Ticketed</span>
-  </li>
-  <li>
-    <strong>Unholy Communion</strong>
-    <span>Private ritual · Invitation only</span>
-  </li>
-</ul>
-
-      </p>
-      <p>
-        Some events are ticketed. Others are not advertised at all.
-      </p>
+<section class="hero" aria-label="Hero image">
+  <div class="hero-overlay">
+    <div class="hero-mark">
+      <img src="images/logo_secondcoming.svg" alt="" class="hero-sigil neon-flicker" />
+      <p class="hero-whisper">Soho’s sacred & profane boutique.</p>
     </div>
   </div>
 </section>
 
-<section id="visit" class="card two-col">
-  <img src="images/storefront_secondcoming.webp">
-  <div class="text">
-    <h2>Visit Us</h2>
-    <p>14a Barrow Street, Soho</p>
-    <p>Open late. Closed only when absolutely necessary.</p>
-  </div>
-</section>
+<main class="content">
+
+  <section id="about" class="card two-col">
+    <div class="text">
+      <h2 class="h-neon">Amir al Malik</h2>
+      <p class="lead">
+        Performer. Provocateur. Proprietor.
+      </p>
+      <p>
+        Amir founded <em>The Second Coming</em> as a response to the idea that pleasure should be hidden,
+        apologised for, or sanitised. This is a shop, yes — but also a club, a cabaret space, and a sanctuary
+        for those who refuse to pretend they are something they are not.
+      </p>
+      <p>
+        Consent is our liturgy. Curiosity is encouraged. Hypocrisy is not.
+      </p>
+    </div>
+
+    <figure class="about-media">
+      <img src="images/amir_portrait.webp" alt="Amir al Malik">
+      <figcaption>“If you feel judged here, you’ve misunderstood the point.”</figcaption>
+    </figure>
+  </section>
+
+  <section id="shop" class="card">
+    <h2 class="h-neon">The Shop</h2>
+    <p class="section-intro">
+      Curated objects for ritual, play, theatre, and devotion — chosen as much for symbolism as sensation.
+    </p>
+
+    <div class="product-grid">
+
+      <article class="product-card">
+        <img src="images/rope_set.webp" alt="Saints & Sinners Rope Set">
+        <h3>Saints & Sinners Rope Set</h3>
+        <p>Crimson rope, cut and sealed in-house. For restraint, reverence, or rehearsal.</p>
+        <span class="tag">In-store only</span>
+      </article>
+
+      <article class="product-card">
+        <img src="images/confessor_hood.webp" alt="The Confessor’s Hood">
+        <h3>The Confessor’s Hood</h3>
+        <p>Breathable, theatrical, and deliberately disorienting. For performances and private vows.</p>
+        <span class="tag">Limited stock</span>
+      </article>
+
+      <article class="product-card">
+        <img src="images/holywater_bottle.webp" alt="Holy Water">
+        <h3>Holy Water</h3>
+        <p>Bergamot, cedar, and something less describable. A blessing you can wear.</p>
+        <span class="tag">Bestseller</span>
+      </article>
+
+      <article class="product-card">
+        <img src="images/gospel_journal.webp" alt="The Gospel According to You">
+        <h3>The Gospel According to You</h3>
+        <p>A leather-bound journal for confessions best kept written.</p>
+        <span class="tag">Quiet favourite</span>
+      </article>
+
+      <article class="product-card">
+        <img src="images/pilgrim_harness.webp" alt="The Pilgrim’s Harness">
+        <h3>The Pilgrim’s Harness</h3>
+        <p>Leather, brass, and deliberate intent. Fitting recommended.</p>
+        <span class="tag">Fitting required</span>
+      </article>
+
+      <article class="product-card">
+        <img src="images/rosary.webp" alt="The Rosary (Decorative)">
+        <h3>The Rosary</h3>
+        <p>Not holy. Not apologetic. A devotional prop for the beautifully unrepentant.</p>
+        <span class="tag">Display piece</span>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="events" class="card">
+    <h2 class="h-neon">Events & Rituals</h2>
+
+    <div class="two-col">
+      <img src="images/event_cabaret.webp" alt="Cabaret space with neon and velvet">
+
+      <div class="text">
+        <p>
+          The doors stay open long after the shop closes. Cabaret nights, workshops, private rituals, and
+          invitation-only gatherings take place beneath the neon.
+        </p>
+
+        <ul class="event-list">
+          <li>
+            <strong>Shibari Fundamentals</strong>
+            <span>Guided rope workshop · Monthly</span>
+          </li>
+          <li>
+            <strong>Soho Munch</strong>
+            <span>Casual social · First Thursday</span>
+          </li>
+          <li>
+            <strong>Meet the Dom</strong>
+            <span>Q&A + scene discussion · Ticketed</span>
+          </li>
+          <li>
+            <strong>Unholy Communion</strong>
+            <span>Private ritual · Invitation only</span>
+          </li>
+        </ul>
+
+        <p class="muted">
+          Some events are ticketed. Others are not advertised at all.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="card two-col">
+    <img src="images/storefront_secondcoming.webp" alt="Storefront of The Second Coming in Soho">
+
+    <div class="text">
+      <h2 class="h-neon">Visit Us</h2>
+      <p class="lead">14a Barrow Street, Soho</p>
+      <p>Open late. Closed only when absolutely necessary.</p>
+
+      <div class="details">
+        <div><span class="label">Hours</span> Mon–Thu 11:00–23:00 · Fri–Sat 11:00–00:00 · Sun closed</div>
+        <div><span class="label">Email</span> blessings@secondcoming.soho.uk</div>
+        <div><span class="label">Phone</span> 020 7946 0666</div>
+      </div>
+    </div>
+  </section>
 
 </main>
 
 <footer class="site-footer">
-  <img src="images/logo_secondcoming.svg" class="footer-logo">
+  <img src="images/logo_secondcoming.svg" class="footer-logo" alt="">
   <p>Go forth and sin some more.</p>
 </footer>
 
 <!-- Cookie -->
-<div id="cookieBanner" class="cookie-banner">
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
   <p>This site uses cookies, incense, and questionable judgement.</p>
-  <button id="acceptCookies">Accept</button>
+  <button id="acceptCookies" class="btn">Accept</button>
 </div>
 
 <!-- Subscribe Modal -->
-<div id="subscribeModal" class="modal">
+<div id="subscribeModal" class="modal" role="dialog" aria-modal="true" aria-label="Newsletter sign-up">
   <div class="modal-content">
-    <span id="closeModal">✕</span>
-    <h2>Don’t Pretend You’re Not Curious</h2>
-    <p>
-      Private events. Unadvertised gatherings.  
-      Invitations that don’t go to just anyone.
+    <button id="closeModal" class="modal-close" aria-label="Close">✕</button>
+
+    <h2 class="h-neon">Don’t Pretend You’re Not Curious</h2>
+    <p class="muted">
+      Private events. Unadvertised gatherings. Invitations that don’t go to just anyone.
     </p>
-    <input type="email" placeholder="Your email address">
-    <button>Confess</button>
-    <small>We don’t spam. We summon.</small>
+
+    <form class="modal-form" onsubmit="return false;">
+      <label class="sr-only" for="email">Email</label>
+      <input id="email" type="email" placeholder="Your email address" autocomplete="email" required>
+      <button class="btn btn-primary" type="submit">Confess</button>
+    </form>
+
+    <small class="muted">We don’t spam. We summon.</small>
   </div>
 </div>
-
 
 <script src="script.js"></script>
 </body>
