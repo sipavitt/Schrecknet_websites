@@ -5,95 +5,124 @@
   <title>The Second Coming — Soho</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Favicon + Logo -->
+  <link rel="icon" href="images/logo_secondcoming.svg" type="image/svg+xml">
+
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <nav class="navbar">
-    <img src="images/logo_secondcoming.webp" alt="The Second Coming" />
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#visit">Visit</a></li>
-    </ul>
-  </nav>
+<header class="site-header">
+  <div class="nav-container">
+    <img src="images/logo_secondcoming.svg" alt="The Second Coming" class="logo" />
+    <nav>
+      <a href="#about">About</a>
+      <a href="#shop">Shop</a>
+      <a href="#events">Events</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Confess Your Desires</h1>
-      <p>We already know them.</p>
-      <button id="subscribeBtn">Join the Congregation</button>
+<section class="hero">
+  <div class="hero-panel">
+    <h1>Confess Your Desires</h1>
+    <p class="hero-sub">We already know them.</p>
+    <button id="subscribeBtn">Join the Congregation</button>
+  </div>
+</section>
+
+<main class="content">
+
+<section id="about" class="card two-col">
+  <div class="text">
+    <h2>Amir al Malik</h2>
+    <p>
+      Performer. Provocateur. Proprietor.
+      Amir founded <em>The Second Coming</em> as a response to the idea that pleasure
+      should be hidden, apologised for, or sanitised.
+    </p>
+    <p>
+      This is a shop, yes — but also a club, a cabaret space, and a sanctuary
+      for those who refuse to pretend they are something they are not.
+    </p>
+  </div>
+  <img src="images/amir_portrait.webp" alt="Amir al Malik">
+</section>
+
+<section id="shop" class="card">
+  <h2>The Shop</h2>
+  <p class="section-intro">
+    A carefully curated selection of tools, objects, and artefacts —
+    chosen as much for symbolism as sensation.
+  </p>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="images/rope_set.webp">
+      <h3>Saints & Sinners Rope Set</h3>
+      <p>Crimson rope, cut and sealed in-house. For ritual, restraint, or reverence.</p>
     </div>
-  </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="section about">
-    <img src="images/amir_portrait.webp" alt="Amir al Malik" />
-    <div>
-      <h2>Amir al Malik</h2>
+    <div class="product-card">
+      <img src="images/gospel_journal.webp">
+      <h3>The Gospel According to You</h3>
+      <p>A leather-bound journal for scenes, confessions, and private theology.</p>
+    </div>
+  </div>
+</section>
+
+<section id="events" class="card">
+  <h2>Events & Rituals</h2>
+  <div class="two-col">
+    <img src="images/event_cabaret.webp">
+    <div class="text">
       <p>
-        Founder, heretic, host.  
-        The Second Coming is not just a shop — it is a sanctuary for the beautifully damned.
+        The doors stay open long after the shop closes.
+        Cabaret nights, rope workshops, private rituals, and invitation-only gatherings
+        take place beneath the neon.
+      </p>
+      <p>
+        Some events are ticketed. Others are not advertised at all.
       </p>
     </div>
-  </section>
-
-  <!-- SHOP -->
-  <section id="shop" class="section shop">
-    <h2>Shop</h2>
-    <div class="product-grid">
-      <div class="product">
-        <img src="images/rope_set.webp" alt="Saints & Sinners Rope Set">
-        <h3>Saints & Sinners Rope Set</h3>
-      </div>
-      <div class="product">
-        <img src="images/gospel_journal.webp" alt="The Gospel According to You">
-        <h3>The Gospel According to You</h3>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENTS -->
-  <section id="events" class="section events">
-    <h2>Events & Rituals</h2>
-    <img src="images/event_cabaret.webp" alt="Cabaret Space">
-    <p>Cabaret. Rope. Confession. Mystery Mondays.</p>
-  </section>
-
-  <!-- VISIT -->
-  <section id="visit" class="section visit">
-    <img src="images/storefront_secondcoming.webp" alt="Storefront">
-    <p>14a Barrow Street, Soho.  
-    Open late. Closed only for spiritual recovery.</p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <img src="images/logo_secondcoming.webp" alt="">
-    <p>Go forth and sin some more.</p>
-  </footer>
-
-  <!-- COOKIE -->
-  <div id="cookieBanner" class="cookie-banner">
-    <p>This site uses cookies, incense, and poor decisions.</p>
-    <button id="acceptCookies">Accept</button>
   </div>
+</section>
 
-  <!-- SUBSCRIBE MODAL -->
-  <div id="subscribeModal" class="modal">
-    <div class="modal-content">
-      <h2>Join the Congregation</h2>
-      <input type="email" placeholder="Your email">
-      <button>Submit</button>
-      <span id="closeModal">✕</span>
-    </div>
+<section id="visit" class="card two-col">
+  <img src="images/storefront_secondcoming.webp">
+  <div class="text">
+    <h2>Visit Us</h2>
+    <p>14a Barrow Street, Soho</p>
+    <p>Open late. Closed only when absolutely necessary.</p>
   </div>
+</section>
 
-  <script src="script.js"></script>
+</main>
+
+<footer class="site-footer">
+  <img src="images/logo_secondcoming.svg" class="footer-logo">
+  <p>Go forth and sin some more.</p>
+</footer>
+
+<!-- Cookie -->
+<div id="cookieBanner" class="cookie-banner">
+  <p>This site uses cookies, incense, and questionable judgement.</p>
+  <button id="acceptCookies">Accept</button>
+</div>
+
+<!-- Subscribe Modal -->
+<div id="subscribeModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal">✕</span>
+    <h2>Join the Congregation</h2>
+    <input type="email" placeholder="Email address">
+    <button>Submit</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
