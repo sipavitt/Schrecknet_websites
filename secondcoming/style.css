@@ -1,0 +1,76 @@
+:root {
+  --red: #ff1a1a;
+  --black: #000;
+  --gold: #c7a76c;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: #f5f1ec;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2 {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+}
+
+.hero {
+  height: 100vh;
+  background: url('images/hero_sanctum.webp') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  text-shadow: 0 0 20px red;
+}
+
+.section {
+  padding: 80px 10%;
+}
+
+.product-grid {
+  display: flex;
+  gap: 40px;
+}
+
+.product img {
+  width: 100%;
+  border: 1px solid var(--red);
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  background: #111;
+  width: 100%;
+  padding: 15px;
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background: #111;
+  padding: 30px;
+  margin: 10% auto;
+  width: 300px;
+}
