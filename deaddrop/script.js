@@ -2,22 +2,26 @@ const ADMIN_CODE = "101";
 
 /* ---------- Detect SQL Injection ---------- */
 function isSQLi(input) {
-    const lowered = input.toLowerCase().trim();
+    const lowered = input.toLowerCase();
 
-    // Must contain a quote to "break" the query
+    // Must include a quote to "break" the query
     if (!lowered.includes("'")) return false;
 
-    // Must contain something that looks like a logical truth
-    const logicPatterns = [
-        "or 1=1",
-        "or true",
-        "or 'a'='a",
-        "or 2>1",
-        "or 1",
-        "or"
-    ];
+    // Try to extract a simple logical expression
+    const match = lowered.match(/(\d+)\s*(=|>|<)\s*(\d+)/);
 
-    return logicPatterns.some(pattern => lowered.includes(pattern));
+    if (!match) return false;
+
+    const left = parseInt(match[1]);
+    const operator = match[2];
+    const right = parseInt(match[3]);
+
+    switch (operator) {
+        case "=": return left === right;
+        case ">": return left > right;
+        case "<": return left < right;
+        default: return false;
+    }
 }
 
 /* ---------- Login Attempt ---------- */
